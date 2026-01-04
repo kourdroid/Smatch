@@ -167,8 +167,8 @@ export function Ecosystem() {
           <div className="flex w-full flex-col justify-center gap-6 md:flex-row md:gap-[20px]">
 
             {/* 5. Optimization par l'IA - FIX OVERLAP */}
-            <div className="group relative w-full overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] p-6 pb-[100px] transition-colors duration-500 hover:border-smatch-gold/20 md:h-[232px] md:w-[749px] md:p-[32px]">
-              <div className="relative z-20 md:ml-[10px] md:mt-[20px]">
+            <div className="group relative w-full overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] p-6 min-h-[200px] transition-colors duration-500 hover:border-smatch-gold/20 md:h-[232px] md:w-[749px] md:p-[32px]">
+              <div className="relative z-20 pr-[45%] md:ml-[10px] md:mt-[20px] md:pr-0">
                 <h3 className="mb-2 font-sans text-lg font-bold text-white md:mb-[15px] md:text-[24px]">
                   Optimisation par l&apos;IA
                 </h3>
@@ -179,7 +179,7 @@ export function Ecosystem() {
               </div>
 
               {/* Chart - Pushed down/right on mobile */}
-              <div className="pointer-events-none absolute bottom-[-10px] right-[-10px] h-[100px] w-3/4 md:bottom-0 md:right-0 md:h-[160px] md:w-3/5">
+              <div className="pointer-events-none absolute bottom-0 right-0 h-[100px] w-[40%] md:bottom-0 md:right-0 md:h-[160px] md:w-3/5">
                 <svg className="size-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 300 100">
                   <defs>
                     <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">

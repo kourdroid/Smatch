@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproduction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'smatch-gold': '#FFC800',
+              'smatch-black': '#050505',
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-black text-white p-10">
+    <!-- Component Code Below -->
+    <div class="flex w-full flex-col justify-center gap-6 md:flex-row md:gap-[20px]">
+
+            <!-- 5. Optimization par l'IA - FIX OVERLAP -->
+            <div class="group relative w-full overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] p-6 min-h-[200px] transition-colors duration-500 hover:border-smatch-gold/20 md:h-[232px] md:w-[749px] md:p-[32px]">
+              <div class="relative z-20 pr-[45%] md:ml-[10px] md:mt-[20px] md:pr-0">
+                <h3 class="mb-2 font-sans text-lg font-bold text-white md:mb-[15px] md:text-[24px]">
+                  Optimisation par l'IA
+                </h3>
+                <!-- Max width restricted on mobile to prevent overlap -->
+                <p class="w-full text-sm font-medium leading-[20px] text-[#ffffff7a] md:max-w-[340px] md:text-[16px] md:leading-[24px]">
+                  Anticipez vos besoins et optimisez vos flux grâce à l'analyse prédictive.
+                </p>
+              </div>
+
+              <!-- Chart - Pushed down/right on mobile -->
+              <div class="pointer-events-none absolute bottom-0 right-0 h-[100px] w-[40%] md:bottom-0 md:right-0 md:h-[160px] md:w-3/5">
+                <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 300 100">
+                  <defs>
+                    <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#FFB800" stopOpacity="0.2" />
+                      <stop offset="100%" stopColor="#FFB800" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 100 L0 90 C 50 90, 100 80, 150 60 C 200 40, 250 20, 300 15 L 300 100 Z" fill="url('#chartGradient')" />
+                  <path d="M0 90 C 50 90, 100 80, 150 60 C 200 40, 250 20, 300 15" fill="none" stroke="#FFB800" strokeWidth="2" />
+                  <circle cx="250" cy="20" r="4" fill="#FFB800" class="animate-pulse" />
+                </svg>
+
+                <!-- Floating Tooltip - Scaled down -->
+                <div class="absolute right-1/4 top-0 rounded-lg border border-smatch-gold/30 bg-[#1A1A1A] px-2 py-1 text-center shadow-xl md:top-[10px] md:px-3 md:py-2">
+                  <span class="block text-sm font-bold leading-none text-smatch-gold md:text-[18px]">+35%</span>
+                  <span class="mt-0.5 block text-[8px] uppercase tracking-wider text-white/60 md:mt-1 md:text-[10px]">Efficacité</span>
+                </div>
+              </div>
+            </div>
+    </div>
+</body>
+</html>
