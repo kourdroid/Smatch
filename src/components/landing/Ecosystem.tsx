@@ -167,13 +167,13 @@ export function Ecosystem() {
           <div className="flex w-full flex-col justify-center gap-6 md:flex-row md:gap-[20px]">
 
             {/* 5. Optimization par l'IA - FIX OVERLAP */}
-            <div className="group relative w-full overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] p-6 transition-colors duration-500 hover:border-smatch-gold/20 md:h-[232px] md:w-[749px] md:p-[32px]">
+            <div className="group relative w-full overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] p-6 pb-[100px] transition-colors duration-500 hover:border-smatch-gold/20 md:h-[232px] md:w-[749px] md:p-[32px]">
               <div className="relative z-20 md:ml-[10px] md:mt-[20px]">
                 <h3 className="mb-2 font-sans text-lg font-bold text-white md:mb-[15px] md:text-[24px]">
                   Optimisation par l&apos;IA
                 </h3>
                 {/* Max width restricted on mobile to prevent overlap */}
-                <p className="max-w-[60%] text-sm font-medium leading-[20px] text-[#ffffff7a] md:max-w-[340px] md:text-[16px] md:leading-[24px]">
+                <p className="w-full text-sm font-medium leading-[20px] text-[#ffffff7a] md:max-w-[340px] md:text-[16px] md:leading-[24px]">
                   Anticipez vos besoins et optimisez vos flux grâce à l&apos;analyse prédictive.
                 </p>
               </div>
