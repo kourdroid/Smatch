@@ -66,7 +66,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         placeholder="blur"
         blurDataURL={placeholderBlur}
         priority={priority}
-        quality={100}
+        // Bolt: Removed quality={100} to use Next.js default (75) for better performance/smaller file sizes
         loading={loading}
         sizes={sizes}
         src={src}
