@@ -8,10 +8,7 @@ import React from 'react'
 
 import type { Props as MediaProps } from '../types'
 
-import { cssVariables } from '@/cssVariables'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
-
-const { breakpoints } = cssVariables
 
 // A base64 encoded image to use as a placeholder while the image is loading
 const placeholderBlur =
@@ -49,12 +46,10 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
 
-  // NOTE: this is used by the browser to determine which image to download at different screen sizes
+  // NOTE: If sizes is not provided, Next.js defaults to 100vw for fill images,
+  // which is safer than forcing max resolution for all breakpoints.
+  // The previous implementation was broken and forced max resolution.
   const sizes = sizeFromProps
-    ? sizeFromProps
-    : Object.entries(breakpoints)
-      .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
-      .join(', ')
 
   return (
     <picture className={cn(pictureClassName)}>
@@ -66,7 +61,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         placeholder="blur"
         blurDataURL={placeholderBlur}
         priority={priority}
-        quality={85}
+        // Removed quality={85} to use Next.js default (75) for better performance/size ratio
         loading={loading}
         sizes={sizes}
         src={src}

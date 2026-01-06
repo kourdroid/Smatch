@@ -1,0 +1,3 @@
+## 2025-01-26 - Broken `sizes` attribute logic forces max resolution images
+**Learning:** Generating `sizes` attribute by iterating breakpoints in reverse order (largest to smallest) with `max-width` causes the first condition (largest breakpoint) to always match on smaller screens. This forces the browser to think the image is huge (e.g. 3840px wide) even on mobile, causing it to download the largest available image from `srcset`. Additionally, multiplying the breakpoint value by 2 to simulate retina support in `sizes` is incorrect; `sizes` should reflect layout width, and `srcset` handles density.
+**Action:** Use `100vw` as default for unknown sizes (or rely on Next.js default behavior). Do not manually construct broken `sizes` strings.
