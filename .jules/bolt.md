@@ -1,0 +1,3 @@
+## 2025-05-23 - Incorrect `sizes` Attribute Usage
+**Learning:** `sizes` attribute in `img` (and `next/image`) uses length units (px, vw), NOT width descriptors (w). Using `w` in `sizes` (e.g., `(max-width: 500px) 1000w`) is invalid HTML and can cause browsers to ignore the attribute or behave unexpectedly. Also, manually calculating 2x pixel density in `sizes` (e.g., `value * 2`) forces over-fetching because `srcset` and the browser already handle DPR negotiation.
+**Action:** Always use `px` or `vw` in `sizes`. Let the browser handle DPR by providing correct `srcset` (handled by Next.js) and `sizes` relative to the *layout slot*, not the physical pixels.
