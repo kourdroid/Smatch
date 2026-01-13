@@ -53,8 +53,8 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   const sizes = sizeFromProps
     ? sizeFromProps
     : Object.entries(breakpoints)
-      .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
-      .join(', ')
+        .map(([, value]) => `(max-width: ${value}px) 100vw`) // Default to 100vw for each breakpoint
+        .join(', ')
 
   return (
     <picture className={cn(pictureClassName)}>
