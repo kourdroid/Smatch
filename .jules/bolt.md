@@ -1,0 +1,3 @@
+## 2025-05-15 - Invalid Image Sizes Attribute
+**Learning:** The `sizes` attribute in `next/image` (and HTML `<img>`) accepts a media condition and a *length* (e.g., `100vw`, `500px`), NOT a width descriptor (e.g., `500w`). Using `w` units in `sizes` makes the attribute invalid, causing browsers to fall back to the default (usually `100vw`), which negates any attempt at optimization.
+**Action:** Always verify `sizes` attributes use valid length units. For full-width images, default to `100vw`. For constrained images (like inside a container), cap the size using `max-width` queries matching the container's max width (e.g., `(max-width: 1600px) 100vw, 1600px`).
