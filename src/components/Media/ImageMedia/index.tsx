@@ -50,11 +50,16 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
 
   // NOTE: this is used by the browser to determine which image to download at different screen sizes
+  const maxBreakpoint = Object.values(breakpoints).reduce((acc, value) => {
+    // Find the largest breakpoint to cap the image size
+    return Math.max(acc, value)
+  }, 0)
+
   const sizes = sizeFromProps
     ? sizeFromProps
-    : Object.entries(breakpoints)
-      .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
-      .join(', ')
+    : maxBreakpoint > 0
+    ? `(max-width: ${maxBreakpoint}px) 100vw, ${maxBreakpoint}px`
+    : '100vw'
 
   return (
     <picture className={cn(pictureClassName)}>
