@@ -102,6 +102,9 @@ export function ChatbotWidget() {
 
             {/* Chat Window */}
             <div
+                role="dialog"
+                aria-label="Assistant Smatch"
+                aria-hidden={!isOpen}
                 className={cn(
                     'chatbot-window fixed z-[10001] flex flex-col overflow-hidden rounded-2xl border border-smatch-border bg-smatch-charcoal/95 shadow-2xl backdrop-blur-xl transition-all duration-300',
                     // Mobile: positioned above the navbar dock (bottom-20 = ~80px) | Desktop: fixed dimensions
@@ -132,7 +135,7 @@ export function ChatbotWidget() {
                 </div>
 
                 {/* Messages Area */}
-                <div className="chatbot-messages flex-1 overflow-y-auto p-5">
+                <div className="chatbot-messages flex-1 overflow-y-auto p-5" aria-live="polite" role="log">
                     <div className="flex flex-col gap-4">
                         {messages.map((message) => (
                             <div
@@ -163,6 +166,7 @@ export function ChatbotWidget() {
                     <div className="flex items-center gap-3">
                         <input
                             type="text"
+                            aria-label="Message"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
