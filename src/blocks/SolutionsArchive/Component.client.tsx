@@ -21,7 +21,7 @@ const getIconComponent = (iconName: string | null | undefined): React.ReactEleme
 }
 
 // --- Individual Card Component ---
-const InteractiveCard = ({ data }: { data: Solution }) => {
+const InteractiveCard = ({ data, sizes }: { data: Solution; sizes: string }) => {
     const href = `/solutions/${data.slug}`
 
     const heroImage = data.heroImage as Media | null | undefined
@@ -41,6 +41,7 @@ const InteractiveCard = ({ data }: { data: Solution }) => {
                         src={imageUrl}
                         alt={data.title}
                         fill
+                        sizes={sizes}
                         className="object-cover opacity-40 transition-all duration-700 ease-out group-hover:scale-110 group-hover:opacity-60"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-80" />
@@ -136,9 +137,17 @@ export const SolutionsGridClient: React.FC<SolutionsGridClientProps> = ({
                 {/* Dynamic Grid */}
                 <div className={`grid grid-cols-1 gap-8 md:grid-cols-2 ${columnClass}`}>
                     {solutions.length > 0 ? (
-                        solutions.map((solution) => (
-                            <InteractiveCard key={solution.id} data={solution} />
-                        ))
+                        solutions.map((solution) => {
+                            const desktopWidth =
+                                {
+                                    'lg:grid-cols-2': '50vw',
+                                    'lg:grid-cols-3': '33vw',
+                                    'lg:grid-cols-4': '25vw',
+                                }[columnClass] || '25vw'
+                            const sizes = `(max-width: 767px) 100vw, (max-width: 1023px) 50vw, ${desktopWidth}`
+
+                            return <InteractiveCard key={solution.id} data={solution} sizes={sizes} />
+                        })
                     ) : (
                         <div className="col-span-full py-12 text-center text-gray-500">
                             <p>No solutions found. Please add them in the CMS.</p>
