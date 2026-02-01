@@ -108,6 +108,7 @@ export function ChatbotWidget() {
                     'bottom-20 right-4 left-4 h-[60vh] max-h-[500px] md:bottom-6 md:right-6 md:left-auto md:h-[600px] md:w-[400px]',
                     isOpen ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0',
                 )}
+                aria-hidden={!isOpen}
             >
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-smatch-border bg-smatch-black/50 px-5 py-4">
@@ -132,7 +133,7 @@ export function ChatbotWidget() {
                 </div>
 
                 {/* Messages Area */}
-                <div className="chatbot-messages flex-1 overflow-y-auto p-5">
+                <div className="chatbot-messages flex-1 overflow-y-auto p-5" aria-live="polite" role="log">
                     <div className="flex flex-col gap-4">
                         {messages.map((message) => (
                             <div
@@ -167,6 +168,7 @@ export function ChatbotWidget() {
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder="Écrivez votre message..."
+                            aria-label="Message"
                             className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold"
                         />
                         <button
