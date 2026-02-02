@@ -132,7 +132,12 @@ export function ChatbotWidget() {
                 </div>
 
                 {/* Messages Area */}
-                <div className="chatbot-messages flex-1 overflow-y-auto p-5">
+                <div
+                    className="chatbot-messages flex-1 overflow-y-auto p-5"
+                    role="log"
+                    aria-live="polite"
+                    aria-label="Historique de discussion"
+                >
                     <div className="flex flex-col gap-4">
                         {messages.map((message) => (
                             <div
@@ -167,6 +172,7 @@ export function ChatbotWidget() {
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder="Écrivez votre message..."
+                            aria-label="Écrivez votre message"
                             className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold"
                         />
                         <button
