@@ -1,0 +1,3 @@
+## 2024-05-22 - Invalid sizes attribute in Media component
+**Learning:** The `Media` component's `ImageMedia` subcomponent was generating an invalid `sizes` attribute using width descriptors (e.g., `1536w`) instead of length units (e.g., `100vw`). This is invalid HTML and causes browsers to ignore the attribute, potentially defaulting to `100vw` or downloading larger images than necessary if the browser guessed poorly.
+**Action:** When working with responsive images, always ensure `sizes` uses valid length units (`px`, `vw`, `em`, `calc()`). For full-width responsive images, `100vw` is a safe default. For constrained images, be explicit (e.g., `(max-width: 1600px) 100vw, 1600px`).
