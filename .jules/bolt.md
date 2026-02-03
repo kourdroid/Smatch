@@ -1,0 +1,3 @@
+## 2025-05-23 - Invalid sizes attribute units
+**Learning:** The `sizes` attribute in HTML images must use length units (e.g., `px`, `vw`), NOT width descriptors (`w`). Using `w` (e.g., `(max-width: 768px) 1536w`) is invalid and causes browsers to potentially ignore the attribute or default to `100vw`, often downloading unnecessarily large images. Next.js `Image` component defaults to `100vw` if `sizes` is omitted, which is safer than providing invalid custom values.
+**Action:** When implementing responsive images, ensure `sizes` uses valid length units. If unsure of the exact layout size, relying on Next.js default (`100vw`) is better than invalid syntax, though explicit `sizes` matching the layout (e.g., `(max-width: 768px) 100vw, 50vw`) is best for performance.
