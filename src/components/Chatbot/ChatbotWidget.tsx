@@ -90,12 +90,12 @@ export function ChatbotWidget() {
             <button
                 onClick={openChat}
                 className={cn(
-                    'chatbot-fab fixed bottom-6 right-6 z-[10001] hidden h-16 w-16 items-center justify-center rounded-full bg-smatch-gold text-smatch-black shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-glow-lg md:flex',
+                    'chatbot-fab fixed bottom-6 right-6 z-[10001] hidden size-16 items-center justify-center rounded-full bg-smatch-gold text-smatch-black shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-glow-lg md:flex',
                     isOpen && 'pointer-events-none opacity-0',
                 )}
                 aria-label="Ouvrir le chat"
             >
-                <ChatCircle className="h-7 w-7" weight="fill" />
+                <ChatCircle className="size-7" weight="fill" />
                 <span className="chatbot-fab-pulse" />
             </button>
 
@@ -112,8 +112,8 @@ export function ChatbotWidget() {
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-smatch-border bg-smatch-black/50 px-5 py-4">
                     <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-smatch-gold">
-                            <Robot className="h-5 w-5" weight="fill" />
+                        <div className="flex size-10 items-center justify-center rounded-full bg-smatch-gold">
+                            <Robot className="size-5" weight="fill" />
                         </div>
                         <div>
                             <h3 className="font-heading text-lg font-semibold tracking-wide text-white">
@@ -124,15 +124,21 @@ export function ChatbotWidget() {
                     </div>
                     <button
                         onClick={closeChat}
-                        className="flex h-9 w-9 items-center justify-center rounded-full text-smatch-text-secondary transition-colors hover:bg-white/10 hover:text-white"
+                        className="flex size-9 items-center justify-center rounded-full text-smatch-text-secondary transition-colors hover:bg-white/10 hover:text-white"
                         aria-label="Fermer le chat"
                     >
-                        <X className="h-5 w-5" />
+                        <X className="size-5" />
                     </button>
                 </div>
 
                 {/* Messages Area */}
-                <div className="chatbot-messages flex-1 overflow-y-auto p-5">
+                <div
+                    className="chatbot-messages flex-1 overflow-y-auto p-5"
+                    role="log"
+                    aria-live="polite"
+                    aria-atomic="false"
+                    aria-label="Historique de discussion"
+                >
                     <div className="flex flex-col gap-4">
                         {messages.map((message) => (
                             <div
@@ -167,15 +173,16 @@ export function ChatbotWidget() {
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder="Écrivez votre message..."
+                            aria-label="Message"
                             className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold"
                         />
                         <button
                             onClick={handleSend}
                             disabled={!inputValue.trim()}
-                            className="flex h-12 w-12 items-center justify-center rounded-xl bg-smatch-gold text-smatch-black transition-all hover:bg-smatch-gold-light disabled:cursor-not-allowed disabled:opacity-50"
+                            className="flex size-12 items-center justify-center rounded-xl bg-smatch-gold text-smatch-black transition-all hover:bg-smatch-gold-light disabled:cursor-not-allowed disabled:opacity-50"
                             aria-label="Envoyer"
                         >
-                            <PaperPlaneTilt className="h-5 w-5" weight="fill" />
+                            <PaperPlaneTilt className="size-5" weight="fill" />
                         </button>
                     </div>
                 </div>
