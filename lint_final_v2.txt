@@ -3,17 +3,6 @@
 > cross-env NODE_OPTIONS=--no-deprecation next lint
 
 
-warn - The class `duration-[2s]` is ambiguous and matches multiple utilities.
-warn - If this is content and not a class, replace it with `duration-&lsqb;2s&rsqb;` to silence this warning.
-
-warn - The class `duration-[2s]` is ambiguous and matches multiple utilities.
-warn - If this is content and not a class, replace it with `duration-&lsqb;2s&rsqb;` to silence this warning.
-Attention: Next.js now collects completely anonymous telemetry regarding usage.
-This information is used to shape Next.js' roadmap and prioritize features.
-You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
-https://nextjs.org/telemetry
-
-
 ./src/Footer/Component.tsx
 18:13  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
 24:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order

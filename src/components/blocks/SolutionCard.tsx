@@ -83,7 +83,7 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({
                 weight: 'fill',
               })
             ) : typeof icon === 'object' && icon !== null && 'url' in icon ? (
-              <MediaComponent resource={icon as any} className="size-6 text-[#FFAA00]" />
+              <MediaComponent resource={icon as any} className="size-6 text-[#FFAA00]" size="24px" />
             ) : typeof icon === 'string' ? (
               getIconComponent(icon) || (icon as any)
             ) : (
