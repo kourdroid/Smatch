@@ -1,0 +1,3 @@
+## 2024-05-22 - Invalid sizes attribute generation
+**Learning:** `NextImage` `sizes` attribute requires length units (px, vw), but the codebase was using `w` units (width descriptors) which are invalid for `sizes`. Additionally, the breakpoint iteration order was descending with `max-width` queries, causing the first (largest) breakpoint to always match and preventing smaller images from being selected.
+**Action:** When manually generating `sizes`, always use length units and ensure correct breakpoint ordering (ascending for `max-width`). Prefer Next.js defaults (`100vw`) if logical constraints are complex or unnecessary.
