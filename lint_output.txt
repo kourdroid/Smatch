@@ -1,39 +1,449 @@
-npm warn Unknown project config "enable-pre-post-scripts". This will stop working in the next major version of npm.
 
-> lint
+> smatch-website@1.0.0 lint /app
 > cross-env NODE_OPTIONS=--no-deprecation next lint
 
 
-./src/components/blocks/BentoGrid.tsx
-4:34  Warning: 'Database' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+./src/Footer/Component.tsx
+18:13  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+24:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+26:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+167:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
 
-./src/components/landing/Ecosystem.tsx
-182:54  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-182:67  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-193:62  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-193:73  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-196:62  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-196:71  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-199:62  Error: Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
-219:37  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-222:72  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+./src/Header/Component.client.tsx
+13:3  Warning: 'PhoneCall' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+192:21  Warning: Classnames 'h-2, w-2' could be replaced by the 'size-2' shorthand!  tailwindcss/enforces-shorthand
 
-./src/components/landing/Journal.tsx
-5:10  Warning: 'ArrowRight' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
-5:22  Warning: 'Circle' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
-122:25  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+./src/app/(frontend)/[locale]/projects/[slug]/page.tsx
+3:8  Warning: 'configPromise' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+10:21  Warning: 'CalendarBlank' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+10:36  Warning: 'MapPin' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+10:44  Warning: 'Tag' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+80:15  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+88:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+169:29  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+176:22  Warning: Classname 'filter' is not needed in Tailwind CSS v3!  tailwindcss/migration-from-tailwind-2
+197:22  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+228:27  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+286:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/(frontend)/[locale]/solutions/[slug]/page.tsx
+146:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/blocks/About/Component.tsx
+61:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+61:12  Warning: Classnames 'top-0, bottom-0' could be replaced by the 'inset-y-0' shorthand!  tailwindcss/enforces-shorthand
+68:11  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+72:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+72:14  Warning: Classname 'z-1' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/blocks/ActivityTimeline/Component.client.tsx
+44:45  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+236:30  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+
+./src/blocks/ActivityTimeline/Component.tsx
+23:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+49:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+63:26  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+84:54  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/blocks/AnnouncementSubscription/Component.tsx
+113:10  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+116:14  Warning: Classnames 'h-[300px], w-[300px]' could be replaced by the 'size-[300px]' shorthand!  tailwindcss/enforces-shorthand
+117:14  Warning: Classnames 'h-[300px], w-[300px]' could be replaced by the 'size-[300px]' shorthand!  tailwindcss/enforces-shorthand
+143:22  Warning: Classnames 'h-6, w-6' could be replaced by the 'size-6' shorthand!  tailwindcss/enforces-shorthand
+148:20  Warning: Classnames 'h-1, w-1' could be replaced by the 'size-1' shorthand!  tailwindcss/enforces-shorthand
+171:24  Warning: Classnames 'h-8, w-8' could be replaced by the 'size-8' shorthand!  tailwindcss/enforces-shorthand
+186:47  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+186:89  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/blocks/CallToAction/Component.tsx
+9:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+
+./src/blocks/Contact/Component.tsx
+135:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+135:12  Warning: Classnames 'w-[50vw], h-[50vw]' could be replaced by the 'size-[50vw]' shorthand!  tailwindcss/enforces-shorthand
+136:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+136:12  Warning: Classnames 'w-[30vw], h-[30vw]' could be replaced by the 'size-[30vw]' shorthand!  tailwindcss/enforces-shorthand
+138:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+140:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+141:16  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+142:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+142:18  Warning: Classnames 'w-2, h-2' could be replaced by the 'size-2' shorthand!  tailwindcss/enforces-shorthand
+143:19  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+148:15  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+153:16  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+159:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+163:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+164:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+165:22  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+169:25  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+174:21  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+184:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+186:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+190:27  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+195:23  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+206:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+209:23  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+215:36  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+216:29  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+219:26  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+230:16  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+232:19  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+235:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+241:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+247:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+248:25  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+253:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+258:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+281:33  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+281:33  Warning: Classname 'placeholder-zinc-700' should be updated to 'placeholder:text-zinc-700' in Tailwind CSS v3!  tailwindcss/migration-from-tailwind-2
+295:25  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+299:63  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+312:16  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+322:15  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+322:15  Warning: Classnames 'w-full, h-full' could be replaced by the 'size-full' shorthand!  tailwindcss/enforces-shorthand
+325:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+326:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+
+./src/blocks/Domains/Component.tsx
+44:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+47:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+48:15  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+51:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+58:16  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+78:23  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+78:23  Warning: Classnames 'top-0, bottom-0' could be replaced by the 'inset-y-0' shorthand!  tailwindcss/enforces-shorthand
+98:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+164:31  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+
+./src/blocks/Ecosystem/Component.tsx
+3:3  Warning: 'ChatCircleText' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+46:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+50:14  Warning: Classnames 'h-full, w-full' could be replaced by the 'size-full' shorthand!  tailwindcss/enforces-shorthand
+69:15  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+99:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+114:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+115:22  Warning: Classname 'transform' is not needed in Tailwind CSS v3!  tailwindcss/migration-from-tailwind-2
+117:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+117:24  Warning: Classnames 'h-[100px], w-[100px]' could be replaced by the 'size-[100px]' shorthand!  tailwindcss/enforces-shorthand
+138:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+139:20  Warning: Classname 'transform' is not needed in Tailwind CSS v3!  tailwindcss/migration-from-tailwind-2
+141:22  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+141:22  Warning: Classnames 'h-[80px], w-[80px]' could be replaced by the 'size-[80px]' shorthand!  tailwindcss/enforces-shorthand
+178:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+179:20  Warning: Classname 'transform' is not needed in Tailwind CSS v3!  tailwindcss/migration-from-tailwind-2
+181:22  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+181:22  Warning: Classnames 'h-[60px], w-[60px]' could be replaced by the 'size-[60px]' shorthand!  tailwindcss/enforces-shorthand
+198:192  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+198:205  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+204:60  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+204:71  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+207:60  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+207:69  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+210:60  Error: Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+224:16  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+225:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+226:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+227:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+227:24  Warning: Classname 'transform' is not needed in Tailwind CSS v3!  tailwindcss/migration-from-tailwind-2
+228:22  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+228:22  Warning: Classnames 'h-[80px], w-[80px]' could be replaced by the 'size-[80px]' shorthand!  tailwindcss/enforces-shorthand
+231:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+231:18  Warning: Classnames 'w-full, h-full' could be replaced by the 'size-full' shorthand!  tailwindcss/enforces-shorthand
+250:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+251:20  Warning: Classname 'transform' is not needed in Tailwind CSS v3!  tailwindcss/migration-from-tailwind-2
+253:22  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+253:22  Warning: Classnames 'h-[100px], w-[100px]' could be replaced by the 'size-[100px]' shorthand!  tailwindcss/enforces-shorthand
+270:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+271:20  Warning: Classname 'transform' is not needed in Tailwind CSS v3!  tailwindcss/migration-from-tailwind-2
+272:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+273:22  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+273:22  Warning: Classnames 'h-[100px], w-[100px]' could be replaced by the 'size-[100px]' shorthand!  tailwindcss/enforces-shorthand
+
+./src/blocks/ExpertiseDomains/Component.tsx
+131:92  Warning: Classnames 'h-5, w-5' could be replaced by the 'size-5' shorthand!  tailwindcss/enforces-shorthand
+142:62  Warning: Classnames 'h-[200px], w-[200px]' could be replaced by the 'size-[200px]' shorthand!  tailwindcss/enforces-shorthand
+
+./src/blocks/Form/Checkbox/index.tsx
+35:19  Warning: Classname 'required' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/blocks/Form/Country/index.tsx
+31:17  Warning: Classname 'required' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/blocks/Form/Email/index.tsx
+23:17  Warning: Classname 'required' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/blocks/Form/Number/index.tsx
+22:17  Warning: Classname 'required' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/blocks/Form/Select/index.tsx
+29:17  Warning: Classname 'required' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/blocks/Form/State/index.tsx
+30:17  Warning: Classname 'required' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/blocks/Form/Text/index.tsx
+23:17  Warning: Classname 'required' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/blocks/Form/Textarea/index.tsx
+24:17  Warning: Classname 'required' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/blocks/HistoryTimeline/Component.tsx
+124:26  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+124:26  Warning: Classnames 'left-0, right-0' could be replaced by the 'inset-x-0' shorthand!  tailwindcss/enforces-shorthand
+
+./src/blocks/Intro/Component.tsx
+61:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+
+./src/blocks/Journal/Component.tsx
+26:18  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/blocks/SmartGrid/Component.tsx
+23:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+42:39  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+45:65  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+67:55  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/blocks/SolutionsArchive/Component.client.tsx
+124:18  Warning: Arbitrary value classname '-left-[20%]' should not start with a dash (-)  tailwindcss/enforces-negative-arbitrary-values
+
+./src/blocks/Team/Component.tsx
+221:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+250:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+265:24  Warning: The arbitrary class 'h-[1px]' could be replaced by 'h-px'  tailwindcss/no-unnecessary-arbitrary-value
+
+./src/blocks/TrustedBy/Component.tsx
+36:22  Warning: Classname 'mask-gradient-x' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/components/AnnouncementPopup/index.tsx
+108:15  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+117:15  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+135:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+137:22  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+140:21  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+144:28  Warning: Classnames 'h-full, w-full' could be replaced by the 'size-full' shorthand!  tailwindcss/enforces-shorthand
+152:22  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+165:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+169:25  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+
+./src/components/BeforeDashboard/SeedButton/index.tsx
+82:15  Warning: Classname 'seedButton' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/components/BeforeDashboard/index.tsx
+12:15  Warning: Classname '__banner' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+16:11  Warning: Classname '__instructions' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/components/Chatbot/ChatbotWidget.tsx
+151:29  Warning: Classnames 'h-7, w-7' could be replaced by the 'size-7' shorthand!  tailwindcss/enforces-shorthand
+168:30  Warning: Classnames 'h-10, w-10' could be replaced by the 'size-10' shorthand!  tailwindcss/enforces-shorthand
+169:36  Warning: Classnames 'h-5, w-5' could be replaced by the 'size-5' shorthand!  tailwindcss/enforces-shorthand
+182:25  Warning: Classnames 'h-9, w-9' could be replaced by the 'size-9' shorthand!  tailwindcss/enforces-shorthand
+185:28  Warning: Classnames 'h-5, w-5' could be replaced by the 'size-5' shorthand!  tailwindcss/enforces-shorthand
+224:50  Warning: Classnames 'h-4, w-4' could be replaced by the 'size-4' shorthand!  tailwindcss/enforces-shorthand
+251:29  Warning: Classnames 'h-12, w-12' could be replaced by the 'size-12' shorthand!  tailwindcss/enforces-shorthand
+255:46  Warning: Classnames 'h-5, w-5' could be replaced by the 'size-5' shorthand!  tailwindcss/enforces-shorthand
+257:49  Warning: Classnames 'h-5, w-5' could be replaced by the 'size-5' shorthand!  tailwindcss/enforces-shorthand
+
+./src/components/LanguageSwitcher.tsx
+12:10  Warning: 'Locale' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+85:21  Warning: Classnames 'h-3, w-3' could be replaced by the 'size-3' shorthand!  tailwindcss/enforces-shorthand
+
+./src/components/about/AboutHero.tsx
+2:10  Warning: 'Button' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+4:10  Warning: 'motion' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+17:3  Warning: 'primaryCtaLabel' is assigned a value but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+18:3  Warning: 'secondaryCtaLabel' is assigned a value but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+32:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+32:14  Warning: Classnames 'w-[80vw], h-[80vw]' could be replaced by the 'size-[80vw]' shorthand!  tailwindcss/enforces-shorthand
+35:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+
+./src/components/about/TeamSection.tsx
+9:10  Warning: 'cn' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+15:7  Warning: 'DIRECTORS_WORD' is assigned a value but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+87:10  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+87:10  Warning: Classnames 'w-full, h-full' could be replaced by the 'size-full' shorthand!  tailwindcss/enforces-shorthand
+89:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+95:16  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+96:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+103:17  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+108:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+108:20  Warning: Classnames 'h-full, w-full' could be replaced by the 'size-full' shorthand!  tailwindcss/enforces-shorthand
+113:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+113:18  Warning: Classname 'group-hover:animate-scan' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+130:19  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+143:16  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+144:15  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+144:36  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+150:42  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+150:42  Warning: Classnames 'h-12, w-12' could be replaced by the 'size-12' shorthand!  tailwindcss/enforces-shorthand
+153:39  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+153:39  Warning: Classnames 'h-12, w-12' could be replaced by the 'size-12' shorthand!  tailwindcss/enforces-shorthand
+160:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+177:14  Warning: Classnames 'h-24, w-24' could be replaced by the 'size-24' shorthand!  tailwindcss/enforces-shorthand
+179:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+182:15  Warning: Classnames 'h-full, w-full' could be replaced by the 'size-full' shorthand!  tailwindcss/enforces-shorthand
+185:18  Warning: Classnames 'h-full, w-full' could be replaced by the 'size-full' shorthand!  tailwindcss/enforces-shorthand
+200:13  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+225:15  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+228:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+241:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+243:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+243:12  Warning: Classnames 'h-[500px], w-[500px]' could be replaced by the 'size-[500px]' shorthand!  tailwindcss/enforces-shorthand
+249:17  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+249:97  Error: Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+252:15  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+253:25  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+270:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+271:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+273:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+274:71  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+276:225  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+278:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+279:22  Warning: The arbitrary class 'h-[1px]' could be replaced by 'h-px'  tailwindcss/no-unnecessary-arbitrary-value
+284:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+285:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+
+./src/components/blocks/SolutionCard.tsx
+86:49  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+88:50  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+90:23  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/expertise/ExpertiseHero.tsx
+54:15  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+58:14  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+
+./src/components/expertise/ExpertiseScroll.tsx
+14:10  Warning: 'cn' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+35:24  Warning: Classnames 'h-8, w-8' could be replaced by the 'size-8' shorthand!  tailwindcss/enforces-shorthand
+52:22  Warning: Classnames 'h-8, w-8' could be replaced by the 'size-8' shorthand!  tailwindcss/enforces-shorthand
+61:21  Warning: Classnames 'h-8, w-8' could be replaced by the 'size-8' shorthand!  tailwindcss/enforces-shorthand
+70:22  Warning: Classnames 'h-8, w-8' could be replaced by the 'size-8' shorthand!  tailwindcss/enforces-shorthand
+87:20  Warning: Classnames 'h-8, w-8' could be replaced by the 'size-8' shorthand!  tailwindcss/enforces-shorthand
+96:25  Warning: Classnames 'h-8, w-8' could be replaced by the 'size-8' shorthand!  tailwindcss/enforces-shorthand
+105:21  Warning: Classnames 'h-8, w-8' could be replaced by the 'size-8' shorthand!  tailwindcss/enforces-shorthand
+127:10  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+133:13  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+138:23  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+141:21  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+144:20  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+149:18  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+153:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+155:24  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+156:26  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+158:28  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+159:30  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+160:32  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+163:33  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+168:29  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+171:28  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+179:44  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+179:44  Warning: Classnames 'w-5, h-5' could be replaced by the 'size-5' shorthand!  tailwindcss/enforces-shorthand
+187:28  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+190:32  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+190:32  Warning: Classnames 'w-[200px], h-[200px]' could be replaced by the 'size-[200px]' shorthand!  tailwindcss/enforces-shorthand
+191:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+194:29  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+194:29  Warning: Classnames 'w-full, h-full' could be replaced by the 'size-full' shorthand!  tailwindcss/enforces-shorthand
+
+./src/components/expertise/KineticBlades.tsx
+153:25  Warning: Classname 'blade' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+188:34  Warning: Classname 'blade-title-idle' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+213:34  Warning: Classname 'blade-content-active' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
 
 ./src/components/landing/TrustedBy.tsx
-27:16  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+25:14  Warning: Classname 'mask-gradient-x' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/components/solutions/ProblemStatement.tsx
+3:18  Warning: 'AnimatePresence' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+125:22  Warning: Classname 'bg-grid-white/[0.02]' is not a Tailwind CSS class!  tailwindcss/no-custom-classname
+
+./src/components/solutions/SolutionsGrid.tsx
+131:12  Warning: Arbitrary value classname '-left-[20%]' should not start with a dash (-)  tailwindcss/enforces-negative-arbitrary-values
+
+./src/components/ui/NavLanguageSelector.tsx
+73:21  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+75:23  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+
+./src/components/ui/label.tsx
+8:23  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
 
 ./src/components/ui/resizable-navbar.tsx
-101:10  Warning: 'hovered' is assigned a value but never used. Allowed unused elements of array destructuring must match /^_/u.  @typescript-eslint/no-unused-vars
-176:62  Warning: 'onClose' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+180:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+191:12  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
+218:13  Warning: Invalid Tailwind CSS classnames order  tailwindcss/classnames-order
 
-./src/Footer/Component.tsx
-7:10  Warning: 'FacebookLogo' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
-7:24  Warning: 'InstagramLogo' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
-33:18  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
-42:138  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+./src/endpoints/seed/index.ts
+23:7  Warning: 'globals' is assigned a value but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/heros/SmatchHero/index.tsx
+4:10  Warning: 'motion' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/hooks/ragSync.ts
+52:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+63:26  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+65:55  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+83:39  Warning: 'operation' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/migrations/20260120_003432_add_hero_localization.ts
+14:32  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+14:41  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+237:34  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+237:43  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/migrations/20260120_033000_add_solutions_archive_block.ts
+3:32  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+3:41  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+126:34  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+126:43  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/migrations/20260127_224639_add_announcement_global.ts
+3:32  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+3:41  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+133:34  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+133:43  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/migrations/20260128_093618.ts
+3:32  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+3:41  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+109:34  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+109:43  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/providers/Theme/InitTheme/index.tsx
+8:5  Warning: Unused eslint-disable directive (no problems were reported from '@next/next/no-before-interactive-script-outside-document').
+
+./src/scripts/extract-data.ts
+32:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+54:37  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+62:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+73:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+79:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/scripts/import-data.ts
+30:7  Warning: 'DUPLICATE_TO_ENGLISH' is assigned a value but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+33:12  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+34:16  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+35:15  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+36:12  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+37:13  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+38:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+39:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+100:29  Warning: Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free.  @typescript-eslint/ban-ts-comment
+104:35  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+113:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+156:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+199:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+243:25  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+294:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+305:61  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+322:65  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+335:21  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/scripts/seed-home.ts
+12:37  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/utilities/seedHome.ts
+38:22  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+44:22  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
 
 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+ ELIFECYCLE  Command failed with exit code 1.

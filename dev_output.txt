@@ -1,0 +1,123 @@
+
+> smatch-website@1.0.0 dev /app
+> cross-env NODE_OPTIONS=--no-deprecation next dev --turbo
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+   ▲ Next.js 15.4.10 (Turbopack)
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.0.2:3001
+
+ ✓ Starting...
+ ✓ Compiled middleware in 303ms
+ ✓ Ready in 1859ms
+ ○ Compiling /[locale] ...
+
+warn - The class `duration-[2s]` is ambiguous and matches multiple utilities.
+warn - If this is content and not a class, replace it with `duration-&lsqb;2s&rsqb;` to silence this warning.
+ ✓ Compiled /[locale] in 44.5s
+[10:45:28] [31mERROR[39m: [36mError: cannot connect to Postgres. Details: [39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError:
+              at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
+              at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+              at async connectWithReconnect (file:///app/node_modules/.pnpm/@payloadcms+db-postgres@3.68.5_payload@3.68.5_graphql@16.12.0_typescript@5.7.3_/node_modules/@payloadcms/db-postgres/dist/connect.js:7:18)
+              at async Object.connect (file:///app/node_modules/.pnpm/@payloadcms+db-postgres@3.68.5_payload@3.68.5_graphql@16.12.0_typescript@5.7.3_/node_modules/@payloadcms/db-postgres/dist/connect.js:46:13)
+              at async BasePayload.init (file:///app/node_modules/.pnpm/payload@3.68.5_graphql@16.12.0_typescript@5.7.3/node_modules/payload/dist/index.js:360:13)
+              at async getPayload (file:///app/node_modules/.pnpm/payload@3.68.5_graphql@16.12.0_typescript@5.7.3/node_modules/payload/dist/index.js:581:26)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:5432",
+          "stack":
+              Error: connect ECONNREFUSED ::1:5432
+                  at createConnectionError (node:net:1678:14)
+                  at afterConnectMultiple (node:net:1708:16)
+                  at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+          "errno": -111,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 5432
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:5432",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:5432
+                  at createConnectionError (node:net:1678:14)
+                  at afterConnectMultiple (node:net:1708:16)
+                  at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+          "errno": -111,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 5432
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+undefined
+ ⨯ unhandledRejection: undefined
+ ⨯ unhandledRejection:  undefined
+ ⨯ [Error: Error: cannot connect to Postgres: ] {
+  payloadInitError: true,
+  digest: '2840284416'
+}
+ ⨯ [Error: Error: cannot connect to Postgres: ] {
+  payloadInitError: true,
+  digest: '2840284416'
+}
+undefined
+ ⨯ unhandledRejection: undefined
+ ⨯ unhandledRejection:  undefined
+[10:45:28] [31mERROR[39m: [36mError: cannot connect to Postgres. Details: [39m
+    err: {
+      "type": "AggregateError",
+      "message": "",
+      "stack":
+          AggregateError:
+              at /app/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11
+              at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+              at async connectWithReconnect (file:///app/node_modules/.pnpm/@payloadcms+db-postgres@3.68.5_payload@3.68.5_graphql@16.12.0_typescript@5.7.3_/node_modules/@payloadcms/db-postgres/dist/connect.js:7:18)
+              at async Object.connect (file:///app/node_modules/.pnpm/@payloadcms+db-postgres@3.68.5_payload@3.68.5_graphql@16.12.0_typescript@5.7.3_/node_modules/@payloadcms/db-postgres/dist/connect.js:46:13)
+              at async BasePayload.init (file:///app/node_modules/.pnpm/payload@3.68.5_graphql@16.12.0_typescript@5.7.3/node_modules/payload/dist/index.js:360:13)
+              at async getPayload (file:///app/node_modules/.pnpm/payload@3.68.5_graphql@16.12.0_typescript@5.7.3/node_modules/payload/dist/index.js:581:26)
+              at async getPayload (/app/.next/server/chunks/ssr/[root-of-the-server]__1feb2812._.js:5254:25)
+              at async /app/.next/server/chunks/ssr/[root-of-the-server]__8812bf98._.js:3507:21
+              at async Module.generateMetadata (/app/.next/server/chunks/ssr/[root-of-the-server]__8812bf98._.js:3497:18)
+      "aggregateErrors": [
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED ::1:5432",
+          "stack":
+              Error: connect ECONNREFUSED ::1:5432
+                  at createConnectionError (node:net:1678:14)
+                  at afterConnectMultiple (node:net:1708:16)
+                  at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+          "errno": -111,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "::1",
+          "port": 5432
+        },
+        {
+          "type": "Error",
+          "message": "connect ECONNREFUSED 127.0.0.1:5432",
+          "stack":
+              Error: connect ECONNREFUSED 127.0.0.1:5432
+                  at createConnectionError (node:net:1678:14)
+                  at afterConnectMultiple (node:net:1708:16)
+                  at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:130:17)
+          "errno": -111,
+          "code": "ECONNREFUSED",
+          "syscall": "connect",
+          "address": "127.0.0.1",
+          "port": 5432
+        }
+      ],
+      "code": "ECONNREFUSED"
+    }
+ GET /fr 500 in 51974ms

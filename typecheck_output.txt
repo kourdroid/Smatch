@@ -1,0 +1,14 @@
+
+> smatch-website@1.0.0 typecheck /app
+> cross-env NODE_OPTIONS=--no-deprecation tsc -p tsconfig.json --noEmit
+
+src/access/roles.ts(115,14): error TS2322: Type '({ req }: AccessArgs<User>) => boolean | { role: { not_equals: string; }; id?: undefined; } | { id: { equals: number; }; role?: undefined; }' is not assignable to type 'Access<User>'.
+  Type 'boolean | { role: { not_equals: string; }; id?: undefined; } | { id: { equals: number; }; role?: undefined; }' is not assignable to type 'AccessResult | Promise<AccessResult>'.
+    Type '{ role: { not_equals: string; }; id?: undefined; }' is not assignable to type 'AccessResult | Promise<AccessResult>'.
+      Type '{ role: { not_equals: string; }; id?: undefined; }' is not assignable to type 'Where'.
+        Property 'id' is incompatible with index signature.
+          Type 'undefined' is not assignable to type 'Where[] | WhereField'.
+src/endpoints/seed/index.ts(110,20): error TS2345: Argument of type '{ collection: "users"; data: { name: string; email: string; password: string; }; }' is not assignable to parameter of type 'Options<"users", UsersSelect<false> | UsersSelect<true>>'.
+  Type '{ collection: "users"; data: { name: string; email: string; password: string; }; }' is not assignable to type '{ data: Partial<Omit<User, "id" | "createdAt" | "deletedAt" | "updatedAt"> & Partial<Pick<User, "id" | "createdAt" | "deletedAt" | "updatedAt">>>; draft: true; } & BaseOptions<...>'.
+    Property 'draft' is missing in type '{ collection: "users"; data: { name: string; email: string; password: string; }; }' but required in type '{ data: Partial<Omit<User, "id" | "createdAt" | "deletedAt" | "updatedAt"> & Partial<Pick<User, "id" | "createdAt" | "deletedAt" | "updatedAt">>>; draft: true; }'.
+ ELIFECYCLE  Command failed with exit code 1.
