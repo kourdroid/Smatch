@@ -40,6 +40,8 @@ const CHATBOT_STRINGS: Record<string, {
     openChat: string
     closeChat: string
     fallbackMessage: string
+    historyLabel: string
+    inputLabel: string
 }> = {
     fr: {
         assistantName: 'Assistant Smatch',
@@ -51,6 +53,8 @@ const CHATBOT_STRINGS: Record<string, {
         openChat: 'Ouvrir le chat',
         closeChat: 'Fermer le chat',
         fallbackMessage: 'Merci pour votre message! Un expert Smatch vous contactera bientôt.',
+        historyLabel: 'Historique du chat',
+        inputLabel: 'Saisie de message',
     },
     en: {
         assistantName: 'Smatch Assistant',
@@ -62,6 +66,8 @@ const CHATBOT_STRINGS: Record<string, {
         openChat: 'Open chat',
         closeChat: 'Close chat',
         fallbackMessage: 'Thank you for your message! A Smatch expert will contact you soon.',
+        historyLabel: 'Chat history',
+        inputLabel: 'Message input',
     },
 }
 
@@ -141,6 +147,8 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                     isOpen && 'pointer-events-none opacity-0',
                 )}
                 aria-label={strings.openChat}
+                tabIndex={isOpen ? -1 : 0}
+                aria-hidden={isOpen}
             >
                 <ChatCircle className="h-7 w-7" weight="fill" />
                 <span className="chatbot-fab-pulse" />
@@ -182,7 +190,13 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
 
                 {/* Messages Area */}
                 <div className="chatbot-messages flex-1 overflow-y-auto p-5">
-                    <div className="flex flex-col gap-4">
+                    <div
+                        className="flex flex-col gap-4"
+                        role="log"
+                        aria-live="polite"
+                        aria-atomic="false"
+                        aria-label={strings.historyLabel}
+                    >
                         {messages.map((message) => (
                             <div
                                 key={message.id}
@@ -228,6 +242,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder={strings.placeholder}
+                            aria-label={strings.inputLabel}
                             disabled={isLoading}
                             className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold disabled:opacity-50"
                         />
