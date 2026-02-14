@@ -59,6 +59,7 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
             {/* Trigger Button - Matches nav link styling since inside pill */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={currentLocale === 'fr' ? 'Changer de langue' : 'Change language'}
                 className={cn(
                     'relative flex items-center gap-2',
                     'px-4 py-2.5 rounded-full',

@@ -200,10 +200,12 @@ export const MobileMenuOverlay = ({
   children,
   isOpen,
   onClose,
+  ariaLabel = 'Mobile Menu',
 }: {
   children: React.ReactNode
   isOpen: boolean
   onClose: () => void
+  ariaLabel?: string
 }) => {
   return (
     <AnimatePresence>
@@ -215,11 +217,15 @@ export const MobileMenuOverlay = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="pointer-events-auto fixed inset-0 z-[90] bg-black/60 smatch-backdrop-blur-sm md:hidden"
+            className="pointer-events-auto fixed inset-0 z-[90] bg-black/60 md:hidden smatch-backdrop-blur-sm"
+            aria-hidden="true"
           />
 
           {/* Sheet - Slides up from bottom */}
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={ariaLabel}
             initial={{ y: '100%', opacity: 1 }}
             animate={{ y: '0%', opacity: 1 }}
             exit={{ y: '100%', opacity: 1 }}
