@@ -1,0 +1,3 @@
+## 2026-01-29 - Accessibility Inconsistencies
+**Learning:** I noticed that while the Footer component has good accessibility practices (using `aria-label` for social links), the Header component's mobile navigation buttons (Home, Menu toggle, Close menu) are missing these crucial attributes. This inconsistency means that keyboard and screen reader users might have a degraded experience on mobile vs desktop or header vs footer.
+**Action:** When working on navigation components, always check both desktop and mobile implementations for accessibility parity. I will add the missing `aria-label` attributes to the mobile header controls.
