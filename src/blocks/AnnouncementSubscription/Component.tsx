@@ -110,11 +110,11 @@ export const AnnouncementSubscriptionBlock: React.FC<
   )
 
   return (
-    <div className="container flex justify-center items-center my-auto h-screen">
+    <div className="container my-auto flex h-screen items-center justify-center">
       <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0F0F0F] p-8 md:p-12 lg:p-16">
         {/* Background Effects */}
-        <div className="pointer-events-none absolute -right-20 -top-20 h-[300px] w-[300px] rounded-full bg-[#FFAA00]/5 blur-[100px]" />
-        <div className="pointer-events-none absolute -bottom-20 -left-20 h-[300px] w-[300px] rounded-full bg-blue-500/5 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-20 -top-20 size-[300px] rounded-full bg-[#FFAA00]/5 blur-[100px]" />
+        <div className="pointer-events-none absolute -bottom-20 -left-20 size-[300px] rounded-full bg-blue-500/5 blur-[100px]" />
 
         <div className="relative z-10 flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:justify-between">
           {/* Left Content */}
@@ -140,12 +140,12 @@ export const AnnouncementSubscriptionBlock: React.FC<
 
             <div className="mt-8 flex flex-col gap-4 text-sm text-gray-500 lg:flex-row lg:items-center">
               <div className="flex items-center gap-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10">
+                <div className="flex size-6 items-center justify-center rounded-full bg-white/10">
                   <EnvelopeSimple size={14} className="text-[#FFAA00]" />
                 </div>
                 <span>Newsletter mensuelle</span>
               </div>
-              <div className="hidden h-1 w-1 rounded-full bg-gray-700 lg:block" />
+              <div className="hidden size-1 rounded-full bg-gray-700 lg:block" />
               <span>Désabonnement à tout moment</span>
             </div>
           </div>
@@ -168,7 +168,7 @@ export const AnnouncementSubscriptionBlock: React.FC<
               )}
               {isLoading && !hasSubmitted && (
                 <div className="flex justify-center py-10">
-                  <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#FFAA00] border-t-transparent" />
+                  <div className="size-8 animate-spin rounded-full border-2 border-[#FFAA00] border-t-transparent" />
                 </div>
               )}
               {error && (

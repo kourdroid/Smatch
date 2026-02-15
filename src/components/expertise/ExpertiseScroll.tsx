@@ -32,7 +32,7 @@ const EXPERTISE_DATA = [
           'Systèmes Embarqués sur mesure',
           'Maintenance Prédictive IoT',
         ],
-        icon: <Factory className="h-8 w-8 text-yellow-500" />,
+        icon: <Factory className="size-8 text-yellow-500" />,
       },
     ],
   },
@@ -49,7 +49,7 @@ const EXPERTISE_DATA = [
           'Une visibilité totale sur vos opérations grâce à la traçabilité RFID, la gestion WMS avancée et l’orchestration des transports.',
         image: '/assets/domains/supply-chain-iso.png',
         features: ['WMS & TMS Intégrés', 'Traçabilité RFID Temps Réel', 'Optimisation de Tournées'],
-        icon: <Truck className="h-8 w-8 text-orange-500" />,
+        icon: <Truck className="size-8 text-orange-500" />,
       },
       {
         title: 'AGRI & HOSPITALITÉ',
@@ -58,7 +58,7 @@ const EXPERTISE_DATA = [
           "Digitalisation des actifs ruraux (AgriTech) et réinvention de l'expérience client (Hospitalité) via l'IoT.",
         image: '/assets/expertise/bull-wireframe.png',
         features: ['Suivi Bétail & Rendement', 'Check-in Sans Contact', 'Computer Vision'],
-        icon: <Leaf className="h-8 w-8 text-green-500" />,
+        icon: <Leaf className="size-8 text-green-500" />,
       },
       {
         title: 'CITOYENNETÉ',
@@ -67,7 +67,7 @@ const EXPERTISE_DATA = [
           'Plateformes unifiées, identité numérique et transparence administrative pour les villes de demain.',
         image: '/assets/domains/core-inteligence.png',
         features: ['Portails Citoyens Unifiés', 'Identité Numérique', 'Gestion des Déchets'],
-        icon: <Globe className="h-8 w-8 text-blue-500" />,
+        icon: <Globe className="size-8 text-blue-500" />,
       },
     ],
   },
@@ -84,7 +84,7 @@ const EXPERTISE_DATA = [
           "Algorithmes génératifs et vision par ordinateur pour l'automatisation des tâches complexes.",
         image: '/assets/domains/core-inteligence.svg',
         features: ['LLMs & Agents Autonomes', 'OCR & Traitement Doc', 'Computer Vision'],
-        icon: <Cpu className="h-8 w-8 text-purple-500" />,
+        icon: <Cpu className="size-8 text-purple-500" />,
       },
       {
         title: 'BIG DATA ANALYTICS',
@@ -93,7 +93,7 @@ const EXPERTISE_DATA = [
           'Traitement massif de données non structurées. De la collecte à la visualisation décisionnelle.',
         image: '/assets/expertise/data-cube.png',
         features: ['Data Lakes & Warehouses', 'Pipelines ETL Temps Réel', 'Dashboards BI'],
-        icon: <Database className="h-8 w-8 text-cyan-500" />,
+        icon: <Database className="size-8 text-cyan-500" />,
       },
       {
         title: 'SIMULATION 3D',
@@ -102,7 +102,7 @@ const EXPERTISE_DATA = [
           'Jumeaux numériques pour entrepôts et usines. Simulation immersive des opérations sous Unreal Engine 5.',
         image: '/assets/domains/industry-iso.png',
         features: ['Jumeaux Numériques', 'Simulation de Flux', 'Rendu Temps Réel'],
-        icon: <Cube className="h-8 w-8 text-red-500" />,
+        icon: <Cube className="size-8 text-red-500" />,
       },
     ],
   },
@@ -124,51 +124,51 @@ export default function ExpertiseScroll() {
   }, [])
 
   return (
-    <div className="bg-black relative z-10">
+    <div className="relative z-10 bg-black">
       <div className="container mx-auto px-4 py-12 md:py-32">
         {/* Loop through Main Sections */}
         {EXPERTISE_DATA.map((section, index) => (
           <div
             key={section.id}
-            className="relative grid md:grid-cols-12 gap-8 md:gap-16 lg:gap-24 py-12 md:py-32 border-t border-white/10 first:border-0"
+            className="relative grid gap-8 border-t border-white/10 py-12 first:border-0 md:grid-cols-12 md:gap-16 md:py-32 lg:gap-24"
           >
             {/* LEFT COLUMN: Sticky Header */}
             <div className="md:col-span-4 lg:col-span-3">
               <div className="relative md:sticky md:top-40">
-                <span className="font-mono text-sm text-yellow-500 tracking-widest mb-4 block">
+                <span className="mb-4 block font-mono text-sm tracking-widest text-yellow-500">
                   0{index + 1} / {section.subtitle}
                 </span>
-                <h2 className="text-3xl md:text-5xl font-black font-heading text-white mb-6 uppercase leading-none">
+                <h2 className="mb-6 font-heading text-3xl font-black uppercase leading-none text-white md:text-5xl">
                   {section.title}
                 </h2>
-                <p className="text-zinc-500 text-lg max-w-xs">{section.description}</p>
+                <p className="max-w-xs text-lg text-zinc-500">{section.description}</p>
               </div>
             </div>
 
             {/* RIGHT COLUMN: Stacked Cards */}
-            <div className="md:col-span-8 lg:col-span-9 space-y-12 md:space-y-48">
+            <div className="space-y-12 md:col-span-8 md:space-y-48 lg:col-span-9">
               {section.cards.map((card, i) => (
                 <div key={i} className="group relative snap-center">
                   {/* Background Glow */}
-                  <div className="absolute -inset-4 bg-gradient-to-r from-yellow-500/10 to-transparent rounded-md blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="absolute -inset-4 rounded-md bg-gradient-to-r from-yellow-500/10 to-transparent opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-100" />
 
-                  <div className="relative bg-zinc-900/40 border border-white/10 rounded-md overflow-hidden backdrop-blur-sm hover:border-yellow-500/30 transition-colors duration-500">
-                    <div className="grid lg:grid-cols-2 gap-0">
+                  <div className="relative overflow-hidden rounded-md border border-white/10 bg-zinc-900/40 backdrop-blur-sm transition-colors duration-500 hover:border-yellow-500/30">
+                    <div className="grid gap-0 lg:grid-cols-2">
                       {/* Text Content */}
-                      <div className="p-6 md:p-16 lg:p-20 flex flex-col justify-center">
-                        <div className="flex items-center gap-4 mb-8">
-                          <div className="p-3 bg-white/5 rounded-full border border-white/10 text-white">
+                      <div className="flex flex-col justify-center p-6 md:p-16 lg:p-20">
+                        <div className="mb-8 flex items-center gap-4">
+                          <div className="rounded-full border border-white/10 bg-white/5 p-3 text-white">
                             {card.icon}
                           </div>
-                          <span className="font-mono text-xs font-bold text-yellow-500 uppercase tracking-widest">
+                          <span className="font-mono text-xs font-bold uppercase tracking-widest text-yellow-500">
                             {card.subtitle}
                           </span>
                         </div>
 
-                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 uppercase">
+                        <h3 className="mb-4 text-2xl font-bold uppercase text-white md:text-3xl">
                           {card.title}
                         </h3>
-                        <p className="text-zinc-400 leading-relaxed mb-12">{card.description}</p>
+                        <p className="mb-12 leading-relaxed text-zinc-400">{card.description}</p>
 
                         <ul className="space-y-6">
                           {card.features.map((feature, fIndex) => (
@@ -176,7 +176,7 @@ export default function ExpertiseScroll() {
                               key={fIndex}
                               className="flex items-start gap-3 text-sm text-zinc-300"
                             >
-                              <CheckCircle className="w-5 h-5 text-yellow-500 shrink-0" />
+                              <CheckCircle className="size-5 shrink-0 text-yellow-500" />
                               {feature}
                             </li>
                           ))}
@@ -184,14 +184,14 @@ export default function ExpertiseScroll() {
                       </div>
 
                       {/* Image Content */}
-                      <div className="relative min-h-[300px] lg:min-h-full bg-black/50 border-t lg:border-t-0 lg:border-l border-white/10">
+                      <div className="relative min-h-[300px] border-t border-white/10 bg-black/50 lg:min-h-full lg:border-l lg:border-t-0">
                         <div className="absolute inset-0 flex items-center justify-center p-8">
                           {/* Glow behind image */}
-                          <div className="absolute w-[200px] h-[200px] bg-yellow-500/20 blur-[80px] rounded-full" />
+                          <div className="absolute size-[200px] rounded-full bg-yellow-500/20 blur-[80px]" />
                           <img
                             src={card.image}
                             alt={card.title}
-                            className="relative z-10 w-full h-full object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-700"
+                            className="relative z-10 size-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
                           />
                         </div>
                       </div>

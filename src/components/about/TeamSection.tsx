@@ -84,33 +84,33 @@ const TEAM_MEMBERS = [
 
 const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-[20px] bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 backdrop-blur-xl border border-white/10 shadow-2xl transition-all hover:border-[#FFAA00]/30 md:p-8">
+    <div className="relative size-full overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 shadow-2xl backdrop-blur-xl transition-all hover:border-[#FFAA00]/30 md:p-8">
       {/* Decorative Noise/Grid Overlay */}
-      <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03]" />
       <div className="relative z-10 flex flex-col-reverse gap-10 lg:flex-row lg:items-start lg:gap-16">
 
         {/* Image & ID Block */}
         <div className="flex flex-col gap-4 lg:w-[320px]">
           {/* Image Container */}
-          <div className="relative aspect-[5/8] w-full overflow-hidden rounded-xl border border-white/10 bg-black/50 group">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+          <div className="group relative aspect-[5/8] w-full overflow-hidden rounded-xl border border-white/10 bg-black/50">
+            <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
             {member.image ? (
               <Image
                 src={member.image}
                 alt={member.name}
                 fill
-                className="object-cover opacity-90 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0 grayscale"
+                className="object-cover opacity-90 grayscale transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
                 sizes="(max-width: 1024px) 100vw, 320px"
                 priority
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center bg-[#111] text-white/20 font-mono">
+              <div className="flex size-full items-center justify-center bg-[#111] font-mono text-white/20">
                 NO_IMG
               </div>
             )}
 
-            <div className="absolute top-0 w-full h-[2px] bg-[#FFAA00]/50 shadow-[0_0_20px_#FFAA00] opacity-0 group-hover:opacity-100 group-hover:animate-scan z-20" />
+            <div className="group-hover:animate-scan absolute top-0 z-20 h-[2px] w-full bg-[#FFAA00]/50 opacity-0 shadow-[0_0_20px_#FFAA00] group-hover:opacity-100" />
           </div>
 
           {/* ID Tag (Font Mono) */}
@@ -127,7 +127,7 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
           {/* Name (Font Heading / Antonio) */}
           <h3 className="mb-4 font-heading text-5xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-[5rem]">
             {member.name.split(' ')[0]} <br />
-            <span className="smatch-gradient-text bg-clip-text bg-gradient-to-b from-white to-white/40">
+            <span className="smatch-gradient-text bg-gradient-to-b from-white to-white/40 bg-clip-text">
               {member.name.split(' ').slice(1).join(' ')}
             </span>
           </h3>
@@ -140,24 +140,24 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
           {/* Description Block (Moved back inside card as per request) */}
           <div className="relative mb-10 border-l-2 border-[#FFAA00] pl-6">
             {/* Gradient Quote (Font Sans / Inter) */}
-            <p className="smatch-gradient-text bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text text-lg font-light leading-relaxed font-sans md:text-xl">
+            <p className="smatch-gradient-text bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-lg font-light leading-relaxed md:text-xl">
               "{member.description}"
             </p>
           </div>
 
           {/* Socials (Phosphor Icons) */}
           <div className="flex gap-4">
-            <Link href={member.linkedin} className="group flex h-12 w-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 transition-all hover:bg-[#FFAA00] hover:border-[#FFAA00] hover:text-black text-white">
+            <Link href={member.linkedin} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
               <LinkedinLogo size={32} weight="duotone" />
             </Link>
-            <Link href={member.email} className="group flex h-12 w-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 transition-all hover:bg-[#FFAA00] hover:border-[#FFAA00] hover:text-black text-white">
+            <Link href={member.email} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
               <EnvelopeSimple size={32} weight="duotone" />
             </Link>
           </div>
         </div>
 
       </div>
-      <div className="flex items-center justify-between border-t border-white/10 pt-4 mt-8 font-mono text-xs tracking-widest text-gray-500">
+      <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs tracking-widest text-gray-500">
         <span>{member.footerId}</span>
         <span className="text-[#FFAA00]">ONLINE</span>
       </div>
@@ -174,15 +174,15 @@ const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
 
       {/* Header: Image & Tag */}
       <div className="relative z-10 mb-6 flex items-start justify-between">
-        <div className="relative h-24 w-24 overflow-hidden rounded-lg border border-white/10 bg-[#151515]">
+        <div className="relative size-24 overflow-hidden rounded-lg border border-white/10 bg-[#151515]">
           {member.image ? (
             <img
               src={member.image}
               alt={member.name}
-              className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+              className="size-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-[10px] text-white/20">IMG</div>
+            <div className="flex size-full items-center justify-center text-[10px] text-white/20">IMG</div>
           )}
         </div>
 
@@ -197,7 +197,7 @@ const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
       {/* Content */}
       <div className="relative z-10">
         {/* Name (Font Heading) */}
-        <h3 className="mb-1 font-heading text-2xl font-bold uppercase text-white group-hover:text-[#FFAA00] transition-colors">
+        <h3 className="mb-1 font-heading text-2xl font-bold uppercase text-white transition-colors group-hover:text-[#FFAA00]">
           {member.name}
         </h3>
 
@@ -222,10 +222,10 @@ const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
 
       {/* Footer */}
       <div className="relative z-10 mt-auto flex items-center justify-between border-t border-white/10 pt-4">
-        <span className="font-mono text-[10px] text-gray-600 group-hover:text-[#FFAA00] transition-colors">
+        <span className="font-mono text-[10px] text-gray-600 transition-colors group-hover:text-[#FFAA00]">
           {member.footerId}
         </span>
-        <div className="rounded-full bg-white/5 p-1.5 transition-colors group-hover:bg-[#FFAA00] group-hover:text-black text-white/30">
+        <div className="rounded-full bg-white/5 p-1.5 text-white/30 transition-colors group-hover:bg-[#FFAA00] group-hover:text-black">
           <ArrowUpRight size={14} weight="bold" />
         </div>
       </div>
@@ -238,19 +238,19 @@ export default function TeamSection() {
   const team = TEAM_MEMBERS.slice(1)
 
   return (
-    <section className="relative w-full bg-[#050505] py-24 text-white overflow-hidden">
+    <section className="relative w-full overflow-hidden bg-[#050505] py-24 text-white">
       {/* Background Atmosphere */}
-      <div className="absolute top-0 left-0 h-[500px] w-[500px] bg-[#FFAA00]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="pointer-events-none absolute left-0 top-0 size-[500px] rounded-full bg-[#FFAA00]/5 blur-[120px]" />
 
       <div className="container relative z-10 mx-auto px-4">
 
         {/* Section Header */}
         <div className="mb-20 text-center">
-          <span className="mb-4 inline-block font-mono text-xs text-[#FFAA00] tracking-[0.3em]">
+          <span className="mb-4 inline-block font-mono text-xs tracking-[0.3em] text-[#FFAA00]">
                         // THE MINDS BEHIND
           </span>
-          <h2 className="font-heading text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
-            Notre <span className="smatch-gradient-text bg-clip-text bg-gradient-to-r from-white to-gray-600">Équipe.</span>
+          <h2 className="font-heading text-4xl font-black uppercase tracking-tighter text-white md:text-6xl">
+            Notre <span className="smatch-gradient-text bg-gradient-to-r from-white to-gray-600 bg-clip-text">Équipe.</span>
           </h2>
         </div>
 
@@ -267,22 +267,22 @@ export default function TeamSection() {
             {/* Quote Side Panel (Col Span 4) */}
             <div className="relative flex flex-col justify-between overflow-hidden  p-8 lg:col-span-4 lg:p-12">
               {/* Giant Watermark Quote */}
-              <div className="pointer-events-none mix-blend-overlay absolute left-4 top-0 font-sans font-black text-[200px] leading-none text-white/5 select-none">
-                <Image className='mix-blend-overlay pointer-events-none select-none opacity-10  ' src="/assets/comma-first.svg" alt="" width={200} height={150} />
+              <div className="pointer-events-none absolute left-4 top-0 select-none font-sans text-[200px] font-black leading-none text-white/5 mix-blend-overlay">
+                <Image className='pointer-events-none select-none opacity-10 mix-blend-overlay  ' src="/assets/comma-first.svg" alt="" width={200} height={150} />
               </div>
-              <p className='my-auto bg-gradient-to-r text-justify pt-20 from-white via-white/90 to-gray-400 bg-clip-text text-lg font-light leading-relaxed text-transparent font-sans md:text-xl'>
+              <p className='my-auto bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text pt-20 text-justify font-sans text-lg font-light leading-relaxed text-transparent md:text-xl'>
                 Dans un contexte économique exigeant, Smatch Digital s'impose comme le partenaire opérationnel des PME marocaines.
                 <br />
                 Notre mission : élever les standards de la Supply Chain par des solutions concrètes et immédiates. <br /> Nous privilégions le pragmatisme et la proximité pour bâtir notre notoriété sur une seule exigence : l'excellence au service de votre performance.
               </p>
-              <div className="relative my-auto z-10 h-full flex flex-col justify-end">
-                <div className="mb-4 h-[1px] w-12 bg-[#FFAA00]" />
+              <div className="relative z-10 my-auto flex h-full flex-col justify-end">
+                <div className="mb-4 h-px w-12 bg-[#FFAA00]" />
                 <p className="font-mono text-xl tracking-widest text-[#FFAA00]">
                   - {tarik.name}
                 </p>
               </div>
-              <div className="pointer-events-none mix-blend-overlay absolute right-4 bottom-0 font-sans font-black text-[200px] leading-none text-white/5 select-none">
-                <Image className='mix-blend-overlay pointer-events-none select-none opacity-10' src="/assets/comma-final.svg" alt="" width={200} height={150} />
+              <div className="pointer-events-none absolute bottom-0 right-4 select-none font-sans text-[200px] font-black leading-none text-white/5 mix-blend-overlay">
+                <Image className='pointer-events-none select-none opacity-10 mix-blend-overlay' src="/assets/comma-final.svg" alt="" width={200} height={150} />
               </div>
             </div>
 

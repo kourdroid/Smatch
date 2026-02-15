@@ -43,11 +43,11 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
   } = props
 
   return (
-    <section className="relative w-full bg-[#050505] py-12 text-white selection:bg-[#FFAA00] selection:text-black md:py-20 overflow-hidden">
+    <section className="relative w-full overflow-hidden bg-[#050505] py-12 text-white selection:bg-[#FFAA00] selection:text-black md:py-20">
 
       {/* 1. BACKGROUND NERVOUS SYSTEM (Restored SVG Lines) */}
       <div className="pointer-events-none absolute inset-0 z-0 opacity-20">
-        <svg className="h-full w-full" viewBox="0 0 1515 1200" preserveAspectRatio="none">
+        <svg className="size-full" viewBox="0 0 1515 1200" preserveAspectRatio="none">
           <defs>
             <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#FFAA00" stopOpacity="0" />
@@ -66,7 +66,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
 
         {/* HEADER */}
         <div className="mb-12 text-center md:mb-16">
-          <h2 className="font-heading text-3xl font-bold tracking-tight md:text-[40px] leading-tight">
+          <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight md:text-[40px]">
             {headline}
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg font-light text-white/60 md:text-xl">
@@ -96,7 +96,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                     <Database size={14} className="text-[#FFAA00]" />
                   </div>
                   {/* Right (90°) */}
-                  <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-2 shadow-lg">
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-2 shadow-lg">
                     <Globe size={14} className="text-blue-500" />
                   </div>
                   {/* Bottom (180°) */}
@@ -111,10 +111,10 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
               </div>
 
               {/* 3D PLUG IMAGE */}
-              <div className="absolute inset-0 -left-20 z-30 pointer-events-none md:-top-20 md:-left-20">
-                <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
+              <div className="pointer-events-none absolute inset-0 -left-20 z-30 md:-left-20 md:-top-20">
+                <div className="relative transition-transform duration-700 ease-out group-hover:scale-110">
                   <Image className='relative w-[280px] md:w-[320px]' alt='' src="/assets/ecosystem/plug.webp" width={400} height={400} />
-                  <div className='absolute top-20 left-20 z-0 opacity-50 bg-smatch-gold h-[100px] w-[100px] rounded-full blur-[80px] mix-blend-screen transition-opacity duration-700 group-hover:opacity-80'></div>
+                  <div className='absolute left-20 top-20 z-0 size-[100px] rounded-full bg-smatch-gold opacity-50 mix-blend-screen blur-[80px] transition-opacity duration-700 group-hover:opacity-80'></div>
                 </div>
               </div>
 
@@ -135,10 +135,10 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
           {/* Position: Col 3-6 / Row 1-2 */}
           <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] p-6 transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-3 md:col-end-7 md:row-start-1 md:row-end-3 md:p-10">
             {/* 3D Asset - z-20 above content */}
-            <div className="absolute -top-20 -right-16 z-20 pointer-events-none md:-bottom-24 md:-right-20">
-              <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
+            <div className="pointer-events-none absolute -right-16 -top-20 z-20 md:-bottom-24 md:-right-20">
+              <div className="relative transition-transform duration-700 ease-out group-hover:scale-110">
                 <Image className="w-[180px] md:w-[350px]" alt='' src="/assets/ecosystem/support.png" width={300} height={300} />
-                <div className='absolute top-10 left-10 -z-10 opacity-30 bg-smatch-gold h-[80px] w-[80px] rounded-full blur-[60px] transition-opacity duration-700 group-hover:opacity-60'></div>
+                <div className='absolute left-10 top-10 -z-10 size-[80px] rounded-full bg-smatch-gold opacity-30 blur-[60px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
             {/* Content - z-10 below asset */}
@@ -175,10 +175,10 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
           {/* 3. API FIRST (Tall Right) */}
           {/* Position: Col 7-8 / Row 1-4 */}
           <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-7 md:col-end-9 md:row-start-1 md:row-end-5">
-            <div className="absolute top-1/4 -right-12 z-20 pointer-events-none md:bottom-20 md:right-[-40px] md:top-auto">
-              <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
+            <div className="pointer-events-none absolute -right-12 top-1/4 z-20 md:bottom-20 md:right-[-40px] md:top-auto">
+              <div className="relative transition-transform duration-700 ease-out group-hover:scale-110">
                 <Image className="w-[140px] md:w-[250px]" alt='' src="/assets/ecosystem/api.png" width={300} height={300} />
-                <div className='absolute top-10 left-10 -z-10 opacity-30 bg-smatch-gold h-[60px] w-[60px] rounded-full blur-[50px] transition-opacity duration-700 group-hover:opacity-60'></div>
+                <div className='absolute left-10 top-10 -z-10 size-[60px] rounded-full bg-smatch-gold opacity-30 blur-[50px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
             <div className="relative z-10 flex h-full flex-col p-6 md:p-8">
@@ -221,14 +221,14 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
 
           {/* 4. CORE INTELLIGENCE (Middle Center) */}
           {/* Position: Col 3-6 / Row 3-4 */}
-          <div className="group flex justify-center w-full relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/50 md:col-start-3 md:col-end-7 md:row-start-3 md:row-end-5">
-            <div className="w-full inset-0 left-10 z-20 pointer-events-none flex md:left-4">
-              <div className="relative flex justify-center items-center">
-                <Image className="w-[160px] md:w-[250px] opacity-90 transform transition-transform duration-700 ease-out group-hover:scale-110" alt='' src="/assets/ecosystem/at.png" width={250} height={250} />
-                <div className='absolute top-14 left-14 -z-10 opacity-30 bg-smatch-gold h-[80px] w-[80px] rounded-full blur-[60px] transition-opacity duration-700 group-hover:opacity-60'></div>
+          <div className="group relative flex w-full justify-center overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/50 md:col-start-3 md:col-end-7 md:row-start-3 md:row-end-5">
+            <div className="pointer-events-none inset-0 left-10 z-20 flex w-full md:left-4">
+              <div className="relative flex items-center justify-center">
+                <Image className="w-[160px] opacity-90 transition-transform duration-700 ease-out group-hover:scale-110 md:w-[250px]" alt='' src="/assets/ecosystem/at.png" width={250} height={250} />
+                <div className='absolute left-14 top-14 -z-10 size-[80px] rounded-full bg-smatch-gold opacity-30 blur-[60px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
-            <div className="relative w-full z-10 flex h-full flex-col items-center justify-center p-8 text-center bg-transparent">
+            <div className="relative z-10 flex size-full flex-col items-center justify-center bg-transparent p-8 text-center">
 
 
 
@@ -247,10 +247,10 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
           {/* Position: Col 1-4 / Row 5-6 */}
           <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] p-6 transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-1 md:col-end-5 md:row-start-5 md:row-end-7 md:p-10">
 
-            <div className="absolute -bottom-10 -right-16 z-20 pointer-events-none md:-bottom-20 md:-right-10">
-              <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
+            <div className="pointer-events-none absolute -bottom-10 -right-16 z-20 md:-bottom-20 md:-right-10">
+              <div className="relative transition-transform duration-700 ease-out group-hover:scale-110">
                 <Image className='relative w-[280px] md:w-[350px]' alt='' src="/assets/ecosystem/chart.png" width={400} height={400} />
-                <div className='absolute top-20 right-20 -z-10 opacity-30 bg-smatch-gold h-[100px] w-[100px] rounded-full blur-[70px] transition-opacity duration-700 group-hover:opacity-60'></div>
+                <div className='absolute right-20 top-20 -z-10 size-[100px] rounded-full bg-smatch-gold opacity-30 blur-[70px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
             <div className="relative z-20 flex h-full items-start justify-between">
@@ -267,10 +267,10 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
           {/* 6. CONTROL (Bottom Right) */}
           {/* Position: Col 5-8 / Row 5-6 */}
           <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-5 md:col-end-9 md:row-start-5 md:row-end-7">
-            <div className="absolute -bottom-12 -right-12 z-20 pointer-events-none md:-bottom-20 md:-right-20">
-              <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
-                <Image className='relative w-[220px] md:w-[380px] -rotate-12' alt='' src="/assets/ecosystem/joystick.png" width={300} height={300} />
-                <div className='absolute top-20 right-20 -z-10 opacity-30 bg-smatch-gold h-[100px] w-[100px] rounded-full blur-[70px] transition-opacity duration-700 group-hover:opacity-60'></div>
+            <div className="pointer-events-none absolute -bottom-12 -right-12 z-20 md:-bottom-20 md:-right-20">
+              <div className="relative transition-transform duration-700 ease-out group-hover:scale-110">
+                <Image className='relative w-[220px] -rotate-12 md:w-[380px]' alt='' src="/assets/ecosystem/joystick.png" width={300} height={300} />
+                <div className='absolute right-20 top-20 -z-10 size-[100px] rounded-full bg-smatch-gold opacity-30 blur-[70px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
             <div className="absolute inset-0 flex items-end justify-between p-6 md:p-10">

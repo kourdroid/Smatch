@@ -34,13 +34,13 @@ export const UseCaseBlock: React.FC<UseCaseBlockProps> = ({ sectionHeader, cases
                     <Media
                       resource={item.image}
                       fill
-                      className="object-cover transform-gpu transition-transform duration-700 group-hover:scale-105"
+                      className="transform-gpu object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
                   {/* Glassmorphism Overlay Card */}
-                  <div className="absolute bottom-6 left-6 right-6 z-10 overflow-hidden rounded-md border border-white/10 bg-black/60 p-6 backdrop-blur-md transition-all duration-500 group-hover:bg-black/80 lg:bottom-8 lg:left-8 lg:right-8">
+                  <div className="absolute inset-x-6 bottom-6 z-10 overflow-hidden rounded-md border border-white/10 bg-black/60 p-6 backdrop-blur-md transition-all duration-500 group-hover:bg-black/80 lg:inset-x-8 lg:bottom-8">
                     <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#FFAA00] text-lg font-black text-black">
+                      <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FFAA00] text-lg font-black text-black">
                         {i + 1}
                       </div>
                       <div className="font-heading text-lg font-bold uppercase tracking-wide text-white">

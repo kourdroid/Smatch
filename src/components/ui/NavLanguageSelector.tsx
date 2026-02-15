@@ -59,20 +59,22 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
             {/* Trigger Button - Matches nav link styling since inside pill */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={
+                    currentLocale === 'fr' ? 'Changer de langue' : 'Change language'
+                }
                 className={cn(
                     'relative flex items-center gap-2',
-                    'px-4 py-2.5 rounded-full',
+                    'rounded-full px-4 py-2.5',
                     'transition-all duration-300',
-                    'hover:bg-white/5',
-                    'group',
+                    'group hover:bg-white/5',
                 )}
             >
                 <GlobeSimple
                     size={16}
                     weight="regular"
-                    className="text-white/60 group-hover:text-white/80 transition-colors"
+                    className="text-white/60 transition-colors group-hover:text-white/80"
                 />
-                <span className="font-sans text-[11px] font-bold tracking-[0.15em] uppercase text-white/60 group-hover:text-white">
+                <span className="font-sans text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 group-hover:text-white">
                     {currentLocale}
                 </span>
                 <CaretDown
