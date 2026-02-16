@@ -59,20 +59,19 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
             {/* Trigger Button - Matches nav link styling since inside pill */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={`Select language, current language is ${localeNames[currentLocale]}`}
+                aria-expanded={isOpen}
+                aria-haspopup="menu"
                 className={cn(
-                    'relative flex items-center gap-2',
-                    'px-4 py-2.5 rounded-full',
-                    'transition-all duration-300',
-                    'hover:bg-white/5',
-                    'group',
+                    'group relative flex items-center gap-2 rounded-full px-4 py-2.5 transition-all duration-300 hover:bg-white/5',
                 )}
             >
                 <GlobeSimple
                     size={16}
                     weight="regular"
-                    className="text-white/60 group-hover:text-white/80 transition-colors"
+                    className="text-white/60 transition-colors group-hover:text-white/80"
                 />
-                <span className="font-sans text-[11px] font-bold tracking-[0.15em] uppercase text-white/60 group-hover:text-white">
+                <span className="font-sans text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 group-hover:text-white">
                     {currentLocale}
                 </span>
                 <CaretDown
@@ -89,6 +88,7 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
+                        role="menu"
                         initial={{ opacity: 0, y: openUp ? 8 : -8, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: openUp ? 8 : -8, scale: 0.95 }}
@@ -96,9 +96,7 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
                         className={cn(
                             'absolute right-0 z-50',
                             openUp ? 'bottom-full mb-4' : 'top-full mt-4',
-                            'min-w-[140px] overflow-hidden rounded-xl',
-                            'bg-[#111111]/90 border border-white/15',
-                            'shadow-[0_10px_40px_rgba(0,0,0,0.6)]',
+                            'min-w-[140px] overflow-hidden rounded-xl border border-white/15 bg-[#111111]/90 shadow-[0_10px_40px_rgba(0,0,0,0.6)]',
                         )}
                     >
                         {/* Top highlight */}
@@ -113,12 +111,12 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
                                     <Link
                                         key={locale}
                                         href={href}
+                                        role="menuitem"
                                         onMouseEnter={() => setHovered(locale)}
                                         onMouseLeave={() => setHovered(null)}
                                         onClick={() => setIsOpen(false)}
                                         className={cn(
-                                            'relative flex items-center gap-3 px-4 py-2.5',
-                                            'transition-colors duration-200',
+                                            'relative flex items-center gap-3 px-4 py-2.5 transition-colors duration-200',
                                         )}
                                     >
                                         {/* Hover/Active background */}
