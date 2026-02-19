@@ -20,7 +20,7 @@ export const SmartGrid: React.FC<SmartGridProps> = ({ cards, columns = '3', clas
     const alignClass = headerAlign === 'left' ? 'text-left' : headerAlign === 'right' ? 'text-right' : 'text-center'
 
     return (
-        <div className={`container my-16 mx-auto px-4 ${className}`}>
+        <div className={`container mx-auto my-16 px-4 ${className}`}>
             {/* Optional Section Header */}
             {sectionHeader && (sectionHeader.title || sectionHeader.description) && (
                 <div className={`mb-12 ${alignClass} md:mb-[80px]`}>

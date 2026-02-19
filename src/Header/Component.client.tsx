@@ -164,6 +164,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           <Link
             href={`/${locale}`}
             className={`rounded-full p-2 transition-colors ${pathname === `/${locale}` ? 'text-[#FFAA00]' : 'text-white/60'}`}
+            aria-label={locale === 'fr' ? 'Accueil' : 'Home'}
           >
             <House size={24} weight={pathname === `/${locale}` ? 'fill' : 'regular'} />
           </Link>
@@ -174,6 +175,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           <button
             onClick={() => setMobileMenuOpen(true)}
             className="rounded-full bg-[#FFAA00] p-3 text-black shadow-[0_0_15px_rgba(255,170,0,0.3)] transition-transform active:scale-95"
+            aria-label={locale === 'fr' ? 'Ouvrir le menu' : 'Open menu'}
           >
             <SquaresFour size={24} weight="bold" />
           </button>
@@ -184,18 +186,22 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           <button
             onClick={toggleChat}
             className={`relative rounded-full p-2 transition-colors ${isChatOpen ? 'text-[#FFAA00]' : 'text-white/60 hover:text-[#FFAA00]'}`}
-            aria-label="Ouvrir le chat"
+            aria-label={locale === 'fr' ? 'Ouvrir le chat' : 'Open chat'}
           >
             <ChatCircle size={24} weight={isChatOpen ? 'fill' : 'regular'} />
             {/* Pulse indicator when chat is closed */}
             {!isChatOpen && (
-              <span className="absolute right-1 top-1 h-2 w-2 animate-pulse rounded-full bg-[#FFAA00]" />
+              <span className="absolute right-1 top-1 size-2 animate-pulse rounded-full bg-[#FFAA00]" />
             )}
           </button>
         </MobileBottomDock>
 
         {/* 3. The Menu Sheet (Slides up from bottom) */}
-        <MobileMenuOverlay isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)}>
+        <MobileMenuOverlay
+          isOpen={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
+          ariaLabel={locale === 'fr' ? 'Menu de navigation' : 'Navigation menu'}
+        >
           <div className="mb-8 flex items-center justify-between">
             <span className="font-mono text-xs uppercase tracking-widest text-white/40">
               {locale === 'fr' ? 'Navigation' : 'Navigation'}
@@ -203,6 +209,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="rounded-full bg-white/5 p-2 text-white"
+              aria-label={locale === 'fr' ? 'Fermer le menu' : 'Close menu'}
             >
               <X size={20} />
             </button>

@@ -6,7 +6,7 @@ import { CMSLink } from '@/components/Link'
 
 export const CallToActionBlock: React.FC<CTABlockProps> = ({ headline, subheadline, link }) => {
   return (
-    <section className="relative overflow-hidden bg-smatch-black py-16 md:py-20 my-8">
+    <section className="relative my-8 overflow-hidden bg-smatch-black py-16 md:py-20">
       {/* Background Gold Glow */}
       {/* <div className="absolute left-1/2 top-1/2 z-0 size-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-smatch-gold/5 blur-[100px]" /> */}
 

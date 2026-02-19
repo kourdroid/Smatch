@@ -29,10 +29,10 @@ export function AboutHero({
         />
         <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFAA00" />
         <Image className="object-cover " src={'/assets/hero/AboutHero.webp'} alt="" fill priority />
-        <div className="absolute left-1/2 top-1/2 w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/10 blur-[100px]" />
+        <div className="absolute left-1/2 top-1/2 size-[80vw] max-h-[800px] max-w-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/10 blur-[100px]" />
       </div>
 
-      <div className="container mx-auto relative z-10 flex flex-col items-center text-center">
+      <div className="container relative z-10 mx-auto flex flex-col items-center text-center">
         <h1 className="mb-6 max-w-5xl font-heading text-5xl font-bold uppercase leading-none tracking-tight text-white drop-shadow-md md:text-7xl lg:text-8xl">
           {headline}
         </h1>
