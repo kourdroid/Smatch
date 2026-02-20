@@ -138,7 +138,6 @@ export const metadata: Metadata = {
     description:
       'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
     siteName: 'Smatch Digital',
-    locale: 'fr_MA',
     type: 'website',
   },
   twitter: {
@@ -147,12 +146,6 @@ export const metadata: Metadata = {
     title: 'Smatch Digital',
     description:
       'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
-  },
-  alternates: {
-    languages: {
-      en: '/en',
-      fr: '/fr',
-    },
   },
 }
 

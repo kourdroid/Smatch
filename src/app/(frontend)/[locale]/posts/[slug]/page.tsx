@@ -37,15 +37,18 @@ export async function generateStaticParams() {
   return params
 }
 
+import { type Locale } from '@/utilities/i18n'
+
 type Args = {
   params: Promise<{
     slug?: string
+    locale: string
   }>
 }
 
 export default async function Post({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug = '' } = await paramsPromise
+  const { slug = '', locale } = await paramsPromise
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
   const url = '/posts/' + decodedSlug
@@ -80,12 +83,12 @@ export default async function Post({ params: paramsPromise }: Args) {
 }
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
-  const { slug = '' } = await paramsPromise
+  const { slug = '', locale } = await paramsPromise
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
   const post = await queryPostBySlug({ slug: decodedSlug })
 
-  return generateMeta({ doc: post })
+  return generateMeta({ doc: post, locale: locale as Locale, collection: 'posts' })
 }
 
 const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {

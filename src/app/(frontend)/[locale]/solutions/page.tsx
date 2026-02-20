@@ -5,6 +5,7 @@ import { SolutionsGrid } from '@/components/solutions/SolutionsGrid'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { i18nConfig, isValidLocale, type Locale } from '@/utilities/i18n'
 import { notFound } from 'next/navigation'
+import { getServerSideURL } from '@/utilities/getURL'
 
 type Args = {
   params: Promise<{
@@ -39,7 +40,20 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   }
 
   const m = meta[locale] || meta.en
-  return { title: m.title, description: m.description }
+
+  const languages: Record<string, string> = {}
+  i18nConfig.locales.forEach((loc) => {
+    languages[loc] = `${getServerSideURL()}/${loc}/solutions`
+  })
+
+  return {
+    title: m.title,
+    description: m.description,
+    alternates: {
+      canonical: `${getServerSideURL()}/${locale}/solutions`,
+      languages,
+    },
+  }
 }
 
 export default async function SolutionsPage({ params }: Args) {

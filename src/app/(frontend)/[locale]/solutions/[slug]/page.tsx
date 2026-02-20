@@ -9,7 +9,7 @@ import { SolutionsHero } from '@/components/solutions/SolutionsHero'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
-import { i18nConfig } from '@/utilities/i18n'
+import { i18nConfig, type Locale } from '@/utilities/i18n'
 
 export async function generateStaticParams() {
   try {
@@ -103,7 +103,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   const decodedSlug = decodeURIComponent(slug)
   const solution = await querySolutionBySlug({ slug: decodedSlug, locale })
 
-  return generateMeta({ doc: solution })
+  return generateMeta({ doc: solution, locale: locale as Locale, collection: 'solutions' })
 }
 
 const querySolutionBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {

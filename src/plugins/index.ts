@@ -11,17 +11,33 @@ import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 
-import { Page, Post } from '@/payload-types'
+import { Page, Post, Project, Solution } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
-const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+const generateTitle: GenerateTitle<Post | Page | Project | Solution> = ({ doc }) => {
+  return doc?.title ? `${doc.title} | Smatch Digital` : 'Smatch Digital'
 }
 
-const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
+const generateURL: GenerateURL<Post | Page | Project | Solution> = ({ doc, locale }) => {
   const url = getServerSideURL()
+  const localePath = locale ? `/${locale}` : ''
+  const slug = doc?.slug || ''
 
-  return doc?.slug ? `${url}/${doc.slug}` : url
+  if (!slug || slug === 'home') return `${url}${localePath}`
+
+  if ('relatedPosts' in doc) {
+    return `${url}${localePath}/posts/${slug}`
+  }
+
+  if ('type' in doc && 'status' in doc) {
+    return `${url}${localePath}/projects/${slug}`
+  }
+
+  if ('heroSubtitle' in doc) {
+    return `${url}${localePath}/solutions/${slug}`
+  }
+
+  return `${url}${localePath}/${slug}`
 }
 
 export const plugins: Plugin[] = [
@@ -52,6 +68,7 @@ export const plugins: Plugin[] = [
     generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
   }),
   seoPlugin({
+    collections: ['pages', 'posts', 'projects', 'solutions'],
     generateTitle,
     generateURL,
   }),

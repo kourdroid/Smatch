@@ -114,7 +114,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
         locale,
     })
 
-    return generateMeta({ doc: page })
+    return generateMeta({ doc: page, locale: locale as Locale })
 }
 
 const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale: Locale }) => {

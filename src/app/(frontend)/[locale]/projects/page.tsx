@@ -4,19 +4,38 @@ import { ActivityTimelineClient, TimelineItem } from '@/blocks/ActivityTimeline/
 import { SolutionsHero } from '@/components/solutions/SolutionsHero'
 import { i18nConfig, isValidLocale, type Locale } from '@/utilities/i18n'
 import { notFound } from 'next/navigation'
+import { getServerSideURL } from '@/utilities/getURL'
 
 // Enable ISR (Incremental Static Regeneration) - Cache for 10 minutes
 export const revalidate = 600
-
-export const metadata: Metadata = {
-  title: 'Journal des Opérations | Smatch Digital',
-  description: 'Découvrez nos derniers projets et événements.',
-}
 
 type Args = {
   params: Promise<{
     locale: string
   }>
+}
+
+export async function generateMetadata({ params }: Args): Promise<Metadata> {
+  const { locale } = await params
+
+  const m = {
+      fr: { title: 'Journal des Opérations | Smatch Digital', description: 'Découvrez nos derniers projets et événements.' },
+      en: { title: 'Operations Journal | Smatch Digital', description: 'Discover our latest projects and events.' }
+  }[locale] || { title: 'Journal des Opérations | Smatch Digital', description: 'Découvrez nos derniers projets et événements.' }
+
+  const languages: Record<string, string> = {}
+  i18nConfig.locales.forEach((loc) => {
+    languages[loc] = `${getServerSideURL()}/${loc}/projects`
+  })
+
+  return {
+    title: m.title,
+    description: m.description,
+    alternates: {
+        canonical: `${getServerSideURL()}/${locale}/projects`,
+        languages
+    }
+  }
 }
 
 /**

@@ -12,6 +12,7 @@ import { ArrowLeft, CalendarBlank, MapPin, Tag } from '@phosphor-icons/react/dis
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import RichText from '@/components/RichText'
+import { type Locale } from '@/utilities/i18n'
 
 export async function generateStaticParams() {
   try {
@@ -269,7 +270,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   const decodedSlug = decodeURIComponent(slug)
   const project = await queryProjectBySlug({ slug: decodedSlug, locale })
 
-  return generateMeta({ doc: project })
+  return generateMeta({ doc: project, locale: locale as Locale, collection: 'projects' })
 }
 
 const queryProjectBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {

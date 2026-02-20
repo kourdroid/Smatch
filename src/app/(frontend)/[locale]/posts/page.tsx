@@ -6,14 +6,24 @@ import { Pagination } from '@/components/Pagination'
 import { getPayload } from '@/getPayload'
 import React from 'react'
 import PageClient from './page.client'
+import { i18nConfig } from '@/utilities/i18n'
+import { getServerSideURL } from '@/utilities/getURL'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
 
-export default async function Page() {
+type Args = {
+  params: Promise<{
+    locale: string
+  }>
+}
+
+export default async function Page({ params }: Args) {
+  const { locale } = await params
   const payload = await getPayload()
 
   const posts = await payload.find({
+    locale: locale as any,
     collection: 'posts',
     depth: 1,
     limit: 12,
@@ -55,8 +65,20 @@ export default async function Page() {
   )
 }
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata({ params }: Args): Promise<Metadata> {
+  const { locale } = await params
+
+  const languages: Record<string, string> = {}
+  i18nConfig.locales.forEach((loc) => {
+    languages[loc] = `${getServerSideURL()}/${loc}/posts`
+  })
+
   return {
-    title: `Payload Website Template Posts`,
+    title: locale === 'fr' ? 'Articles | Smatch Digital' : 'Posts | Smatch Digital',
+    description: locale === 'fr' ? 'Découvrez nos derniers articles.' : 'Discover our latest posts.',
+    alternates: {
+      canonical: `${getServerSideURL()}/${locale}/posts`,
+      languages
+    }
   }
 }
