@@ -40,6 +40,8 @@ const CHATBOT_STRINGS: Record<string, {
     openChat: string
     closeChat: string
     fallbackMessage: string
+    inputLabel: string
+    historyLabel: string
 }> = {
     fr: {
         assistantName: 'Assistant Smatch',
@@ -51,6 +53,8 @@ const CHATBOT_STRINGS: Record<string, {
         openChat: 'Ouvrir le chat',
         closeChat: 'Fermer le chat',
         fallbackMessage: 'Merci pour votre message! Un expert Smatch vous contactera bientôt.',
+        inputLabel: 'Zone de saisie du message',
+        historyLabel: 'Historique de la conversation',
     },
     en: {
         assistantName: 'Smatch Assistant',
@@ -62,6 +66,8 @@ const CHATBOT_STRINGS: Record<string, {
         openChat: 'Open chat',
         closeChat: 'Close chat',
         fallbackMessage: 'Thank you for your message! A Smatch expert will contact you soon.',
+        inputLabel: 'Message input area',
+        historyLabel: 'Conversation history',
     },
 }
 
@@ -141,6 +147,8 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                     isOpen && 'pointer-events-none opacity-0',
                 )}
                 aria-label={strings.openChat}
+                aria-expanded={isOpen}
+                aria-controls="chatbot-window"
             >
                 <ChatCircle className="h-7 w-7" weight="fill" />
                 <span className="chatbot-fab-pulse" />
@@ -149,11 +157,15 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
 
             {/* Chat Window */}
             <div
+                id="chatbot-window"
+                role="dialog"
+                aria-modal="false"
+                aria-label={strings.assistantName}
                 className={cn(
                     'chatbot-window fixed z-[10001] flex flex-col overflow-hidden rounded-2xl border border-smatch-border bg-smatch-charcoal/95 shadow-2xl backdrop-blur-xl transition-all duration-300',
                     // Mobile: positioned above the navbar dock (bottom-20 = ~80px) | Desktop: fixed dimensions
                     'bottom-20 right-4 left-4 h-[60vh] max-h-[500px] md:bottom-6 md:right-6 md:left-auto md:h-[600px] md:w-[400px]',
-                    isOpen ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0',
+                    isOpen ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0 invisible',
                 )}
             >
                 {/* Header */}
@@ -181,7 +193,13 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                 </div>
 
                 {/* Messages Area */}
-                <div className="chatbot-messages flex-1 overflow-y-auto p-5">
+                <div
+                    className="chatbot-messages flex-1 overflow-y-auto p-5"
+                    role="log"
+                    aria-live="polite"
+                    aria-atomic="false"
+                    aria-label={strings.historyLabel}
+                >
                     <div className="flex flex-col gap-4">
                         {messages.map((message) => (
                             <div
@@ -228,6 +246,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder={strings.placeholder}
+                            aria-label={strings.inputLabel}
                             disabled={isLoading}
                             className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold disabled:opacity-50"
                         />
