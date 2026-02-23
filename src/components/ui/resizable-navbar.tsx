@@ -177,7 +177,7 @@ export const CTAButton = ({ children, href }: { children: React.ReactNode; href:
 export const MobileTopBar = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="pointer-events-none absolute left-0 top-0 z-10 flex w-full justify-center p-4 md:hidden">
-      <div className="pointer-events-auto rounded-md border border-white/10 bg-[#0F0F0F]/80 p-2 smatch-backdrop-blur-2xl smatch-glass-fallback">
+      <div className="smatch-backdrop-blur-2xl smatch-glass-fallback pointer-events-auto rounded-md border border-white/10 bg-[#0F0F0F]/80 p-2">
         {children}
       </div>
     </div>
@@ -188,7 +188,7 @@ export const MobileTopBar = ({ children }: { children: React.ReactNode }) => {
 export const MobileBottomDock = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="pointer-events-none absolute bottom-4 left-0 z-50 flex w-full justify-center md:hidden">
-      <div className="pointer-events-auto flex items-center gap-6 rounded-md border border-white/10 bg-[#0F0F0F]/80 px-8 py-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] smatch-backdrop-blur-2xl smatch-glass-fallback">
+      <div className="smatch-backdrop-blur-2xl smatch-glass-fallback pointer-events-auto flex items-center gap-6 rounded-md border border-white/10 bg-[#0F0F0F]/80 px-8 py-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]">
         {children}
       </div>
     </div>
@@ -200,10 +200,12 @@ export const MobileMenuOverlay = ({
   children,
   isOpen,
   onClose,
+  id,
 }: {
   children: React.ReactNode
   isOpen: boolean
   onClose: () => void
+  id?: string
 }) => {
   return (
     <AnimatePresence>
@@ -215,11 +217,12 @@ export const MobileMenuOverlay = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="pointer-events-auto fixed inset-0 z-[90] bg-black/60 smatch-backdrop-blur-sm md:hidden"
+            className="smatch-backdrop-blur-sm pointer-events-auto fixed inset-0 z-[90] bg-black/60 md:hidden"
           />
 
           {/* Sheet - Slides up from bottom */}
           <motion.div
+            id={id}
             initial={{ y: '100%', opacity: 1 }}
             animate={{ y: '0%', opacity: 1 }}
             exit={{ y: '100%', opacity: 1 }}
