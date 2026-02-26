@@ -200,10 +200,12 @@ export const MobileMenuOverlay = ({
   children,
   isOpen,
   onClose,
+  id,
 }: {
   children: React.ReactNode
   isOpen: boolean
   onClose: () => void
+  id?: string
 }) => {
   return (
     <AnimatePresence>
@@ -225,6 +227,9 @@ export const MobileMenuOverlay = ({
             exit={{ y: '100%', opacity: 1 }}
             transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
             className="pointer-events-auto fixed inset-x-0 bottom-0 z-[100] min-h-[60vh] rounded-t-[2rem] border-t border-white/10 bg-[#111] p-8 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] md:hidden"
+            id={id}
+            role="dialog"
+            aria-modal="true"
           >
             {/* Drag Handle */}
             <div className="mx-auto mb-8 h-1 w-12 rounded-full bg-white/10" />
