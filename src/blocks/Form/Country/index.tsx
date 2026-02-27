@@ -42,7 +42,12 @@ export const Country: React.FC<
 
           return (
             <Select onValueChange={(val) => onChange(val)} value={controlledValue?.value}>
-              <SelectTrigger className="w-full" id={name}>
+              <SelectTrigger
+                className="w-full"
+                id={name}
+                aria-invalid={!!errors[name]}
+                aria-describedby={errors[name] ? `${name}-error` : undefined}
+              >
                 <SelectValue placeholder={label} />
               </SelectTrigger>
               <SelectContent>
@@ -59,7 +64,7 @@ export const Country: React.FC<
         }}
         rules={{ required }}
       />
-      {errors[name] && <Error name={name} />}
+      {errors[name] && <Error name={name} id={`${name}-error`} />}
     </Width>
   )
 }

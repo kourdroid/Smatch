@@ -29,6 +29,8 @@ export const Checkbox: React.FC<
           onCheckedChange={(checked) => {
             setValue(props.name, checked)
           }}
+          aria-invalid={!!errors[name]}
+          aria-describedby={errors[name] ? `${name}-error` : undefined}
         />
         <Label htmlFor={name}>
           {required && (
@@ -39,7 +41,7 @@ export const Checkbox: React.FC<
           {label}
         </Label>
       </div>
-      {errors[name] && <Error name={name} />}
+      {errors[name] && <Error name={name} id={`${name}-error`} />}
     </Width>
   )
 }

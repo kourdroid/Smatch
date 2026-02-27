@@ -25,8 +25,15 @@ export const Text: React.FC<
           </span>
         )}
       </Label>
-      <Input defaultValue={defaultValue} id={name} type="text" {...register(name, { required })} />
-      {errors[name] && <Error name={name} />}
+      <Input
+        defaultValue={defaultValue}
+        id={name}
+        type="text"
+        {...register(name, { required })}
+        aria-invalid={!!errors[name]}
+        aria-describedby={errors[name] ? `${name}-error` : undefined}
+      />
+      {errors[name] && <Error name={name} id={`${name}-error`} />}
     </Width>
   )
 }
