@@ -1,0 +1,3 @@
+## 2024-05-18 - Missing ARIA Labels on Icon-Only Navigation
+**Learning:** Found a pattern in `HeaderClient` (`src/Header/Component.client.tsx`) where icon-only mobile navigation buttons (e.g., Home, Menu Trigger, Close Menu) lacked `aria-label` attributes. This issue makes key navigation elements invisible or confusing to screen reader users, especially in custom UI patterns like mobile docks.
+**Action:** Always verify that icon-only buttons (`button`, `Link`, `a`) have localized `aria-label`s, especially in global layouts like Headers and Footers.

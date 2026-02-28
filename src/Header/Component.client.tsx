@@ -164,6 +164,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           <Link
             href={`/${locale}`}
             className={`rounded-full p-2 transition-colors ${pathname === `/${locale}` ? 'text-[#FFAA00]' : 'text-white/60'}`}
+            aria-label={locale === 'fr' ? 'Accueil' : 'Home'}
           >
             <House size={24} weight={pathname === `/${locale}` ? 'fill' : 'regular'} />
           </Link>
@@ -174,6 +175,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           <button
             onClick={() => setMobileMenuOpen(true)}
             className="rounded-full bg-[#FFAA00] p-3 text-black shadow-[0_0_15px_rgba(255,170,0,0.3)] transition-transform active:scale-95"
+            aria-label={locale === 'fr' ? 'Ouvrir le menu' : 'Open menu'}
           >
             <SquaresFour size={24} weight="bold" />
           </button>
@@ -203,6 +205,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="rounded-full bg-white/5 p-2 text-white"
+              aria-label={locale === 'fr' ? 'Fermer le menu' : 'Close menu'}
             >
               <X size={20} />
             </button>
