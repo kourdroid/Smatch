@@ -15,6 +15,9 @@ export const Textarea: React.FC<
     rows?: number
   }
 > = ({ name, defaultValue, errors, label, register, required, rows = 3, width }) => {
+  const errorId = `error-${name}`
+  const hasError = !!errors[name]
+
   return (
     <Width width={width}>
       <Label htmlFor={name}>
@@ -31,10 +34,12 @@ export const Textarea: React.FC<
         defaultValue={defaultValue}
         id={name}
         rows={rows}
+        aria-invalid={hasError}
+        aria-describedby={hasError ? errorId : undefined}
         {...register(name, { required: required })}
       />
 
-      {errors[name] && <Error name={name} />}
+      {hasError && <Error id={errorId} name={name} />}
     </Width>
   )
 }

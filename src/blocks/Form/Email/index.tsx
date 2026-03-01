@@ -14,6 +14,9 @@ export const Email: React.FC<
     register: UseFormRegister<FieldValues>
   }
 > = ({ name, defaultValue, errors, label, register, required, width }) => {
+  const errorId = `error-${name}`
+  const hasError = !!errors[name]
+
   return (
     <Width width={width}>
       <Label htmlFor={name}>
@@ -29,10 +32,12 @@ export const Email: React.FC<
         defaultValue={defaultValue}
         id={name}
         type="text"
+        aria-invalid={hasError}
+        aria-describedby={hasError ? errorId : undefined}
         {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
       />
 
-      {errors[name] && <Error name={name} />}
+      {hasError && <Error id={errorId} name={name} />}
     </Width>
   )
 }
