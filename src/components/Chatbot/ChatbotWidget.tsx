@@ -141,6 +141,8 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                     isOpen && 'pointer-events-none opacity-0',
                 )}
                 aria-label={strings.openChat}
+                aria-expanded={isOpen}
+                aria-controls="chatbot-window"
             >
                 <ChatCircle className="h-7 w-7" weight="fill" />
                 <span className="chatbot-fab-pulse" />
@@ -149,6 +151,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
 
             {/* Chat Window */}
             <div
+                id="chatbot-window"
                 className={cn(
                     'chatbot-window fixed z-[10001] flex flex-col overflow-hidden rounded-2xl border border-smatch-border bg-smatch-charcoal/95 shadow-2xl backdrop-blur-xl transition-all duration-300',
                     // Mobile: positioned above the navbar dock (bottom-20 = ~80px) | Desktop: fixed dimensions
@@ -228,6 +231,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder={strings.placeholder}
+                            aria-label={strings.placeholder}
                             disabled={isLoading}
                             className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold disabled:opacity-50"
                         />
