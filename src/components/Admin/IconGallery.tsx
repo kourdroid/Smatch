@@ -116,6 +116,7 @@ export const IconGallery: React.FC = () => {
                             />
                             <input
                                 type="text"
+                                aria-label="Search icons"
                                 placeholder="Search icons..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
