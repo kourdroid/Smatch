@@ -1,0 +1,12 @@
+--- src/components/ui/NavLanguageSelector.tsx
++++ src/components/ui/NavLanguageSelector.tsx
+@@ -58,6 +58,9 @@
+             {/* Trigger Button - Matches nav link styling since inside pill */}
+             <button
+                 onClick={() => setIsOpen(!isOpen)}
++                aria-expanded={isOpen}
++                aria-haspopup="true"
++                aria-label={`Select language, current language is ${localeNames[currentLocale]}`}
+                 className={cn(
+                     'relative flex items-center gap-2',
+                     'px-4 py-2.5 rounded-full',
