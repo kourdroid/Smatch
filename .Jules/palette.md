@@ -1,0 +1,3 @@
+## 2025-03-04 - Custom Dropdowns Missing ARIA Attributes
+**Learning:** The application uses custom components like `NavLanguageSelector` built with standard HTML buttons combined with framer-motion that don't inherently carry the necessary ARIA attributes for dropdowns (`aria-expanded`, `aria-haspopup`). These need to be explicitly managed.
+**Action:** When working on interactive UI elements (like custom language selectors or mobile menus) in this codebase, explicitly verify the presence of `aria-expanded` (linked to component state), `aria-haspopup`, and dynamic `aria-label`s for screen reader support.
