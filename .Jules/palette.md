@@ -1,0 +1,3 @@
+## 2024-05-14 - Add ARIA validation attributes to form blocks
+**Learning:** The form blocks in this design system were missing proper ARIA attributes for validation errors (`aria-invalid` and `aria-describedby`). This prevents screen readers from understanding field states.
+**Action:** Update all form input blocks to conditionally pass `aria-invalid` and `aria-describedby` when errors are present, ensuring they link to the corresponding `Error` component ID.

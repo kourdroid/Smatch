@@ -29,6 +29,8 @@ export const Email: React.FC<
         defaultValue={defaultValue}
         id={name}
         type="text"
+        aria-invalid={!!errors[name]}
+        aria-describedby={errors[name] ? `error-${name}` : undefined}
         {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
       />
 
