@@ -59,6 +59,10 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
             {/* Trigger Button - Matches nav link styling since inside pill */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-expanded={isOpen}
+                aria-haspopup="true"
+                aria-controls="language-menu"
+                aria-label={`Select language. Current: ${localeNames[currentLocale] || currentLocale}`}
                 className={cn(
                     'relative flex items-center gap-2',
                     'px-4 py-2.5 rounded-full',
@@ -89,6 +93,8 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
+                        id="language-menu"
+                        role="menu"
                         initial={{ opacity: 0, y: openUp ? 8 : -8, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: openUp ? 8 : -8, scale: 0.95 }}
@@ -104,7 +110,7 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
                         {/* Top highlight */}
                         <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-                        <div className="py-1.5">
+                        <div className="py-1.5" role="none">
                             {i18nConfig.locales.map((locale) => {
                                 const isActive = locale === currentLocale
                                 const href = `/${locale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
@@ -113,6 +119,7 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
                                     <Link
                                         key={locale}
                                         href={href}
+                                        role="menuitem"
                                         onMouseEnter={() => setHovered(locale)}
                                         onMouseLeave={() => setHovered(null)}
                                         onClick={() => setIsOpen(false)}
