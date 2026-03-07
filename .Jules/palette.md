@@ -1,0 +1,3 @@
+## 2025-02-23 - Add aria attributes to Header mobile menu
+**Learning:** Found that custom dropdown and overlay components built with framer-motion (like MobileMenuOverlay) do not inherently enforce accessibility links. Icon-only buttons mapping to these overlays are often missing localized `aria-label`, `aria-expanded`, and `aria-controls` attributes.
+**Action:** When working with or adding new custom overlays/menus, always ensure the container accepts an `id` prop and that the triggering icon button implements `aria-controls`, `aria-expanded`, and localized `aria-label` for proper screen reader navigation.
