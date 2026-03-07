@@ -200,10 +200,12 @@ export const MobileMenuOverlay = ({
   children,
   isOpen,
   onClose,
+  id,
 }: {
   children: React.ReactNode
   isOpen: boolean
   onClose: () => void
+  id?: string
 }) => {
   return (
     <AnimatePresence>
@@ -220,6 +222,7 @@ export const MobileMenuOverlay = ({
 
           {/* Sheet - Slides up from bottom */}
           <motion.div
+            id={id}
             initial={{ y: '100%', opacity: 1 }}
             animate={{ y: '0%', opacity: 1 }}
             exit={{ y: '100%', opacity: 1 }}
