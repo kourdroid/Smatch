@@ -1,0 +1,4 @@
+
+## 2025-03-09 - Missing ARIA Labels on Icon Buttons and Dropdowns
+**Learning:** In a codebase with custom built navigation components (e.g. `HeaderClient`, `NavLanguageSelector`), it's common for icon-only buttons to lack ARIA attributes. Furthermore, custom dropdowns implemented without accessible component libraries don't natively provide `aria-haspopup` or `aria-expanded` attributes. Also, large automated code formatting runs (like `prettier`) can violate the 50-line rule for micro-UX updates if not scoped properly.
+**Action:** When adding ARIA labels, ensure we check the surrounding interactive elements (like all icons in a dock, e.g., the Chat bot icon next to the Menu icon) to ensure completeness. Apply changes manually via targeted replacements instead of global formatters to respect line limits and avoid unhelpful noise in PRs.
