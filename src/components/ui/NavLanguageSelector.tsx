@@ -66,6 +66,9 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
                     'hover:bg-white/5',
                     'group',
                 )}
+                aria-label={currentLocale === 'fr' ? 'Sélectionner la langue' : 'Select language'}
+                aria-expanded={isOpen}
+                aria-haspopup="menu"
             >
                 <GlobeSimple
                     size={16}

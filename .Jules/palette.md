@@ -1,0 +1,3 @@
+## 2024-03-12 - ARIA Attributes for Custom Interactives
+**Learning:** Icon-only interactive elements (like `ChatbotTrigger`, `MenuTrigger` in `HeaderClient`, and the language dropdown in `NavLanguageSelector`) lack semantic descriptions for screen readers by default. When using headless UI setups or pure HTML buttons wrapped with Framer Motion, it's critical to manually provide localized `aria-label`s and state indicators like `aria-expanded` and `aria-haspopup`.
+**Action:** Always provide localized `aria-label`s when an interactive element consists only of an icon (e.g., `<ChatCircle />`, `<SquaresFour />`, `<GlobeSimple />`). Use `aria-expanded={isOpen}` for toggles to ensure accurate state reporting.
