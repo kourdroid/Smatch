@@ -81,6 +81,7 @@ export default async function ProjectsPage({ params }: Args) {
     limit: 50,
     sort: '-date',
     locale: locale as Locale,
+    fallbackLocale: 'en',
   })
 
   // Locale-aware static text
