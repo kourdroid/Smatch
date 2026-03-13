@@ -34,6 +34,42 @@ export function getOrganizationJsonLd() {
     }
 }
 
+/** Article/Project schema — use on project detail pages */
+export function getProjectJsonLd(args: {
+    name: string
+    description: string
+    url: string
+    datePublished?: string
+    image?: string | null
+}) {
+    const serverUrl = getServerSideURL()
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: args.name,
+        description: args.description,
+        ...(args.image ? { image: [args.image] } : {}),
+        ...(args.datePublished ? { datePublished: args.datePublished } : {}),
+        author: {
+            '@type': 'Organization',
+            name: 'Smatch Digital',
+            url: serverUrl,
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: 'Smatch Digital',
+            logo: {
+                '@type': 'ImageObject',
+                url: `${serverUrl}/Logo.svg`,
+            },
+        },
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': args.url,
+        },
+    }
+}
+
 /** WebSite schema with sitelinks searchbox — injected once in root layout */
 export function getWebSiteJsonLd() {
     const serverUrl = getServerSideURL()

@@ -12,6 +12,8 @@ import { ArrowLeft, CalendarBlank, MapPin, Tag } from '@phosphor-icons/react/dis
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import RichText from '@/components/RichText'
+import { getServerSideURL } from '@/utilities/getURL'
+import { getBreadcrumbJsonLd, getProjectJsonLd } from '@/utilities/jsonLd'
 
 export async function generateStaticParams() {
   try {
@@ -63,8 +65,36 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
     })
     : ''
 
+  // Structured Data (JSON-LD)
+  const serverUrl = getServerSideURL()
+  const projectUrl = `${serverUrl}/${locale}${url}`
+
+  const breadcrumbJsonLd = getBreadcrumbJsonLd([
+    { name: 'Home', url: `${serverUrl}/${locale}` },
+    { name: locale === 'fr' ? 'Projets' : 'Projects', url: `${serverUrl}/${locale}/projects` },
+    { name: project.title, url: projectUrl },
+  ])
+
+  const projectJsonLd = getProjectJsonLd({
+    name: project.title,
+    description: project.description || '',
+    url: projectUrl,
+    datePublished: project.date ? new Date(project.date).toISOString() : undefined,
+    image: imageUrl,
+  })
+
   return (
     <article className="min-h-screen bg-smatch-black selection:bg-smatch-gold selection:text-black">
+      {/* Search Engine Optimization Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+      />
+
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
 
