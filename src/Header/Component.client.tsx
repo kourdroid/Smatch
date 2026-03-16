@@ -161,9 +161,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
         {/* 2. Bottom Dock: The "Tactical" Navigation */}
         <MobileBottomDock>
           {/* Home Button */}
+          {/* SEO: Add aria-label to icon-only link for crawlability and accessibility */}
           <Link
             href={`/${locale}`}
             className={`rounded-full p-2 transition-colors ${pathname === `/${locale}` ? 'text-[#FFAA00]' : 'text-white/60'}`}
+            aria-label={locale === 'fr' ? 'Accueil' : 'Home'}
           >
             <House size={24} weight={pathname === `/${locale}` ? 'fill' : 'regular'} />
           </Link>
@@ -171,9 +173,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           <div className="mx-2 h-6 w-px bg-white/10" />
 
           {/* Menu Trigger (Central Action) */}
+          {/* SEO: Add aria-label to icon-only button for better semantics */}
           <button
             onClick={() => setMobileMenuOpen(true)}
             className="rounded-full bg-[#FFAA00] p-3 text-black shadow-[0_0_15px_rgba(255,170,0,0.3)] transition-transform active:scale-95"
+            aria-label={locale === 'fr' ? 'Ouvrir le menu' : 'Open menu'}
           >
             <SquaresFour size={24} weight="bold" />
           </button>
@@ -181,10 +185,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           <div className="mx-2 h-6 w-px bg-white/10" />
 
           {/* Chatbot Trigger */}
+          {/* SEO: Localize existing aria-label for multilingual crawlability */}
           <button
             onClick={toggleChat}
             className={`relative rounded-full p-2 transition-colors ${isChatOpen ? 'text-[#FFAA00]' : 'text-white/60 hover:text-[#FFAA00]'}`}
-            aria-label="Ouvrir le chat"
+            aria-label={locale === 'fr' ? 'Ouvrir le chat' : 'Open chat'}
           >
             <ChatCircle size={24} weight={isChatOpen ? 'fill' : 'regular'} />
             {/* Pulse indicator when chat is closed */}
@@ -200,9 +205,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
             <span className="font-mono text-xs uppercase tracking-widest text-white/40">
               {locale === 'fr' ? 'Navigation' : 'Navigation'}
             </span>
+            {/* SEO: Add aria-label to icon-only button for better semantics */}
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="rounded-full bg-white/5 p-2 text-white"
+              aria-label={locale === 'fr' ? 'Fermer le menu' : 'Close menu'}
             >
               <X size={20} />
             </button>
