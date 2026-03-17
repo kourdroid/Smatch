@@ -107,7 +107,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
               src={imageUrl}
               alt={project.title}
               fill
-              className="object-cover transition-transform duration-[2s] hover:scale-105"
+              className="duration-[2s] object-cover transition-transform hover:scale-105"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-smatch-black via-smatch-black/60 to-transparent" />
@@ -115,7 +115,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
           </div>
         )}
 
-        <div className="container mx-auto relative z-10 pb-16 pt-32">
+        <div className="container relative z-10 mx-auto pb-16 pt-32">
           {/* Top Navigation Row */}
           <div className="mb-12 flex items-start justify-between">
             {/* Back Link */}
@@ -196,14 +196,14 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
                     {project.metadata && project.metadata.map((meta, i) => (
                       <div key={i} className="flex justify-between py-2">
                         <dt className="font-heading text-sm uppercase text-gray-500">{meta.label}</dt>
-                        <dd className="font-mono text-sm font-medium text-white text-right max-w-[60%]">{meta.value}</dd>
+                        <dd className="max-w-[60%] text-right font-mono text-sm font-medium text-white">{meta.value}</dd>
                       </div>
                     ))}
                   </dl>
                 </div>
 
                 {/* Abstract / Decoration */}
-                <div className="relative aspect-square w-full overflow-hidden opacity-30 invert filter">
+                <div className="relative aspect-square w-full overflow-hidden opacity-30 invert">
                   {/* Abstract background graphic or map could go here */}
                   <div className="absolute inset-0 border border-dashed border-white/20" />
                   <div className="absolute inset-0 flex items-center justify-center font-mono text-[clamp(0.5rem,0.6vw,0.75rem)] text-white/20">
@@ -226,10 +226,10 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
               {project.fullDescription && (
                 <div className="prose prose-lg prose-invert max-w-none 
                   prose-headings:font-heading prose-headings:uppercase prose-headings:tracking-tighter prose-headings:text-white 
-                  prose-p:font-sans prose-p:text-gray-300 prose-p:leading-relaxed
+                  prose-p:font-sans prose-p:leading-relaxed prose-p:text-gray-300
                   prose-a:text-[#FFAA00] prose-a:no-underline hover:prose-a:underline
-                  prose-strong:text-white prose-strong:font-bold
-                  prose-blockquote:border-l-[#FFAA00] prose-blockquote:bg-white/5 prose-blockquote:py-2 prose-blockquote:pl-6 prose-blockquote:italic
+                  prose-blockquote:border-l-[#FFAA00] prose-blockquote:bg-white/5
+                  prose-blockquote:py-2 prose-blockquote:pl-6 prose-blockquote:italic prose-strong:font-bold prose-strong:text-white
                 ">
                   <RichText data={project.fullDescription} />
                 </div>
@@ -255,7 +255,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
                       return (
                         <div
                           key={i}
-                          className={`group relative overflow-hidden rounded-md bg-white/5 ${isWide ? 'md:col-span-2 aspect-[2/1]' : 'aspect-square'}`}
+                          className={`group relative overflow-hidden rounded-md bg-white/5 ${isWide ? 'aspect-[2/1] md:col-span-2' : 'aspect-square'}`}
                         >
                           <Image
                             src={galleryImageUrl}

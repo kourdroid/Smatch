@@ -128,7 +128,7 @@ export const ExpertiseDomainsBlock: React.FC<Props> = ({ sections, className }) 
                                                                 key={fIndex}
                                                                 className="flex items-start gap-3 text-sm text-zinc-300"
                                                             >
-                                                                <PhosphorIcons.CheckCircle className="h-5 w-5 shrink-0 text-yellow-500" />
+                                                                <PhosphorIcons.CheckCircle className="size-5 shrink-0 text-yellow-500" />
                                                                 {feature.text}
                                                             </li>
                                                         ))}
@@ -139,7 +139,7 @@ export const ExpertiseDomainsBlock: React.FC<Props> = ({ sections, className }) 
                                                 <div className="relative min-h-[300px] border-t border-white/10 bg-black/50 lg:min-h-full lg:border-l lg:border-t-0">
                                                     <div className="absolute inset-0 flex items-center justify-center p-8">
                                                         {/* Glow behind image */}
-                                                        <div className="absolute h-[200px] w-[200px] rounded-full bg-yellow-500/20 blur-[80px]" />
+                                                        <div className="absolute size-[200px] rounded-full bg-yellow-500/20 blur-[80px]" />
                                                         {imageUrl && (
                                                             <Image
                                                                 src={imageUrl}

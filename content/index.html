@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROLOGWMS – Solution WMS modulaire | SMATCH DIGITAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== Variables & reset ========== */
+    :root {
+      --color-bg: #f8fafc;
+      --color-bg-alt: #ffffff;
+      --color-primary: #0ea5e9;
+      --color-primary-dark: #0284c7;
+      --color-secondary: #06b6d4;
+      --color-text: #1e293b;
+      --color-text-muted: #64748b;
+      --color-border: #e2e8f0;
+      --color-inbound: #0ea5e9;
+      --color-outbound: #8b5cf6;
+      --color-stock: #10b981;
+      --color-smart: #f59e0b;
+      --color-expert: #ec4899;
+      --color-spec: #6366f1;
+      --max-width: 1280px;
+      --section-padding: 5rem 1.5rem;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-text);
+      background: var(--color-bg);
+    }
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; }
+    ul { padding-left: 1.25rem; }
+
+    /* ========== Layout ========== */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ========== Header & Nav (sticky) ========== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--color-primary);
+    }
+    .logo span { color: var(--color-text-muted); font-weight: 500; font-size: 0.9rem; }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      align-items: center;
+    }
+    .nav a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text);
+      padding: 0.35rem 0.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .nav a:hover {
+      background: var(--color-bg);
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav.is-open { display: flex; }
+    }
+
+    /* ========== Hero ========== */
+    #hero {
+      padding: 4rem 1.5rem 5rem;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      color: #fff;
+      text-align: center;
+    }
+    #hero .container { max-width: 800px; }
+    #hero h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin: 0 0 1rem;
+      line-height: 1.2;
+    }
+    #hero .hero-sub {
+      font-size: 1.125rem;
+      color: #94a3b8;
+      margin-bottom: 1.5rem;
+    }
+    #hero .hero-desc {
+      font-size: 1rem;
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    #hero .editor {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+    }
+    #hero .editor strong { color: #e2e8f0; }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: none;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--color-primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-hover);
+      text-decoration: none;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #64748b;
+      margin-left: 0.75rem;
+    }
+    .btn-secondary:hover {
+      border-color: #94a3b8;
+      color: #e2e8f0;
+      text-decoration: none;
+    }
+    @media (max-width: 480px) {
+      .btn-secondary { margin-left: 0; margin-top: 0.5rem; }
+    }
+
+    /* ========== Sections communes ========== */
+    section {
+      padding: var(--section-padding);
+    }
+    section:nth-child(even) { background: var(--color-bg-alt); }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      color: var(--color-text);
+    }
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+    }
+
+    /* ========== Présentation ========== */
+    #presentation .intro {
+      font-size: 1.0625rem;
+      margin-bottom: 2rem;
+      max-width: 800px;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .benefit-card {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .benefit-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+    .benefit-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+      color: var(--color-primary);
+    }
+    .benefit-card p { margin: 0; font-size: 0.9375rem; color: var(--color-text-muted); }
+
+    /* ========== Architecture WMS ========== */
+    #architecture-wms .arch-intro {
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+    }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.25rem;
+    }
+    @media (min-width: 900px) {
+      .modules-grid { grid-template-columns: repeat(6, 1fr); }
+    }
+    .module-card-link {
+      display: block;
+      background: var(--color-bg-alt);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      color: var(--color-text);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .module-card-link:hover {
+      text-decoration: none;
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .module-card-link[href="#module-inbound"]:hover { border-color: var(--color-inbound); }
+    .module-card-link[href="#module-outbound"]:hover { border-color: var(--color-outbound); }
+    .module-card-link[href="#module-stock"]:hover { border-color: var(--color-stock); }
+    .module-card-link[href="#module-smart"]:hover { border-color: var(--color-smart); }
+    .module-card-link[href="#module-expert"]:hover { border-color: var(--color-expert); }
+    .module-card-link[href="#module-specifiques"]:hover { border-color: var(--color-spec); }
+    .module-card-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 0.75rem;
+      background: var(--color-bg);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .module-card-link h3 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* ========== Section module (détail) ========== */
+    .module-section {
+      padding: var(--section-padding);
+    }
+    .module-section:nth-child(even) { background: var(--color-bg-alt); }
+    .module-section .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .module-section .module-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    #module-inbound .module-icon { background: rgba(14, 165, 233, 0.15); }
+    #module-outbound .module-icon { background: rgba(139, 92, 246, 0.15); }
+    #module-stock .module-icon { background: rgba(16, 185, 129, 0.15); }
+    #module-smart .module-icon { background: rgba(245, 158, 11, 0.15); }
+    #module-expert .module-icon { background: rgba(236, 72, 153, 0.15); }
+    #module-specifiques .module-icon { background: rgba(99, 102, 241, 0.15); }
+    .module-desc {
+      font-size: 1.0625rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+    }
+    .points-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem;
+    }
+    .points-list li {
+      padding: 0.35rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .points-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+    .two-cols {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    @media (min-width: 768px) { .two-cols { grid-template-columns: 1fr 1fr; } }
+    .accordion {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--color-bg-alt);
+    }
+    .accordion-item {
+      border-bottom: 1px solid var(--color-border);
+    }
+    .accordion-item:last-child { border-bottom: none; }
+    .accordion-header {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.2s;
+    }
+    .accordion-header:hover { background: var(--color-bg); }
+    .accordion-header::after {
+      content: "+";
+      font-size: 1.25rem;
+      color: var(--color-text-muted);
+      transition: transform 0.2s;
+    }
+    .accordion-item.is-open .accordion-header::after { transform: rotate(45deg); }
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .accordion-body-inner {
+      padding: 1rem 1.25rem 1.25rem;
+      background: var(--color-bg);
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+    }
+    .accordion-body-inner ul { margin: 0.5rem 0 0; padding-left: 1.25rem; }
+    .ai-block {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .ai-block h4 {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+      color: var(--color-primary-dark);
+    }
+    .ai-block ul {
+      margin: 0;
+      padding-left: 1.25rem;
+      font-size: 0.9375rem;
+      color: var(--color-text);
+    }
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .features-list li {
+      padding: 0.4rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      font-size: 0.9375rem;
+    }
+    .features-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+    .param-block {
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+      margin-top: 1rem;
+    }
+    .param-block strong { color: var(--color-text); }
+    .module-cta { margin-top: 2rem; }
+    .other-modules {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--color-border);
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+    .other-modules a {
+      margin-right: 1rem;
+      color: var(--color-primary);
+    }
+
+    /* ========== IoT cards (Smart module) ========== */
+    .iot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .iot-card {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .iot-card h4 { font-size: 1rem; margin: 0 0 0.5rem; color: var(--color-smart); }
+    .iot-card p { font-size: 0.9375rem; margin: 0; color: var(--color-text-muted); }
+
+    /* ========== Section avantages ========== */
+    #avantages .benefits-grid { margin-top: 1rem; }
+
+    /* ========== CTA final ========== */
+    #contact {
+      text-align: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #fff;
+    }
+    #contact .section-title { color: #fff; }
+    #contact .section-subtitle { color: #94a3b8; }
+    #contact .btn-primary {
+      margin-top: 0.5rem;
+    }
+    #contact .btn-secondary {
+      border-color: #64748b;
+      color: #e2e8f0;
+    }
+
+    /* ========== Footer ========== */
+    .footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 2rem 1.5rem;
+      font-size: 0.875rem;
+      text-align: center;
+    }
+    .footer .container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .footer .logo { color: #e2e8f0; }
+    .footer a { color: #94a3b8; }
+    .footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+  <!-- ========== Header / Navigation sticky ========== -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">PROLOGWMS <span>par SMATCH DIGITAL</span></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+      <nav class="nav" id="mainNav">
+        <a href="#architecture-wms">Vue d’ensemble</a>
+        <a href="#module-inbound">Inbound</a>
+        <a href="#module-outbound">Outbound</a>
+        <a href="#module-stock">Stock</a>
+        <a href="#module-smart">Smart Modules</a>
+        <a href="#module-expert">Expert</a>
+        <a href="#module-specifiques">Spécifiques</a>
+        <a href="#avantages">Avantages</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== Hero ========== -->
+  <section id="hero">
+    <div class="container">
+      <h1>Un WMS modulaire pour piloter 100 % de votre entrepôt</h1>
+      <p class="hero-sub">Fiabilité, productivité et traçabilité en temps réel</p>
+      <p class="hero-desc">PROLOGWMS couvre l’ensemble des flux logistiques (réception, stock, préparation, expédition) en mode Web & Mobile. Une solution modulaire et paramétrable pour les 3PL, industriels et distributeurs.</p>
+      <p class="editor">Solution édité par <strong>SMATCH DIGITAL</strong></p>
+      <a href="#contact" class="btn btn-primary">Demander une démo</a>
+      <a href="#architecture-wms" class="btn btn-secondary">Découvrir les modules</a>
+    </div>
+  </section>
+
+  <!-- ========== Présentation de la solution ========== -->
+  <section id="presentation">
+    <div class="container">
+      <h2 class="section-title">Présentation de la solution</h2>
+      <p class="section-subtitle">Un système de gestion d’entrepôt modulaire, accessible en Web & Mobile, pour piloter tous vos flux logistiques.</p>
+      <p class="intro">PROLOGWMS est un système de gestion d’entrepôt (WMS) modulaire, édité par SMATCH DIGITAL. La solution est organisée autour de modules fonctionnels (INBOUND, OUTBOUND, GESTION DE STOCK, SMART MODULES, EXPERT, SPÉCIFIQUES), eux-mêmes découpés en sous-modules spécialisés. Chaque module est paramétrable pour s’adapter aux contextes 3PL, distribution, retail, e‑commerce et industrie.</p>
+      <h3 style="font-size: 1.125rem; margin-bottom: 1rem;">Vision produit</h3>
+      <ul class="points-list">
+        <li>WMS modulaire : activation progressive des fonctionnalités (base, pro, expert, spécifique)</li>
+        <li>SaaS / Licence hybride : sessions Web & Mobile</li>
+        <li>Connectivité : EDI, API, équipements IoT (PTL, DWS, RFID)</li>
+        <li>Pilotage par la donnée : dashboards, KPIs, visualisation 3D</li>
+        <li>IA intégrée : recommandations, prédictions et optimisations dans chaque module</li>
+      </ul>
+      <h3 style="font-size: 1.125rem; margin-bottom: 1rem;">Avantages principaux</h3>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <h3>Maîtrise des flux</h3>
+          <p>Réduction des erreurs, litiges et retards sur INBOUND & OUTBOUND.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Optimisation du stock</h3>
+          <p>Meilleure rotation, réduction des ruptures, occupation optimale des emplacements.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Productivité</h3>
+          <p>Mobilité, scans, guidage opérateur, workflows optimisés.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Traçabilité & conformité</h3>
+          <p>POD/IOD, gestion des retours, documentaire, historisation.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>IoT intégrés</h3>
+          <p>PTL, DWS, RFID pour automatiser et sécuriser les opérations.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>IA intégrée</h3>
+          <p>Recommandations, prédictions et optimisations dans chaque module.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Architecture du WMS ========== -->
+  <section id="architecture-wms">
+    <div class="container">
+      <h2 class="section-title">Architecture de la solution WMS</h2>
+      <p class="arch-intro section-subtitle">PROLOGWMS est structuré en six familles de modules (base, professionnel, expert, spécifique). Cliquez sur un module pour accéder à son détail.</p>
+      <div class="modules-grid">
+        <a href="#module-inbound" class="module-card-link">
+          <div class="module-card-icon">📥</div>
+          <h3>INBOUND</h3>
+        </a>
+        <a href="#module-outbound" class="module-card-link">
+          <div class="module-card-icon">📤</div>
+          <h3>OUTBOUND</h3>
+        </a>
+        <a href="#module-stock" class="module-card-link">
+          <div class="module-card-icon">📦</div>
+          <h3>STOCK</h3>
+        </a>
+        <a href="#module-smart" class="module-card-link">
+          <div class="module-card-icon">🔗</div>
+          <h3>SMART</h3>
+        </a>
+        <a href="#module-expert" class="module-card-link">
+          <div class="module-card-icon">🧠</div>
+          <h3>EXPERT</h3>
+        </a>
+        <a href="#module-specifiques" class="module-card-link">
+          <div class="module-card-icon">🧩</div>
+          <h3>SPÉCIFIQUES</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Module INBOUND ========== -->
+  <section id="module-inbound" class="module-section">
+    <div class="container">
+      <h2 class="section-title"><span class="module-icon">📥</span> INBOUND – Réception & Mise en stock</h2>
+      <p class="module-desc">Digitalisez l’intégralité de vos flux d’entrée, de l’attendu de réception au rangement optimisé, pour réduire les erreurs et accélérer la mise à disposition du stock.</p>
+      <ul class="points-list">
+        <li>Attendus de réception centralisés (ASN, commandes d’achat)</li>
+        <li>Contrôle quantité / qualité en temps réel</li>
+        <li>Cross-docking fluide pour les flux urgents</li>
+        <li>Rangement guidé selon vos règles métier</li>
+      </ul>
+      <div class="ai-block">
+        <h4>IA intégrée (INBOUND)</h4>
+        <ul>
+          <li>Prédiction des arrivées et priorisation des réceptions</li>
+          <li>Recommandation d’emplacements de rangement (slotting) selon rotation et encombrement</li>
+          <li>Détection d’anomalies (écarts, doublons) et alertes</li>
+        </ul>
+      </div>
+      <h3 style="font-size: 1.125rem; margin-bottom: 0.75rem;">Sous-modules</h3>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">Attendu réception (In_01)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Gestion des attendus (ASN, commandes d’achat, préavis transporteurs), planification des créneaux de livraison, gestion des quais.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Réception (In_02)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Scan palettes/colis, contrôle quantité, rapprochement attendu/réel, impression d’étiquettes (y compris arabe).</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Contrôle qualité IN</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Écarts, avaries, blocages, quarantaine.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Cross Dock (In_04)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Flux directs réception → expédition sans mise en stock prolongée, affectation automatique des quais de sortie.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Rangement (In_05)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Propositions d’emplacements optimisés selon règles paramétrables (ABC, volume, rotation).</div></div>
+        </div>
+      </div>
+      <h3 style="font-size: 1.125rem; margin: 1.5rem 0 0.75rem;">Fonctionnalités principales</h3>
+      <ul class="features-list">
+        <li>Gestion des attendus et des créneaux transporteurs</li>
+        <li>Scan des palettes / colis et gestion des écarts</li>
+        <li>Gestion des non-conformités et blocages qualité</li>
+        <li>Cross-docking avec affectation automatique des quais de sortie</li>
+        <li>Propositions d’emplacements selon contraintes produit (ABC, volume, rotation)</li>
+      </ul>
+      <p class="param-block"><strong>Paramétrage :</strong> règles de quai, tolérances sur écarts, stratégies de rangement, formats d’étiquettes.</p>
+      <div class="module-cta"><a href="#contact" class="btn btn-primary">Voir ce module en action</a></div>
+      <div class="other-modules">Autres modules : <a href="#module-outbound">Outbound</a> <a href="#module-stock">Stock</a> <a href="#module-smart">Smart</a></div>
+    </div>
+  </section>
+
+  <!-- ========== Module OUTBOUND ========== -->
+  <section id="module-outbound" class="module-section">
+    <div class="container">
+      <h2 class="section-title"><span class="module-icon">📤</span> OUTBOUND – Préparation & Expédition</h2>
+      <p class="module-desc">Orquestrez vos commandes, optimisez vos parcours de préparation et sécurisez vos expéditions jusqu’à la preuve de livraison.</p>
+      <ul class="points-list">
+        <li>Stratégies de préparation flexibles</li>
+        <li>Contrôle qualité avant départ camion</li>
+        <li>Gestion intégrée des retours & refus</li>
+        <li>POD/IOD pour une traçabilité complète jusqu’au client final</li>
+      </ul>
+      <div class="ai-block">
+        <h4>IA intégrée (OUTBOUND)</h4>
+        <ul>
+          <li>Optimisation des parcours de picking et des vagues de préparation</li>
+          <li>Priorisation intelligente des commandes et prédiction des pics de charge</li>
+          <li>Regroupement optimal des lignes (batch picking) et suggestion de contrôles ciblés</li>
+        </ul>
+      </div>
+      <h3 style="font-size: 1.125rem; margin-bottom: 0.75rem;">Sous-modules</h3>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">Traitement commandes (Out_01)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Orchestration, priorités, vagues, tournées.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Préparation (Out_02)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Stratégies unitaire, par vague, par tournée.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Préparation consolidée (Out_03)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Mutualisation des prélèvements.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Contrôle qualité OUT (Out_04)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Scan final, numéros de série, double contrôle.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Expédition (Out_05)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Pesée colis, étiquettes transporteurs, chargement camion.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">POD / IOD (Out_06)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Proof of Delivery / Information of Delivery, suivi livraison.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Retour / Refus (Out_07)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Reverse logistics, remise en stock, rebut.</div></div>
+        </div>
+      </div>
+      <h3 style="font-size: 1.125rem; margin: 1.5rem 0 0.75rem;">Fonctionnalités principales</h3>
+      <ul class="features-list">
+        <li>Traitement des commandes avec priorisation et vagues</li>
+        <li>Préparation unitaire, par lot, par tournée ou consolidée</li>
+        <li>Contrôle qualité OUT (scan final, numéros de série)</li>
+        <li>Gestion des expéditions (pesée, étiquettes transporteurs, chargement)</li>
+        <li>Suivi POD/IOD et reverse logistics (retours / refus)</li>
+      </ul>
+      <p class="param-block"><strong>Paramétrage :</strong> stratégies de préparation, règles de priorisation, types de contrôles, intégrations transporteurs.</p>
+      <div class="module-cta"><a href="#contact" class="btn btn-primary">Voir ce module en action</a></div>
+      <div class="other-modules">Autres modules : <a href="#module-inbound">Inbound</a> <a href="#module-stock">Stock</a> <a href="#module-smart">Smart</a></div>
+    </div>
+  </section>
+
+  <!-- ========== Module GESTION DE STOCK ========== -->
+  <section id="module-stock" class="module-section">
+    <div class="container">
+      <h2 class="section-title"><span class="module-icon">📦</span> GESTION DE STOCK</h2>
+      <p class="module-desc">Visualisez, sécurisez et valorisez vos stocks grâce à une gestion fine des transferts, inventaires, blocages et transformations.</p>
+      <ul class="points-list">
+        <li>Inventaires cycliques ou complets configurables</li>
+        <li>Réservation & blocage par client, commande ou canal</li>
+        <li>Visualisation avancée des niveaux de stock</li>
+        <li>Support des opérations de transformation & kitting</li>
+      </ul>
+      <div class="ai-block">
+        <h4>IA intégrée (STOCK)</h4>
+        <ul>
+          <li>Recommandation d’emplacements (slotting) selon rotation et affinités produits</li>
+          <li>Prédiction des besoins en inventaire et priorisation des zones à inventorier</li>
+          <li>Optimisation des transferts et du réapprovisionnement ; détection des risques (rupture, surstock, obsolescence)</li>
+        </ul>
+      </div>
+      <h3 style="font-size: 1.125rem; margin-bottom: 0.75rem;">Sous-modules</h3>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">Transfert (Sm_01 / GS_01)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Transferts inter-emplacements / inter-zones / inter-sites guidés.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Inventaire (Sm_02 / GS_02)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Inventaires complets, cycliques, tournants, par famille de produits.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Réservation & Blocage stock (Sm_04 / GS_04)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Réservation par client, commande, canal, projet ; blocage qualité, litige, réglementaire.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Transformation & Kitting (Sm_03)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Repack, co-packing, assemblage de kits.</div></div>
+        </div>
+      </div>
+      <h3 style="font-size: 1.125rem; margin: 1.5rem 0 0.75rem;">Fonctionnalités principales</h3>
+      <ul class="features-list">
+        <li>Transferts inter-emplacements / inter-zones guidés</li>
+        <li>Inventaires multi-stratégies (cyclique, tournant, ABC)</li>
+        <li>Gestion des réservations (vente, projet, client)</li>
+        <li>Blocage qualité / litige avec historique</li>
+        <li>Support des opérations de co-packing et kitting</li>
+      </ul>
+      <p class="param-block"><strong>Paramétrage :</strong> politiques d’inventaire, règles de réservation, motifs de blocage.</p>
+      <div class="module-cta"><a href="#contact" class="btn btn-primary">Voir ce module en action</a></div>
+      <div class="other-modules">Autres modules : <a href="#module-inbound">Inbound</a> <a href="#module-outbound">Outbound</a> <a href="#module-smart">Smart</a></div>
+    </div>
+  </section>
+
+  <!-- ========== Module SMART MODULES ========== -->
+  <section id="module-smart" class="module-section">
+    <div class="container">
+      <h2 class="section-title"><span class="module-icon">🔗</span> SMART MODULES & TRANSVERSE</h2>
+      <p class="module-desc">Mobilité, API, EDI et IoT (PTL, DWS, RFID) : centralisez vos échanges et pilotez vos équipements terrain depuis un seul WMS.</p>
+      <ul class="points-list">
+        <li>Application mobile pour toutes les opérations clés</li>
+        <li>Interfaces EDI / API avec vos systèmes existants (ERP, TMS, e-commerce)</li>
+        <li>IoT intégrés : PTL, DWS, RFID</li>
+        <li>Dashboards & KPIs temps réel, gestion documentaire intégrée</li>
+      </ul>
+      <div class="ai-block">
+        <h4>IA intégrée (SMART MODULES)</h4>
+        <ul>
+          <li>KPI prédictifs et alertes sur les performances</li>
+          <li>Analyse des données agrégées et recommandations d’amélioration des processus</li>
+          <li>Personnalisation des tableaux de bord selon le rôle et l’historique</li>
+        </ul>
+      </div>
+      <h3 style="font-size: 1.125rem; margin-bottom: 0.75rem;">IoT intégrés (PTL, DWS, RFID)</h3>
+      <div class="iot-grid">
+        <div class="iot-card">
+          <h4>PTL (Pick-to-Light)</h4>
+          <p>Guidage lumineux sur les emplacements de picking. Le WMS envoie les ordres et reçoit les validations. Réduction des erreurs, gain de productivité, formation rapide des opérateurs.</p>
+        </div>
+        <div class="iot-card">
+          <h4>DWS (Dimensioning, Weighing, Scanning)</h4>
+          <p>Cubage (L×l×h), pesée et scan des colis en un passage ; réception et expédition. Données colis automatiques, contrôle des écarts, facturation transport précise.</p>
+        </div>
+        <div class="iot-card">
+          <h4>RFID</h4>
+          <p>Identification sans contact des palettes/cartons ; lecture/écriture pilotée par le WMS. Inventaires rapides, traçabilité temps réel, réduction des erreurs de saisie.</p>
+        </div>
+      </div>
+      <h3 style="font-size: 1.125rem; margin-bottom: 0.75rem;">Sous-modules</h3>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">Mobilité (Cmp_01 / Com_01)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Rangement, préparation, inventaire, transferts sur terminaux RF ou smartphones.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">EDI / Interfaçage (Cmp_03 / Com_03)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Échanges avec ERP, TMS, e-commerce, partenaires.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">API concept 4.0 / IoT (Cmp_02 / Com_02)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Intégration PTL, DWS, RFID, systèmes de pesée, capteurs.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Dashbord & KPI (Cmp_04 / Com_04)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Tableaux de bord, indicateurs temps réel, suivi de performance.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Gestion Documents (Cmp_06 / Com_06)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">BL, étiquettes, rapports, photos, documents de contrôle.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Interface commerciale (Cmp_05)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Vue client, contrat, suivi des prestations.</div></div>
+        </div>
+      </div>
+      <h3 style="font-size: 1.125rem; margin: 1.5rem 0 0.75rem;">Fonctionnalités principales</h3>
+      <ul class="features-list">
+        <li>Mobilité : rangement, préparation, inventaire, transferts sur terminaux RF ou smartphones</li>
+        <li>EDI / Interfaçage avec ERP, TMS, canaux e-commerce</li>
+        <li>Intégration IoT : PTL, DWS, RFID, systèmes de pesée et capteurs</li>
+        <li>Dashboards managers (performance, qualité, productivité)</li>
+        <li>Gestion documentaire : BL, rapports, étiquettes, pièces jointes</li>
+      </ul>
+      <p class="param-block"><strong>Paramétrage :</strong> connecteurs EDI/API, mapping des équipements IoT (PTL, DWS, RFID), dashboards personnalisés, modèles documentaires.</p>
+      <div class="module-cta"><a href="#contact" class="btn btn-primary">Voir ce module en action</a></div>
+      <div class="other-modules">Autres modules : <a href="#module-stock">Stock</a> <a href="#module-expert">Expert</a> <a href="#module-outbound">Outbound</a></div>
+    </div>
+  </section>
+
+  <!-- ========== Module EXPERT ========== -->
+  <section id="module-expert" class="module-section">
+    <div class="container">
+      <h2 class="section-title"><span class="module-icon">🧠</span> MODULES EXPERT</h2>
+      <p class="module-desc">Ajoutez des briques avancées de facturation 3PL, IA et OCR pour transformer votre entrepôt en centre de profit piloté par la donnée.</p>
+      <ul class="points-list">
+        <li>Facturation 3PL intégrée aux opérations</li>
+        <li>IA pour optimiser les emplacements et les parcours de picking</li>
+        <li>OCR pour automatiser la saisie documentaire</li>
+        <li>Visualisation 3D pour simuler et décider</li>
+      </ul>
+      <div class="ai-block">
+        <h4>IA intégrée (EXPERT)</h4>
+        <ul>
+          <li>Moteur d’optimisation : slotting, parcours de picking, constitution des vagues de préparation</li>
+          <li>Prévisions de demande et de charge pour la planification</li>
+          <li>Analyse prédictive pour la facturation 3PL et le pilotage des prestations</li>
+        </ul>
+      </div>
+      <h3 style="font-size: 1.125rem; margin-bottom: 0.75rem;">Sous-modules</h3>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">Visualisation 3D (Cmp_09)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Emplacements, occupation, saturation de l’entrepôt ; scénarios logistiques.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Facturation 3PL (Sm_05)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Règles de tarification, calcul des prestations, exports vers la facturation.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">OCRisation (Cmp_07)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Reconnaissance des documents (BL, factures, confirmations).</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">IA optimisation (Cmp_08)</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Optimisation des emplacements, des parcours de préparation, prévisions.</div></div>
+        </div>
+      </div>
+      <h3 style="font-size: 1.125rem; margin: 1.5rem 0 0.75rem;">Fonctionnalités principales</h3>
+      <ul class="features-list">
+        <li>Paramétrage des règles de facturation (3PL, prestations, clients)</li>
+        <li>Moteur IA pour recommandations d’emplacements / parcours de picking</li>
+        <li>OCRisation des BL / factures / confirmations de livraison</li>
+        <li>Visualisation 3D avancée des scénarios logistiques</li>
+      </ul>
+      <p class="param-block"><strong>Paramétrage :</strong> règles de facturation, modèles IA, scénarios de simulation, templates OCR.</p>
+      <div class="module-cta"><a href="#contact" class="btn btn-primary">Voir ce module en action</a></div>
+      <div class="other-modules">Autres modules : <a href="#module-smart">Smart</a> <a href="#module-specifiques">Spécifiques</a> <a href="#module-stock">Stock</a></div>
+    </div>
+  </section>
+
+  <!-- ========== Module SPÉCIFIQUES ========== -->
+  <section id="module-specifiques" class="module-section">
+    <div class="container">
+      <h2 class="section-title"><span class="module-icon">🧩</span> MODULES SPÉCIFIQUES</h2>
+      <p class="module-desc">Des modules spécifiques développés pour vos contraintes sectorielles, sans perdre la robustesse du socle standard.</p>
+      <ul class="points-list">
+        <li>Briques fonctionnelles sur-mesure</li>
+        <li>Intégration native au cœur du WMS</li>
+        <li>Maintenance maîtrisée malgré la personnalisation</li>
+      </ul>
+      <div class="ai-block">
+        <h4>IA intégrée (SPÉCIFIQUES)</h4>
+        <ul>
+          <li>Modèles et règles métier IA adaptés au secteur (pharma, agro, textile, etc.)</li>
+          <li>Apprentissage sur les données du client pour affiner les prédictions et les contrôles</li>
+          <li>Règles de conformité et détection d’anomalies spécifiques au métier</li>
+        </ul>
+      </div>
+      <h3 style="font-size: 1.125rem; margin-bottom: 0.75rem;">Sous-modules</h3>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">Spc_01 – Module spécifique / vertical métier</button>
+          <div class="accordion-body"><div class="accordion-body-inner">Personnalisable selon le client ; besoins sectoriels (pharma, agro, textile, industrie), workflows particuliers, intégrations spécifiques.</div></div>
+        </div>
+      </div>
+      <h3 style="font-size: 1.125rem; margin: 1.5rem 0 0.75rem;">Fonctionnalités principales</h3>
+      <ul class="features-list">
+        <li>Fonctions spécifiques par industrie (pharma, agro, textile, etc.)</li>
+        <li>Workflows particuliers, règles réglementaires, contrôles spéciaux</li>
+        <li>Intégration avec équipements ou systèmes propres au client</li>
+      </ul>
+      <p class="param-block"><strong>Paramétrage :</strong> entièrement adapté au projet client (à définir au cas par cas).</p>
+      <div class="module-cta"><a href="#contact" class="btn btn-primary">Voir ce module en action</a></div>
+      <div class="other-modules">Autres modules : <a href="#module-expert">Expert</a> <a href="#module-inbound">Inbound</a> <a href="#architecture-wms">Vue d’ensemble</a></div>
+    </div>
+  </section>
+
+  <!-- ========== Section Avantages ========== -->
+  <section id="avantages">
+    <div class="container">
+      <h2 class="section-title">Avantages de la solution</h2>
+      <p class="section-subtitle">Pourquoi choisir PROLOGWMS pour piloter votre entrepôt ?</p>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <h3>Maîtrise des flux INBOUND & OUTBOUND</h3>
+          <p>Réduction des erreurs, des litiges et des retards.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Optimisation du stock</h3>
+          <p>Meilleure rotation, réduction des ruptures, meilleure occupation des emplacements.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Productivité opérationnelle</h3>
+          <p>Mobilité, scans, guidage opérateur, workflows optimisés.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Traçabilité & conformité</h3>
+          <p>POD/IOD, gestion des retours, gestion documentaire, historisation des actions.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Adaptabilité métier</h3>
+          <p>Modules spécifiques, paramétrages avancés, gestion multi-clients (3PL).</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Pilotage financier</h3>
+          <p>Facturation 3PL intégrée, suivi des coûts, analyse de rentabilité.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>IoT : PTL, DWS, RFID</h3>
+          <p>Connexion native avec les équipements terrain pour automatiser et sécuriser les opérations.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>IA intégrée</h3>
+          <p>Intelligence artificielle au service de chaque flux pour optimiser les décisions et anticiper les besoins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA / Contact ========== -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Prêt à transformer votre entrepôt ?</h2>
+      <p class="section-subtitle">Planifiez une démonstration personnalisée et découvrez comment PROLOGWMS s’adapte à vos besoins.</p>
+      <a href="#" class="btn btn-primary">Demander une démo</a>
+      <a href="#architecture-wms" class="btn btn-secondary">Découvrir les modules</a>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="logo">PROLOGWMS</div>
+      <p>Solution édité par <strong>SMATCH DIGITAL</strong></p>
+      <p>&copy; SMATCH DIGITAL. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation mobile toggle
+    (function() {
+      var toggle = document.getElementById('navToggle');
+      var nav = document.getElementById('mainNav');
+      if (toggle && nav) {
+        toggle.addEventListener('click', function() {
+          nav.classList.toggle('is-open');
+        });
+      }
+    })();
+
+    // Accordion: open/close on header click
+    (function() {
+      var headers = document.querySelectorAll('.accordion-header');
+      headers.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = this.closest('.accordion-item');
+          var body = item.querySelector('.accordion-body');
+          var isOpen = item.classList.contains('is-open');
+          document.querySelectorAll('.accordion-item.is-open').forEach(function(openItem) {
+            openItem.classList.remove('is-open');
+            var openBody = openItem.querySelector('.accordion-body');
+            if (openBody) openBody.style.maxHeight = null;
+          });
+          if (!isOpen) {
+            item.classList.add('is-open');
+            if (body) body.style.maxHeight = body.scrollHeight + 'px';
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -218,7 +218,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
       {/* Background Atmosphere */}
       <div className="pointer-events-none absolute left-0 top-0 size-[500px] rounded-full bg-[#FFAA00]/5 blur-[120px]" />
 
-      <div className="container mx-auto relative z-10">
+      <div className="container relative z-10 mx-auto">
         {/* Section Header */}
         <div className="mb-12 text-center">
           <span className="mb-4 inline-block font-mono text-xs tracking-[0.3em] text-[#FFAA00]">
@@ -247,7 +247,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
               </div>
 
               {/* Quote Side Panel (Col Span 4) */}
-              <div className="relative flex flex-col flex-1 justify-between overflow-hidden p-8 md:col-span-1 lg:col-span-4 lg:p-12">
+              <div className="relative flex flex-1 flex-col justify-between overflow-hidden p-8 md:col-span-1 lg:col-span-4 lg:p-12">
                 {/* Giant Watermark Quote */}
                 <div className="pointer-events-none absolute left-4 top-0 select-none font-sans text-[200px] font-black leading-none text-white/5 mix-blend-overlay">
                   <Image
@@ -262,7 +262,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
                   {quoteText}
                 </p>
                 <div className="relative z-10 my-auto flex h-full flex-col justify-end">
-                  <div className="mb-4 h-[1px] w-12 bg-[#FFAA00]" />
+                  <div className="mb-4 h-px w-12 bg-[#FFAA00]" />
                   <p className="font-mono text-xl tracking-widest text-[#FFAA00]">
                     - {quoteAuthor}
                   </p>

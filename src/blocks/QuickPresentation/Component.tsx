@@ -16,8 +16,8 @@ export const QuickPresentationBlock: React.FC<QuickPresentationBlockProps> = ({
   return (
     <section className="relative overflow-hidden bg-[#0A0A0A] py-24 lg:py-32">
       {/* Dynamic Background Gradients */}
-      <div className="pointer-events-none absolute -left-20 top-0 h-[600px] w-[600px] animate-pulse rounded-full bg-[#FFAA00]/5 blur-[120px] duration-[8000ms]" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[600px] w-[600px] animate-pulse rounded-full bg-blue-600/5 blur-[120px] delay-1000 duration-[10000ms]" />
+      <div className="duration-[8000ms] pointer-events-none absolute -left-20 top-0 size-[600px] animate-pulse rounded-full bg-[#FFAA00]/5 blur-[120px]" />
+      <div className="duration-[10000ms] pointer-events-none absolute bottom-0 right-0 size-[600px] animate-pulse rounded-full bg-blue-600/5 blur-[120px] delay-1000" />
 
       <div className="container relative z-10">
         <div
@@ -43,7 +43,7 @@ export const QuickPresentationBlock: React.FC<QuickPresentationBlockProps> = ({
             </div>
             {link && (
               <div className="flex flex-wrap gap-4">
-                <CMSLink {...link} appearance="default" className="rounded-full bg-[#FFAA00] px-8 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-white hover:scale-105" />
+                <CMSLink {...link} appearance="default" className="rounded-full bg-[#FFAA00] px-8 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:scale-105 hover:bg-white" />
               </div>
             )}
           </div>
@@ -52,7 +52,7 @@ export const QuickPresentationBlock: React.FC<QuickPresentationBlockProps> = ({
           <div className="flex-1">
             <div className="group relative aspect-video overflow-hidden rounded-md border border-white/10 bg-white/5 shadow-2xl transition-all duration-700 hover:border-[#FFAA00]/30 hover:shadow-[#FFAA00]/10">
               {media && typeof media !== 'string' && (
-                <Media resource={media} fill className="object-cover transform-gpu transition-transform duration-700 group-hover:scale-105" />
+                <Media resource={media} fill className="transform-gpu object-cover transition-transform duration-700 group-hover:scale-105" />
               )}
               {/* Overlay sheen */}
               <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-tr from-white/5 to-transparent opacity-50 transition-opacity duration-500 group-hover:opacity-30" />

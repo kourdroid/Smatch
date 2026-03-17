@@ -194,7 +194,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
             <ChatCircle size={24} weight={isChatOpen ? 'fill' : 'regular'} />
             {/* Pulse indicator when chat is closed */}
             {!isChatOpen && (
-              <span className="absolute right-1 top-1 h-2 w-2 animate-pulse rounded-full bg-[#FFAA00]" />
+              <span className="absolute right-1 top-1 size-2 animate-pulse rounded-full bg-[#FFAA00]" />
             )}
           </button>
         </MobileBottomDock>

@@ -58,7 +58,7 @@ export const IntroBlockComponent: React.FC<IntroBlockProps> = (props) => {
                 </motion.span>
             </div>
 
-            <div className="container mx-auto relative z-10">
+            <div className="container relative z-10 mx-auto">
                 <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
                     {/* Left Column: Headings */}
                     <div className="group/text relative flex select-none flex-col lg:col-span-7">
