@@ -154,22 +154,22 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
-  ALTER TABLE "pages_blocks_functionality_benefits_benefits" DROP CONSTRAINT "pages_blocks_functionality_benefits_benefits_icon_id_media_id_fk";
+  ALTER TABLE "pages_blocks_functionality_benefits_benefits" DROP CONSTRAINT IF EXISTS "pages_blocks_functionality_benefits_benefits_icon_id_media_id_fk";
   
-  ALTER TABLE "_pages_v_blocks_functionality_benefits_benefits" DROP CONSTRAINT "_pages_v_blocks_functionality_benefits_benefits_icon_id_media_id_fk";
+  ALTER TABLE "_pages_v_blocks_functionality_benefits_benefits" DROP CONSTRAINT IF EXISTS "_pages_v_blocks_functionality_benefits_benefits_icon_id_media_id_fk";
   
-  ALTER TABLE "solutions_blocks_functionality_benefits_benefits" DROP CONSTRAINT "solutions_blocks_functionality_benefits_benefits_icon_id_media_id_fk";
+  ALTER TABLE "solutions_blocks_functionality_benefits_benefits" DROP CONSTRAINT IF EXISTS "solutions_blocks_functionality_benefits_benefits_icon_id_media_id_fk";
   
-  DROP INDEX "pages_blocks_functionality_benefits_benefits_icon_idx";
-  DROP INDEX "_pages_v_blocks_functionality_benefits_benefits_icon_idx";
-  DROP INDEX "solutions_blocks_functionality_benefits_benefits_icon_idx";
-  ALTER TABLE "pages_blocks_functionality_benefits_benefits" ADD COLUMN "icon" varchar;
-  ALTER TABLE "_pages_v_blocks_functionality_benefits_benefits" ADD COLUMN "icon" varchar;
-  ALTER TABLE "solutions_blocks_functionality_benefits_benefits" ADD COLUMN "icon" varchar;
-  ALTER TABLE "solutions_locales" ADD COLUMN "meta_title" varchar;
-  ALTER TABLE "solutions_locales" ADD COLUMN "meta_description" varchar;
-  ALTER TABLE "projects_locales" ADD COLUMN "meta_title" varchar;
-  ALTER TABLE "projects_locales" ADD COLUMN "meta_description" varchar;
+  DROP INDEX IF EXISTS "pages_blocks_functionality_benefits_benefits_icon_idx";
+  DROP INDEX IF EXISTS "_pages_v_blocks_functionality_benefits_benefits_icon_idx";
+  DROP INDEX IF EXISTS "solutions_blocks_functionality_benefits_benefits_icon_idx";
+  ALTER TABLE "pages_blocks_functionality_benefits_benefits" ADD COLUMN IF NOT EXISTS "icon" varchar;
+  ALTER TABLE "_pages_v_blocks_functionality_benefits_benefits" ADD COLUMN IF NOT EXISTS "icon" varchar;
+  ALTER TABLE "solutions_blocks_functionality_benefits_benefits" ADD COLUMN IF NOT EXISTS "icon" varchar;
+  ALTER TABLE "solutions_locales" ADD COLUMN IF NOT EXISTS "meta_title" varchar;
+  ALTER TABLE "solutions_locales" ADD COLUMN IF NOT EXISTS "meta_description" varchar;
+  ALTER TABLE "projects_locales" ADD COLUMN IF NOT EXISTS "meta_title" varchar;
+  ALTER TABLE "projects_locales" ADD COLUMN IF NOT EXISTS "meta_description" varchar;
   ALTER TABLE "solutions_blocks_solution_presentation_product_vision" ADD CONSTRAINT "solutions_blocks_solution_presentation_product_vision_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."solutions_blocks_solution_presentation"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "solutions_blocks_solution_presentation_main_benefits" ADD CONSTRAINT "solutions_blocks_solution_presentation_main_benefits_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."solutions_blocks_solution_presentation"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "solutions_blocks_solution_presentation" ADD CONSTRAINT "solutions_blocks_solution_presentation_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."solutions"("id") ON DELETE cascade ON UPDATE no action;
@@ -241,9 +241,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "solutions_blocks_solution_accordion_parent_id_idx" ON "solutions_blocks_solution_accordion" USING btree ("_parent_id");
   CREATE INDEX "solutions_blocks_solution_accordion_path_idx" ON "solutions_blocks_solution_accordion" USING btree ("_path");
   CREATE INDEX "solutions_blocks_solution_accordion_locale_idx" ON "solutions_blocks_solution_accordion" USING btree ("_locale");
-  ALTER TABLE "pages_blocks_functionality_benefits_benefits" DROP COLUMN "icon_id";
-  ALTER TABLE "_pages_v_blocks_functionality_benefits_benefits" DROP COLUMN "icon_id";
-  ALTER TABLE "solutions_blocks_functionality_benefits_benefits" DROP COLUMN "icon_id";`)
+  ALTER TABLE "pages_blocks_functionality_benefits_benefits" DROP COLUMN IF EXISTS "icon_id";
+  ALTER TABLE "_pages_v_blocks_functionality_benefits_benefits" DROP COLUMN IF EXISTS "icon_id";
+  ALTER TABLE "solutions_blocks_functionality_benefits_benefits" DROP COLUMN IF EXISTS "icon_id";`)
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
