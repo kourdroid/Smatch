@@ -57,8 +57,12 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
     return (
         <div ref={dropdownRef} className={cn('relative pointer-events-auto', className)}>
             {/* Trigger Button - Matches nav link styling since inside pill */}
+            {/* SEO: Improve semantic structure and accessibility for screen readers and crawlers that parse ARIA attributes */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-expanded={isOpen}
+                aria-haspopup="true"
+                aria-label={`Select language. Current language is ${localeNames[currentLocale]}`}
                 className={cn(
                     'relative flex items-center gap-2',
                     'px-4 py-2.5 rounded-full',
