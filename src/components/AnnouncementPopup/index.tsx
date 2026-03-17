@@ -125,9 +125,11 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
               />
 
               {/* Close Button */}
+              {/* SEO: Add aria-label to icon-only button for better accessibility and semantics */}
               <button
                 onClick={handleClose}
                 className="absolute right-4 top-4 z-20 rounded-full border border-white/10 bg-black/20 p-2 text-white/40 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black md:right-6 md:top-6"
+                aria-label="Fermer l'annonce"
               >
                 <X size={20} weight="bold" />
               </button>
