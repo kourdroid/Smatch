@@ -105,7 +105,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={handleClose}
-              className="absolute inset-0 bg-black/60 smatch-backdrop-blur-sm"
+              className="smatch-backdrop-blur-sm absolute inset-0 bg-black/60"
             />
 
             {/* Modal Content */}
@@ -114,7 +114,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', duration: 0.5, bounce: 0.3 }}
-              className="relative flex w-full max-w-[1000px] max-h-[85vh] flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] shadow-2xl"
+              className="relative flex max-h-[85vh] w-full max-w-[1000px] flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] shadow-2xl"
             >
               {/* Noise Overlay */}
               <div
@@ -132,16 +132,16 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                 <X size={20} weight="bold" />
               </button>
 
-              <div className="relative z-10 flex flex-1 min-h-0 flex-col lg:flex-row">
+              <div className="relative z-10 flex min-h-0 flex-1 flex-col lg:flex-row">
                 {/* Left Side: Image */}
-                <div className="relative flex shrink-0 min-h-[180px] sm:min-h-[200px] lg:min-h-0 lg:h-auto w-full items-center justify-center bg-white/[0.02] p-5 sm:p-6 lg:w-1/2 lg:p-8">
+                <div className="relative flex min-h-[180px] w-full shrink-0 items-center justify-center bg-white/[0.02] p-5 sm:min-h-[200px] sm:p-6 lg:h-auto lg:min-h-0 lg:w-1/2 lg:p-8">
                   {/* Inner Border/Container for Image */}
                   <div
-                    className="relative flex w-full max-w-[500px] items-center justify-center rounded-xl border border-white/10 bg-[#0F0F0F] p-4 sm:p-6 shadow-inner"
+                    className="relative flex w-full max-w-[500px] items-center justify-center rounded-xl border border-white/10 bg-[#0F0F0F] p-4 shadow-inner sm:p-6"
                     style={{ aspectRatio: imageAspectRatio }}
                   >
                     {imageUrl && (
-                      <div className="relative h-full w-full">
+                      <div className="relative size-full">
                         <Image src={imageUrl} alt={imageAlt} fill className="object-contain" />
                       </div>
                     )}
@@ -149,7 +149,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                 </div>
 
                 {/* Right Side: Content */}
-                <div className="flex w-full flex-col justify-between p-5 sm:p-6 lg:w-1/2 lg:p-8 overflow-hidden">
+                <div className="flex w-full flex-col justify-between overflow-hidden p-5 sm:p-6 lg:w-1/2 lg:p-8">
                   {/* Title */}
                   <h2 className="mb-2 font-heading text-2xl font-black uppercase tracking-tighter text-white sm:text-3xl lg:text-4xl">
                     {title}
@@ -162,11 +162,11 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                     </div>
                   )}
 
-                  <div className="mb-4 flex flex-1 flex-col gap-4 overflow-y-auto pr-2 min-h-0">
+                  <div className="mb-4 flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto pr-2">
                     <div className="font-sans text-base font-light leading-relaxed text-gray-400 lg:text-lg">
                       <div
                         dangerouslySetInnerHTML={{ __html: description }}
-                        className="[&>p]:mb-4 [&>p:last-child]:mb-0"
+                        className="[&>p:last-child]:mb-0 [&>p]:mb-4"
                       />
                     </div>
 

@@ -3,6 +3,13 @@ import { createRAGAfterChangeHook, createRAGAfterDeleteHook } from '@/hooks/ragS
 import { QuickPresentation } from '@/blocks/QuickPresentation/config'
 import { FunctionalityBenefits } from '@/blocks/FunctionalityBenefits/config'
 import { UseCase } from '@/blocks/UseCase/config'
+import { SolutionPresentation } from '@/blocks/SolutionPresentation/config'
+import { SolutionArchitecture } from '@/blocks/SolutionArchitecture/config'
+import { SolutionModuleDetails } from '@/blocks/SolutionModuleDetails/config'
+import { SolutionBenefits } from '@/blocks/SolutionBenefits/config'
+import { SolutionUseCases } from '@/blocks/SolutionUseCases/config'
+import { SolutionCustomSection } from '@/blocks/SolutionCustomSection/config'
+import { SolutionAccordion } from '@/blocks/SolutionAccordion/config'
 import { adminOrHigher, adminPanelEditorOrHigher, editorOrHigher } from '@/access/roles'
 
 export const Solutions: CollectionConfig<'solutions'> = {
@@ -121,7 +128,18 @@ export const Solutions: CollectionConfig<'solutions'> = {
               name: 'layout',
               type: 'blocks',
               localized: true,
-              blocks: [QuickPresentation, FunctionalityBenefits, UseCase],
+              blocks: [
+                QuickPresentation,
+                FunctionalityBenefits,
+                UseCase,
+                SolutionPresentation,
+                SolutionArchitecture,
+                SolutionModuleDetails,
+                SolutionBenefits,
+                SolutionUseCases,
+                SolutionCustomSection,
+                SolutionAccordion,
+              ],
             },
           ],
         },

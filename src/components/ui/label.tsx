@@ -6,7 +6,7 @@ import { type VariantProps, cva } from 'class-variance-authority'
 import * as React from 'react'
 
 const labelVariants = cva(
-  'text-xs font-mono font-bold uppercase tracking-wider text-zinc-500 mb-2 block peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
+  'mb-2 block font-mono text-xs font-bold uppercase tracking-wider text-zinc-500 peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
 )
 
 const Label: React.FC<

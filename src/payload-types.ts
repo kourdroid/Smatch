@@ -1339,7 +1339,20 @@ export interface Solution {
   icon?: string | null;
   heroSubtitle?: string | null;
   heroImage?: (number | null) | Media;
-  layout?: (QuickPresentationBlock | FunctionalityBenefitsBlock | UseCaseBlock)[] | null;
+  layout?:
+    | (
+        | QuickPresentationBlock
+        | FunctionalityBenefitsBlock
+        | UseCaseBlock
+        | SolutionPresentationBlock
+        | SolutionArchitectureBlock
+        | SolutionModuleDetailsBlock
+        | SolutionBenefitsBlock
+        | SolutionUseCasesBlock
+        | SolutionCustomSectionBlock
+        | SolutionAccordionBlock
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1434,6 +1447,207 @@ export interface UseCaseBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'useCase';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionPresentationBlock".
+ */
+export interface SolutionPresentationBlock {
+  intro: string;
+  /**
+   * Bullet points representing the product vision
+   */
+  productVision?:
+    | {
+        point: string;
+        id?: string | null;
+      }[]
+    | null;
+  mainBenefits?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'solutionPresentation';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionArchitectureBlock".
+ */
+export interface SolutionArchitectureBlock {
+  intro: string;
+  modules?:
+    | {
+        icon: string;
+        title: string;
+        anchorLink: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'solutionArchitecture';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionModuleDetailsBlock".
+ */
+export interface SolutionModuleDetailsBlock {
+  moduleId: string;
+  title: string;
+  /**
+   * Copiez le nom de l'icône depuis PhosphorIcons (ex: Warehouse, Cube)
+   */
+  icon: string;
+  description: string;
+  bulletPoints?:
+    | {
+        point: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional AI-specific features for this module
+   */
+  aiBlock?: {
+    title?: string | null;
+    points?:
+      | {
+          point?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  subModules?:
+    | {
+        title: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'solutionModuleDetails';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionBenefitsBlock".
+ */
+export interface SolutionBenefitsBlock {
+  title: string;
+  benefits?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'solutionBenefits';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionUseCasesBlock".
+ */
+export interface SolutionUseCasesBlock {
+  title: string;
+  cases?:
+    | {
+        title: string;
+        description: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'solutionUseCases';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionCustomSectionBlock".
+ */
+export interface SolutionCustomSectionBlock {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'solutionCustomSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionAccordionBlock".
+ */
+export interface SolutionAccordionBlock {
+  items?:
+    | {
+        header: string;
+        body: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'solutionAccordion';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2504,6 +2718,13 @@ export interface SolutionsSelect<T extends boolean = true> {
         quickPresentation?: T | QuickPresentationBlockSelect<T>;
         functionalityBenefits?: T | FunctionalityBenefitsBlockSelect<T>;
         useCase?: T | UseCaseBlockSelect<T>;
+        solutionPresentation?: T | SolutionPresentationBlockSelect<T>;
+        solutionArchitecture?: T | SolutionArchitectureBlockSelect<T>;
+        solutionModuleDetails?: T | SolutionModuleDetailsBlockSelect<T>;
+        solutionBenefits?: T | SolutionBenefitsBlockSelect<T>;
+        solutionUseCases?: T | SolutionUseCasesBlockSelect<T>;
+        solutionCustomSection?: T | SolutionCustomSectionBlockSelect<T>;
+        solutionAccordion?: T | SolutionAccordionBlockSelect<T>;
       };
   meta?:
     | T
@@ -2513,6 +2734,137 @@ export interface SolutionsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionPresentationBlock_select".
+ */
+export interface SolutionPresentationBlockSelect<T extends boolean = true> {
+  intro?: T;
+  productVision?:
+    | T
+    | {
+        point?: T;
+        id?: T;
+      };
+  mainBenefits?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionArchitectureBlock_select".
+ */
+export interface SolutionArchitectureBlockSelect<T extends boolean = true> {
+  intro?: T;
+  modules?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        anchorLink?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionModuleDetailsBlock_select".
+ */
+export interface SolutionModuleDetailsBlockSelect<T extends boolean = true> {
+  moduleId?: T;
+  title?: T;
+  icon?: T;
+  description?: T;
+  bulletPoints?:
+    | T
+    | {
+        point?: T;
+        id?: T;
+      };
+  aiBlock?:
+    | T
+    | {
+        title?: T;
+        points?:
+          | T
+          | {
+              point?: T;
+              id?: T;
+            };
+      };
+  subModules?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionBenefitsBlock_select".
+ */
+export interface SolutionBenefitsBlockSelect<T extends boolean = true> {
+  title?: T;
+  benefits?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionUseCasesBlock_select".
+ */
+export interface SolutionUseCasesBlockSelect<T extends boolean = true> {
+  title?: T;
+  cases?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionCustomSectionBlock_select".
+ */
+export interface SolutionCustomSectionBlockSelect<T extends boolean = true> {
+  content?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionAccordionBlock_select".
+ */
+export interface SolutionAccordionBlockSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        header?: T;
+        body?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -41,21 +41,21 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
   if (!tabs || tabs.length === 0) return null
 
   return (
-    <section className="overflow-hidden bg-[#050505] py-12 md:py-20 text-white selection:bg-[#FFAA00] selection:text-black">
+    <section className="overflow-hidden bg-[#050505] py-12 text-white selection:bg-[#FFAA00] selection:text-black md:py-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="mb-12 md:mb-16 text-center">
-          <h2 className="mb-4 font-heading text-3xl font-bold tracking-tight md:text-[40px] leading-tight">
+        <div className="mb-12 text-center md:mb-16">
+          <h2 className="mb-4 font-heading text-3xl font-bold leading-tight tracking-tight md:text-[40px]">
             {title}
           </h2>
-          <p className="mx-auto max-w-2xl text-lg md:text-xl font-medium text-white/50">
+          <p className="mx-auto max-w-2xl text-lg font-medium text-white/50 md:text-xl">
             {subtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
           {/* LEFT: Navigation Tabs */}
-          <div className="flex flex-col rounded-md border border-white/5 bg-[#0A0A0A] overflow-hidden transition-all duration-500 hover:border-[#FFAA00]/30 lg:col-span-3">
+          <div className="flex flex-col overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/30 lg:col-span-3">
             {tabs.map((tab, index) => {
               const tabId = tab.id || index.toString()
               const isActive = activeTabId === tabId
@@ -75,7 +75,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
                   {isActive && (
                     <motion.div
                       layoutId="activeTabIndicator"
-                      className="absolute left-0 top-0 bottom-0 w-1 bg-[#FFAA00]"
+                      className="absolute inset-y-0 left-0 w-1 bg-[#FFAA00]"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -95,7 +95,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
 
           {/* RIGHT: Content Card */}
           <div className="lg:col-span-9">
-            <div className="group relative flex min-h-[500px] flex-col justify-between rounded-md border border-white/5 bg-[#0A0A0A] p-8 md:p-12 transition-all duration-500 hover:border-[#FFAA00]/30">
+            <div className="group relative flex min-h-[500px] flex-col justify-between rounded-md border border-white/5 bg-[#0A0A0A] p-8 transition-all duration-500 hover:border-[#FFAA00]/30 md:p-12">
               <AnimatePresence mode="wait">
                 {tabs.map((tab, index) => {
                   const tabId = tab.id || index.toString()
@@ -161,7 +161,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
                             <motion.img
                               src={imageUrl}
                               alt={tab.mainTitle}
-                              className="h-auto w-[110%] translate-x-6 translate-y-6 object-contain drop-shadow-2xl md:w-[130%] md:translate-x-12 md:translate-y-12 transition-transform duration-700 group-hover:scale-105"
+                              className="h-auto w-[110%] translate-x-6 translate-y-6 object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105 md:w-[130%] md:translate-x-12 md:translate-y-12"
                               initial={{ y: 10, opacity: 0 }}
                               animate={{ y: 0, opacity: 1 }}
                               transition={{ duration: 0.5, delay: 0.1 }}

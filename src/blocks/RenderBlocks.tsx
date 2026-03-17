@@ -25,6 +25,13 @@ import { AnnouncementSubscriptionBlock } from '@/blocks/AnnouncementSubscription
 import { QuickPresentationBlock } from '@/blocks/QuickPresentation/Component'
 import { FunctionalityBenefitsBlock } from '@/blocks/FunctionalityBenefits/Component'
 import { UseCaseBlock } from '@/blocks/UseCase/Component'
+import { SolutionPresentationBlock } from '@/blocks/SolutionPresentation/Component'
+import { SolutionArchitectureBlock } from '@/blocks/SolutionArchitecture/Component'
+import { SolutionModuleDetailsBlock } from '@/blocks/SolutionModuleDetails/Component'
+import { SolutionBenefitsBlock } from '@/blocks/SolutionBenefits/Component'
+import { SolutionUseCasesBlock } from '@/blocks/SolutionUseCases/Component'
+import { SolutionCustomSectionBlock } from '@/blocks/SolutionCustomSection/Component'
+import { SolutionAccordionBlock } from '@/blocks/SolutionAccordion/Component'
 
 // Type-safe block component registry
 // Each component accepts its specific block type props + optional disableInnerContainer
@@ -54,6 +61,13 @@ const blockComponents: Record<string, BlockComponent> = {
   quickPresentation: QuickPresentationBlock as unknown as BlockComponent,
   functionalityBenefits: FunctionalityBenefitsBlock as unknown as BlockComponent,
   useCase: UseCaseBlock as unknown as BlockComponent,
+  solutionPresentation: SolutionPresentationBlock as unknown as BlockComponent,
+  solutionArchitecture: SolutionArchitectureBlock as unknown as BlockComponent,
+  solutionModuleDetails: SolutionModuleDetailsBlock as unknown as BlockComponent,
+  solutionBenefits: SolutionBenefitsBlock as unknown as BlockComponent,
+  solutionUseCases: SolutionUseCasesBlock as unknown as BlockComponent,
+  solutionCustomSection: SolutionCustomSectionBlock as unknown as BlockComponent,
+  solutionAccordion: SolutionAccordionBlock as unknown as BlockComponent,
 }
 
 type LayoutBlock = NonNullable<Page['layout']>[number]

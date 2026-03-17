@@ -233,7 +233,7 @@ export const ActivityTimelineClient: React.FC<ActivityTimelineClientProps> = ({
 
                     {/* Filter Tabs */}
                     {showFilters && (
-                        <div className="flex justify-end w-full gap-6 overflow-x-auto font-mono text-xs uppercase tracking-widest md:w-auto md:text-sm">
+                        <div className="flex w-full justify-end gap-6 overflow-x-auto font-mono text-xs uppercase tracking-widest md:w-auto md:text-sm">
                             <button
                                 onClick={() => setActiveFilter('all')}
                                 className={`border-b-2 pb-1 transition-colors ${activeFilter === 'all'

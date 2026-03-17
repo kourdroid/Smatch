@@ -121,7 +121,7 @@ export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
                 >
                   {/* Era Divider - Same line as the marker node */}
                   {isEraStart && (
-                    <div className="absolute top-full mt-12 left-0 right-0 -translate-y-1/2 flex items-center justify-center pointer-events-none">
+                    <div className="pointer-events-none absolute inset-x-0 top-full mt-12 flex -translate-y-1/2 items-center justify-center">
                       <div className="h-px flex-1 bg-gradient-to-r from-transparent via-smatch-gold/30 to-transparent" />
                       <div className="h-px flex-1 bg-gradient-to-l from-transparent via-smatch-gold/30 to-transparent" />
                     </div>

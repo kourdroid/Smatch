@@ -142,7 +142,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                 )}
                 aria-label={strings.openChat}
             >
-                <ChatCircle className="h-7 w-7" weight="fill" />
+                <ChatCircle className="size-7" weight="fill" />
                 <span className="chatbot-fab-pulse" />
             </button>
 
@@ -159,8 +159,8 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-smatch-border bg-smatch-black/50 px-5 py-4">
                     <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-smatch-gold">
-                            <Robot className="h-5 w-5" weight="fill" />
+                        <div className="flex size-10 items-center justify-center rounded-full bg-smatch-gold">
+                            <Robot className="size-5" weight="fill" />
                         </div>
                         <div>
                             <h3 className="font-heading text-lg font-semibold tracking-wide text-white">
@@ -173,10 +173,10 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                     </div>
                     <button
                         onClick={closeChat}
-                        className="flex h-9 w-9 items-center justify-center rounded-full text-smatch-text-secondary transition-colors hover:bg-white/10 hover:text-white"
+                        className="flex size-9 items-center justify-center rounded-full text-smatch-text-secondary transition-colors hover:bg-white/10 hover:text-white"
                         aria-label={strings.closeChat}
                     >
-                        <X className="h-5 w-5" />
+                        <X className="size-5" />
                     </button>
                 </div>
 
@@ -208,7 +208,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                         {isLoading && (
                             <div className="flex items-start">
                                 <div className="flex items-center gap-2 rounded-2xl bg-smatch-surface px-4 py-3 text-sm text-white">
-                                    <CircleNotch className="h-4 w-4 animate-spin" />
+                                    <CircleNotch className="size-4 animate-spin" />
                                     <span>{strings.thinking}</span>
                                 </div>
                             </div>
@@ -234,13 +234,13 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                         <button
                             onClick={handleSend}
                             disabled={!inputValue.trim() || isLoading}
-                            className="flex h-12 w-12 items-center justify-center rounded-xl bg-smatch-gold text-smatch-black transition-all hover:bg-smatch-gold-light disabled:cursor-not-allowed disabled:opacity-50"
+                            className="flex size-12 items-center justify-center rounded-xl bg-smatch-gold text-smatch-black transition-all hover:bg-smatch-gold-light disabled:cursor-not-allowed disabled:opacity-50"
                             aria-label={strings.send}
                         >
                             {isLoading ? (
-                                <CircleNotch className="h-5 w-5 animate-spin" />
+                                <CircleNotch className="size-5 animate-spin" />
                             ) : (
-                                <PaperPlaneTilt className="h-5 w-5" weight="fill" />
+                                <PaperPlaneTilt className="size-5" weight="fill" />
                             )}
                         </button>
                     </div>
