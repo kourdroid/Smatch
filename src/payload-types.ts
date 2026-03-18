@@ -75,6 +75,7 @@ export interface Config {
     solutions: Solution;
     projects: Project;
     team: Team;
+    actualites: Actualite;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -100,6 +101,7 @@ export interface Config {
     solutions: SolutionsSelect<false> | SolutionsSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     team: TeamSelect<false> | TeamSelect<true>;
+    actualites: ActualitesSelect<false> | ActualitesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -183,6 +185,10 @@ export interface Page {
         | ({
             relationTo: 'posts';
             value: number | Post;
+          } | null)
+        | ({
+            relationTo: 'actualites';
+            value: number | Actualite;
           } | null);
       url?: string | null;
       label: string;
@@ -202,6 +208,10 @@ export interface Page {
         | ({
             relationTo: 'posts';
             value: number | Post;
+          } | null)
+        | ({
+            relationTo: 'actualites';
+            value: number | Actualite;
           } | null);
       url?: string | null;
       label: string;
@@ -238,6 +248,10 @@ export interface Page {
               | ({
                   relationTo: 'posts';
                   value: number | Post;
+                } | null)
+              | ({
+                  relationTo: 'actualites';
+                  value: number | Actualite;
                 } | null);
             url?: string | null;
             label: string;
@@ -514,6 +528,78 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "actualites".
+ */
+export interface Actualite {
+  id: number;
+  title: string;
+  /**
+   * A plain text brief excerpt (~150 chars).
+   */
+  excerpt: string;
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * The main hero image for the listing card and article header.
+   */
+  heroImage?: (number | null) | Media;
+  additionalImages?:
+    | {
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  categories?: (number | Category)[] | null;
+  tags?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  estimatedReadTime: number;
+  source: 'ai-generated' | 'manual';
+  publishedAt?: string | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+    focusKeywords?: string | null;
+    seoPotentialScore?: number | null;
+  };
+  faqEntries?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CallToActionBlock".
  */
 export interface CallToActionBlock {
@@ -536,6 +622,10 @@ export interface CallToActionBlock {
       | ({
           relationTo: 'posts';
           value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'actualites';
+          value: number | Actualite;
         } | null);
     url?: string | null;
     label: string;
@@ -583,6 +673,10 @@ export interface ContentBlock {
             | ({
                 relationTo: 'posts';
                 value: number | Post;
+              } | null)
+            | ({
+                relationTo: 'actualites';
+                value: number | Actualite;
               } | null);
           url?: string | null;
           label: string;
@@ -1395,6 +1489,10 @@ export interface QuickPresentationBlock {
       | ({
           relationTo: 'posts';
           value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'actualites';
+          value: number | Actualite;
         } | null);
     url?: string | null;
     label: string;
@@ -1894,6 +1992,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'team';
         value: number | Team;
+      } | null)
+    | ({
+        relationTo: 'actualites';
+        value: number | Actualite;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -2921,6 +3023,53 @@ export interface TeamSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "actualites_select".
+ */
+export interface ActualitesSelect<T extends boolean = true> {
+  title?: T;
+  excerpt?: T;
+  body?: T;
+  heroImage?: T;
+  additionalImages?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  categories?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  estimatedReadTime?: T;
+  source?: T;
+  publishedAt?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+        focusKeywords?: T;
+        seoPotentialScore?: T;
+      };
+  faqEntries?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -3213,6 +3362,10 @@ export interface Header {
             | ({
                 relationTo: 'posts';
                 value: number | Post;
+              } | null)
+            | ({
+                relationTo: 'actualites';
+                value: number | Actualite;
               } | null);
           url?: string | null;
           label: string;
@@ -3242,6 +3395,10 @@ export interface Footer {
             | ({
                 relationTo: 'posts';
                 value: number | Post;
+              } | null)
+            | ({
+                relationTo: 'actualites';
+                value: number | Actualite;
               } | null);
           url?: string | null;
           label: string;
@@ -3305,6 +3462,10 @@ export interface Announcement {
                   | ({
                       relationTo: 'posts';
                       value: number | Post;
+                    } | null)
+                  | ({
+                      relationTo: 'actualites';
+                      value: number | Actualite;
                     } | null);
                 url?: string | null;
                 label: string;
@@ -3440,6 +3601,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'posts';
           value: number | Post;
+        } | null)
+      | ({
+          relationTo: 'actualites';
+          value: number | Actualite;
         } | null);
     global?: string | null;
     user?: (number | null) | User;

@@ -13,6 +13,7 @@ import { Users } from './collections/Users'
 import { Solutions } from './collections/Solutions'
 import { Projects } from './collections/Projects'
 import { Team } from './collections/Team'
+import { Actualites } from './collections/Actualites'
 import { Footer } from './globals/Footer'
 import { Header } from './globals/Header'
 import { Announcement } from './globals/Announcement'
@@ -104,7 +105,7 @@ export default buildConfig({
     // Only push in local dev, NEVER in production/CI builds
     push: process.env.PAYLOAD_PUSH === 'true',
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Solutions, Projects, Team],
+  collections: [Pages, Posts, Media, Categories, Users, Solutions, Projects, Team, Actualites],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer, SolutionsOrder, Announcement],
   plugins,

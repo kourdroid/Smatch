@@ -1,86 +1,104 @@
-# Implementation Plan: Modular Solutions Detail Page
+# Implementation Plan: [FEATURE]
 
-**Branch**: `001-modular-solutions` | **Date**: 2026-03-17 | **Spec**: [spec.md](../spec.md)
-**Input**: Feature specification from `/specs/001-modular-solutions/spec.md`
+**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
+**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+
+**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/plan-template.md` for the execution workflow.
 
 ## Summary
 
-This feature updates the `Solutions` CMS collection and frontend detail page to support a fully modular block layout matching the strict structure of `content/index.html`. It specifically preserves the existing `Card Settings`, `Hero Section`, and `slug` definition, changing only the content area to allow editors to dynamically add: Presentation, Architecture, Use Cases, specific Module details, Custom rich text, and Accordions. The frontend will render these blocks reusing precisely the existing "Industrial Luxury" `smatch-*` utility classes.
+[Extract from feature spec: primary requirement + technical approach from research]
 
 ## Technical Context
 
-**Language/Version**: TypeScript 5.7, Next.js 15.4  
-**Primary Dependencies**: PayloadCMS 3.68, React 19.2, TailwindCSS 3.4
-**Storage**: PostgreSQL (via PayloadCMS)  
-**Target Platform**: Web (Vercel deployment)
-**Project Type**: Next.js App Router Web Application with integrated Headless CMS  
-**Constraints**: Must strictly preserve the `smatch-*` design tokens, ensure zero regression for SEO/Hero settings, and fully support FR/EN localization.
+<!--
+  ACTION REQUIRED: Replace the content in this section with the technical details
+  for the project. The structure here is presented in advisory capacity to guide
+  the iteration process.
+-->
+
+**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
+**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
+**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
+**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
+**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
+**Project Type**: [e.g., library/cli/web-service/mobile-app/compiler/desktop-app or NEEDS CLARIFICATION]  
+**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
+**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
+**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
 
 ## Constitution Check
 
-*GATE: Passed*
+*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-- **The 100-Step Prediction**: Decoupling the content layout into blocks ensures the CMS schema scales natively without rigid field limits.
-- **The Sovereign Audit**: Using PayloadCMS's native `blocks` field within the `tabs` layout precisely follows official Payload version 3.x patterns.
-- **Type Safety**: New blocks will map directly through `payload-types` generation to strongly-typed React server components.
-- **Component Architecture**: Blocks will be isolated in `src/blocks/` as Server Components, utilizing the existing UI wrapper patterns.
+[Gates determined based on constitution file]
 
 ## Project Structure
 
 ### Documentation (this feature)
 
 ```text
-specs/001-modular-solutions/
-├── plan.md              # This file
-├── research.md          # CMS approach verification
-├── data-model.md        # PayloadCMS block definitions
-└── spec.md              # Functional requirements
+specs/[###-feature]/
+├── plan.md              # This file (/speckit.plan command output)
+├── research.md          # Phase 0 output (/speckit.plan command)
+├── data-model.md        # Phase 1 output (/speckit.plan command)
+├── quickstart.md        # Phase 1 output (/speckit.plan command)
+├── contracts/           # Phase 1 output (/speckit.plan command)
+└── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
 ```
 
 ### Source Code (repository root)
+<!--
+  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
+  for this feature. Delete unused options and expand the chosen structure with
+  real paths (e.g., apps/admin, packages/something). The delivered plan must
+  not include Option labels.
+-->
 
 ```text
+# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
 src/
-├── blocks/
-│   ├── SolutionPresentation/
-│   │   ├── config.ts
-│   │   └── Component.tsx
-│   ├── SolutionArchitecture/
-│   │   ├── config.ts
-│   │   └── Component.tsx
-│   ├── SolutionModuleDetails/
-│   │   ├── config.ts
-│   │   └── Component.tsx
-│   ├── SolutionBenefits/
-│   │   ├── config.ts
-│   │   └── Component.tsx
-│   ├── SolutionUseCases/
-│   │   ├── config.ts
-│   │   └── Component.tsx
-│   ├── SolutionCustomSection/
-│   │   ├── config.ts
-│   │   └── Component.tsx
-│   └── SolutionAccordion/
-│       ├── config.ts
-│       └── Component.tsx
-├── collections/
-│   └── Solutions.ts      # Modified to include new blocks in the Content tab
-└── components/
-    └── RenderBlocks.tsx  # Updated to map the new Solution blocks
+├── models/
+├── services/
+├── cli/
+└── lib/
+
+tests/
+├── contract/
+├── integration/
+└── unit/
+
+# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
+backend/
+├── src/
+│   ├── models/
+│   ├── services/
+│   └── api/
+└── tests/
+
+frontend/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   └── services/
+└── tests/
+
+# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
+api/
+└── [same as backend above]
+
+ios/ or android/
+└── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
-**Structure Decision**: The project uses an App Router monorepo where Payload config and Next.js co-exist. The new blocks will be placed in `src/blocks/` and injected into the existing `Solutions` collection inside `src/collections/`.
+**Structure Decision**: [Document the selected structure and reference the real
+directories captured above]
 
-## Verification Plan
+## Complexity Tracking
 
-### Automated Development Checks
-1. Run `pnpm generate:types` to ensure the new Payload block configurations correctly compile into TypeScript interfaces.
-2. Run `pnpm typecheck` and `pnpm lint:fix` to ensure no type safety or linting regressions occur.
+> **Fill ONLY if Constitution Check has violations that must be justified**
 
-### Manual Verification
-1. Open the PayloadCMS Admin Panel in a local development environment.
-2. Create/Edit a Solution. Observe that the "Card Settings" and "Hero Section" tabs are intact.
-3. In the "Content" tab, successfully add all the newly created modular blocks: Presentation, Architecture, Use Cases, Module Details, Context/Custom, and Accordion.
-4. Save the Solution. Ensure no database errors occur.
-5. Visit the Solution detail page on the frontend. Visually confirm the layout follows the exact sequence mapped entirely from the blocks, and perfectly matches the "Industrial Luxury" UI styling as provided in `index.html`.
-6. Switch the locale (FR -> EN) and verify that localized fields in the new blocks retrieve the correct translations without fallback errors.
+| Violation | Why Needed | Simpler Alternative Rejected Because |
+|-----------|------------|-------------------------------------|
+| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
