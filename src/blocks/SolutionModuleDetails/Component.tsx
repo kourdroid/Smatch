@@ -1,7 +1,7 @@
 import React from 'react'
 import type { SolutionModuleDetailsBlock as SolutionModuleDetailsBlockProps } from '@/payload-types'
 import RichText from '@/components/RichText'
-import * as PhosphorIcons from '@phosphor-icons/react'
+import * as PhosphorIcons from '@phosphor-icons/react/dist/ssr'
 
 const DynamicIcon = ({ name, className }: { name: string | null | undefined; className?: string }) => {
   if (!name) return <PhosphorIcons.Question className={className} size={24} />

@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import * as PhosphorIcons from '@phosphor-icons/react'
+import * as PhosphorIcons from '@phosphor-icons/react/dist/ssr'
 import type { Media } from '@/payload-types'
 
 // --- Types ---
