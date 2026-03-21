@@ -13,6 +13,8 @@ import { PostHero } from '@/heros/PostHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { getServerSideURL } from '@/utilities/getURL'
+import { getBreadcrumbJsonLd, getProjectJsonLd } from '@/utilities/jsonLd'
 
 export async function generateStaticParams() {
   const payload = await getPayload()
@@ -40,12 +42,13 @@ export async function generateStaticParams() {
 type Args = {
   params: Promise<{
     slug?: string
+    locale: string
   }>
 }
 
 export default async function Post({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug = '' } = await paramsPromise
+  const { slug = '', locale } = await paramsPromise
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
   const url = '/posts/' + decodedSlug
@@ -53,8 +56,39 @@ export default async function Post({ params: paramsPromise }: Args) {
 
   if (!post) return <PayloadRedirects url={url} />
 
+  const serverUrl = getServerSideURL()
+  const postUrl = `${serverUrl}/${locale}${url}`
+
+  const imageUrl =
+    typeof post.heroImage === 'object' && post.heroImage?.url ? (post.heroImage.url.startsWith('http') ? post.heroImage.url : `${serverUrl}${post.heroImage.url}`) : null
+
+  const breadcrumbJsonLd = getBreadcrumbJsonLd([
+    { name: locale === 'fr' ? 'Accueil' : 'Home', url: `${serverUrl}/${locale}` },
+    { name: locale === 'fr' ? 'Actualités' : 'News', url: `${serverUrl}/${locale}/posts` },
+    { name: post.title, url: postUrl },
+  ])
+
+  // getProjectJsonLd outputs an 'Article' schema which is appropriate for blog posts
+  const postJsonLd = getProjectJsonLd({
+    name: post.title,
+    description: post.meta?.description || '',
+    url: postUrl,
+    datePublished: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
+    image: imageUrl,
+  })
+
   return (
     <article className="py-16">
+      {/* Search Engine Optimization Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(postJsonLd) }}
+      />
+
       <PageClient />
 
       {/* Allows redirects for valid pages too */}
