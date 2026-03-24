@@ -3,15 +3,18 @@ import type { SolutionPresentationBlock as SolutionPresentationBlockProps } from
 import { cn } from '@/utilities/ui'
 
 export const SolutionPresentationBlock: React.FC<SolutionPresentationBlockProps> = ({
+  sectionTitle,
   intro,
+  productVisionTitle,
   productVision,
+  mainBenefitsTitle,
   mainBenefits,
 }) => {
   return (
     <section className="bg-smatch-black py-20 lg:py-32">
       <div className="container relative z-10 mx-auto max-w-7xl px-6">
         <h2 className="mb-4 font-heading text-4xl font-bold uppercase tracking-tight text-smatch-text-primary md:text-5xl">
-          Présentation de la solution
+          {sectionTitle}
         </h2>
         <p className="mb-12 max-w-4xl text-lg leading-relaxed text-smatch-text-secondary">
           {intro}
@@ -20,7 +23,7 @@ export const SolutionPresentationBlock: React.FC<SolutionPresentationBlockProps>
         {productVision && productVision.length > 0 && (
           <div className="mb-16">
             <h3 className="mb-6 font-heading text-2xl font-bold text-smatch-text-primary">
-              Vision produit
+              {productVisionTitle || 'Vision produit'}
             </h3>
             <ul className="space-y-4">
               {productVision.map((v, i) => (
@@ -36,7 +39,7 @@ export const SolutionPresentationBlock: React.FC<SolutionPresentationBlockProps>
         {mainBenefits && mainBenefits.length > 0 && (
           <div>
             <h3 className="mb-8 font-heading text-2xl font-bold text-smatch-text-primary">
-              Avantages principaux
+              {mainBenefitsTitle || 'Avantages principaux'}
             </h3>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {mainBenefits.map((benefit, i) => (

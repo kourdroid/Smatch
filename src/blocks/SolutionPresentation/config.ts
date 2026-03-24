@@ -5,11 +5,26 @@ export const SolutionPresentation: Block = {
   interfaceName: 'SolutionPresentationBlock',
   fields: [
     {
+      name: 'sectionTitle',
+      type: 'text',
+      required: true,
+      localized: true,
+      defaultValue: 'Présentation de la solution',
+      label: 'Section Title',
+    },
+    {
       name: 'intro',
       type: 'textarea',
       required: true,
       localized: true,
       label: 'Introduction',
+    },
+    {
+      name: 'productVisionTitle',
+      type: 'text',
+      localized: true,
+      defaultValue: 'Vision produit',
+      label: 'Product Vision Heading',
     },
     {
       name: 'productVision',
@@ -27,6 +42,13 @@ export const SolutionPresentation: Block = {
           localized: true,
         },
       ],
+    },
+    {
+      name: 'mainBenefitsTitle',
+      type: 'text',
+      localized: true,
+      defaultValue: 'Avantages principaux',
+      label: 'Main Benefits Heading',
     },
     {
       name: 'mainBenefits',

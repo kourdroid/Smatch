@@ -72,6 +72,13 @@ export const SolutionModuleDetails: Block = {
       ],
     },
     {
+      name: 'subModulesTitle',
+      type: 'text',
+      localized: true,
+      defaultValue: 'Sous-modules',
+      label: 'Sub-Modules Heading',
+    },
+    {
       name: 'subModules',
       type: 'array',
       label: 'Sub-Modules (Accordion items)',

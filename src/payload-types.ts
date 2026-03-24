@@ -1551,7 +1551,9 @@ export interface UseCaseBlock {
  * via the `definition` "SolutionPresentationBlock".
  */
 export interface SolutionPresentationBlock {
+  sectionTitle: string;
   intro: string;
+  productVisionTitle?: string | null;
   /**
    * Bullet points representing the product vision
    */
@@ -1561,6 +1563,7 @@ export interface SolutionPresentationBlock {
         id?: string | null;
       }[]
     | null;
+  mainBenefitsTitle?: string | null;
   mainBenefits?:
     | {
         title: string;
@@ -1577,6 +1580,7 @@ export interface SolutionPresentationBlock {
  * via the `definition` "SolutionArchitectureBlock".
  */
 export interface SolutionArchitectureBlock {
+  sectionTitle: string;
   intro: string;
   modules?:
     | {
@@ -1620,6 +1624,7 @@ export interface SolutionModuleDetailsBlock {
         }[]
       | null;
   };
+  subModulesTitle?: string | null;
   subModules?:
     | {
         title: string;
@@ -2842,13 +2847,16 @@ export interface SolutionsSelect<T extends boolean = true> {
  * via the `definition` "SolutionPresentationBlock_select".
  */
 export interface SolutionPresentationBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
   intro?: T;
+  productVisionTitle?: T;
   productVision?:
     | T
     | {
         point?: T;
         id?: T;
       };
+  mainBenefitsTitle?: T;
   mainBenefits?:
     | T
     | {
@@ -2864,6 +2872,7 @@ export interface SolutionPresentationBlockSelect<T extends boolean = true> {
  * via the `definition` "SolutionArchitectureBlock_select".
  */
 export interface SolutionArchitectureBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
   intro?: T;
   modules?:
     | T
@@ -2902,6 +2911,7 @@ export interface SolutionModuleDetailsBlockSelect<T extends boolean = true> {
               id?: T;
             };
       };
+  subModulesTitle?: T;
   subModules?:
     | T
     | {

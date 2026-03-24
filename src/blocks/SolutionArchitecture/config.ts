@@ -5,6 +5,14 @@ export const SolutionArchitecture: Block = {
   interfaceName: 'SolutionArchitectureBlock',
   fields: [
     {
+      name: 'sectionTitle',
+      type: 'text',
+      required: true,
+      localized: true,
+      defaultValue: 'Architecture de la solution',
+      label: 'Section Title',
+    },
+    {
       name: 'intro',
       type: 'textarea',
       required: true,

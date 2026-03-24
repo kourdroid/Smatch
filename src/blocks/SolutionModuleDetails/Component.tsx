@@ -26,6 +26,7 @@ export const SolutionModuleDetailsBlock: React.FC<SolutionModuleDetailsBlockProp
   description,
   bulletPoints,
   aiBlock,
+  subModulesTitle,
   subModules,
 }) => {
   return (
@@ -78,7 +79,7 @@ export const SolutionModuleDetailsBlock: React.FC<SolutionModuleDetailsBlockProp
 
         {subModules && subModules.length > 0 && (
           <div>
-            <h3 className="mb-6 font-heading text-2xl font-bold text-smatch-text-primary">Sous-modules</h3>
+            <h3 className="mb-6 font-heading text-2xl font-bold text-smatch-text-primary">{subModulesTitle || 'Sous-modules'}</h3>
             <div className="divide-y divide-white/10 overflow-hidden rounded-xl border border-white/10 bg-smatch-surface">
               {subModules.map((sub, i) => (
                 <details key={i} className="group">

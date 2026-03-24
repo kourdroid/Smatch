@@ -20,6 +20,7 @@ const DynamicIcon = ({ name, className }: { name: string | null | undefined; cla
 }
 
 export const SolutionArchitectureBlock: React.FC<SolutionArchitectureBlockProps> = ({
+  sectionTitle,
   intro,
   modules,
 }) => {
@@ -27,7 +28,7 @@ export const SolutionArchitectureBlock: React.FC<SolutionArchitectureBlockProps>
     <section className="bg-smatch-charcoal py-20 lg:py-32">
       <div className="container relative z-10 mx-auto max-w-7xl px-6">
         <h2 className="mb-4 font-heading text-4xl font-bold uppercase tracking-tight text-smatch-text-primary md:text-5xl">
-          Architecture de la solution WMS
+          {sectionTitle}
         </h2>
         <p className="mb-12 max-w-4xl text-lg leading-relaxed text-smatch-text-secondary">
           {intro}
