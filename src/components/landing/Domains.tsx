@@ -120,9 +120,10 @@ export function Domains() {
                             </span>
                           </div>
 
-                          <h4 className="mb-2 text-sm font-bold text-[#FFAA00]">
+                          {/* SEO: Changed from h4 to p to fix heading hierarchy (H2 -> H3 instead of H2 -> H4 -> H3) */}
+                          <p className="mb-2 text-sm font-bold text-[#FFAA00]">
                             {tab.content.subTitle}
-                          </h4>
+                          </p>
 
                           <h3 className="mb-6 font-heading text-4xl font-bold leading-[1.1] text-white md:text-5xl">
                             {tab.content.mainTitle}
