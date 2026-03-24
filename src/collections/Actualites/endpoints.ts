@@ -79,7 +79,8 @@ export const n8nIngestEndpoint: Endpoint = {
       }
 
       // 3. Validation
-      const data = req.json ? await req.json() : await req.text().then(t => JSON.parse(t))
+      const rawBody = await new Response(req.body).text()
+      const data = JSON.parse(rawBody)
       const parsed = payloadSchema.safeParse(data)
       if (!parsed.success) {
         return Response.json(
@@ -123,7 +124,7 @@ export const n8nIngestEndpoint: Endpoint = {
       safeHtml = safeHtml.replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
 
       const lexicalBody = convertHTMLToLexical({
-        editorConfig: defaultLexical,
+        editorConfig: defaultLexical as any,
         html: safeHtml,
         JSDOM: JSDOM as any,
       })
