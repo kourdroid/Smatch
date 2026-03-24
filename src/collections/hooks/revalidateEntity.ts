@@ -1,10 +1,11 @@
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
-import { revalidatePath, revalidateTag } from 'next/cache'
+// next/cache must be dynamically imported inside the hook to prevent breaking the Client Admin bundle
 import { i18nConfig } from '@/utilities/i18n'
 
 export const createRevalidateHook = (collectionPrefix: string): CollectionAfterChangeHook => {
-  return ({ doc, previousDoc, req: { payload, context } }) => {
+  return async ({ doc, previousDoc, req: { payload, context } }) => {
     if (!context.disableRevalidate) {
+      const { revalidatePath, revalidateTag } = await import('next/cache')
       // Revalidate all locale-prefixed paths for the item
       for (const locale of i18nConfig.locales) {
         // Revalidate the list view
@@ -34,8 +35,9 @@ export const createRevalidateHook = (collectionPrefix: string): CollectionAfterC
 }
 
 export const createRevalidateDeleteHook = (collectionPrefix: string): CollectionAfterDeleteHook => {
-  return ({ doc, req: { context, payload } }) => {
+  return async ({ doc, req: { context, payload } }) => {
     if (!context.disableRevalidate) {
+      const { revalidatePath, revalidateTag } = await import('next/cache')
       for (const locale of i18nConfig.locales) {
         // Revalidate the list view
         revalidatePath(`/${locale}/${collectionPrefix}`)
