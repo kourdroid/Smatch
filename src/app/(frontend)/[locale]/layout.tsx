@@ -21,6 +21,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import { AnnouncementPopup } from '@/components/AnnouncementPopup'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const antonio = Antonio({
   subsets: ['latin'],
@@ -74,6 +75,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     >
       <head>
         <InitTheme />
+        <SpeedInsights />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
         <script
