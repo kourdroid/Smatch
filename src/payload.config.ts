@@ -101,10 +101,11 @@ export default buildConfig({
         : process.env.DATABASE_URI || '',
       // Vercel Serverless: each function gets its own pool.
       // Supabase Free Tier allows max 60 direct connections.
-      // By setting max to 1, we guarantee 1 conn per serverless function at runtime.
+      // By setting max to 3, we allow multiple concurrent database queries per
+      // serverless function, easing runtime bottlenecks.
       // HOWEVER, during CI builds (payload migrate AND next build SSG), we need more connections 
       // to avoid deadlocks and parallel rendering timeouts. Vercel sets CI="1".
-      max: process.env.CI ? 10 : (process.env.NODE_ENV === 'production' ? 1 : 10),
+      max: process.env.CI ? 10 : (process.env.NODE_ENV === 'production' ? 3 : 10),
       min: 0,
       idleTimeoutMillis: 5000, // Release idle connections after 5s (serverless functions are short-lived)
       connectionTimeoutMillis: 60000, // 60s timeout: Vercel builds can take a while to establish the first connection
