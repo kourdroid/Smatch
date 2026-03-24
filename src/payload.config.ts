@@ -92,7 +92,13 @@ export default buildConfig({
   // src/payload.config.ts
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      // MIGRATION_DATABASE_URI is critical for Vercel builds:
+      // Migrations CANNOT run over the Transaction pooler (port 6543).
+      // They must use the Session/Direct port (5432).
+      // During runtime, it uses the standard DATABASE_URI (port 6543)
+      connectionString: process.env.CI === 'true' && process.env.MIGRATION_DATABASE_URI 
+        ? process.env.MIGRATION_DATABASE_URI 
+        : process.env.DATABASE_URI || '',
       // Vercel Serverless: each function gets its own pool.
       // Supabase Free Tier allows max 60 direct connections.
       // By setting max to 1, we guarantee 1 conn per serverless function, 
@@ -100,7 +106,7 @@ export default buildConfig({
       max: process.env.NODE_ENV === 'production' ? 1 : 10,
       min: 0,
       idleTimeoutMillis: 5000, // Release idle connections after 5s (serverless functions are short-lived)
-      connectionTimeoutMillis: 10000, // Fail fast if pool is exhausted
+      connectionTimeoutMillis: 60000, // 60s timeout: Vercel builds can take a while to establish the first connection
       allowExitOnIdle: true,
     },
     // Only push in local dev, NEVER in production/CI builds
