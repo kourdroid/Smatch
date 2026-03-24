@@ -94,9 +94,10 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
       // Vercel Serverless: each function gets its own pool.
-      // Supabase Transaction Pooler (port 6543) handles multiplexing.
-      // Keep max LOW to avoid exhausting the pooler's connection limit.
-      max: process.env.NODE_ENV === 'production' ? 5 : 10,
+      // Supabase Free Tier allows max 60 direct connections.
+      // By setting max to 1, we guarantee 1 conn per serverless function, 
+      // safely supporting up to 60 concurrent users even without the pooler.
+      max: process.env.NODE_ENV === 'production' ? 1 : 10,
       min: 0,
       idleTimeoutMillis: 5000, // Release idle connections after 5s (serverless functions are short-lived)
       connectionTimeoutMillis: 10000, // Fail fast if pool is exhausted
