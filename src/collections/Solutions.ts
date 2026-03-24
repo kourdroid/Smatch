@@ -11,6 +11,7 @@ import { SolutionUseCases } from '@/blocks/SolutionUseCases/config'
 import { SolutionCustomSection } from '@/blocks/SolutionCustomSection/config'
 import { SolutionAccordion } from '@/blocks/SolutionAccordion/config'
 import { adminOrHigher, adminPanelEditorOrHigher, editorOrHigher } from '@/access/roles'
+import { createRevalidateHook, createRevalidateDeleteHook } from './hooks/revalidateEntity'
 
 export const Solutions: CollectionConfig<'solutions'> = {
   slug: 'solutions',
@@ -54,8 +55,8 @@ export const Solutions: CollectionConfig<'solutions'> = {
         return data
       },
     ],
-    afterChange: [createRAGAfterChangeHook('solutions')],
-    afterDelete: [createRAGAfterDeleteHook('solutions')],
+    afterChange: [createRevalidateHook('solutions'), createRAGAfterChangeHook('solutions')],
+    afterDelete: [createRevalidateDeleteHook('solutions'), createRAGAfterDeleteHook('solutions')],
   },
   fields: [
     {

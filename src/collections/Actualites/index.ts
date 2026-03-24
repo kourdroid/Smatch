@@ -25,6 +25,7 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from 'payload'
 import { n8nIngestEndpoint } from './endpoints'
+import { createRevalidateHook, createRevalidateDeleteHook } from '../hooks/revalidateEntity'
 
 export const Actualites: CollectionConfig<'actualites'> = {
   slug: 'actualites',
@@ -35,6 +36,10 @@ export const Actualites: CollectionConfig<'actualites'> = {
     delete: adminOrHigher,
     read: authenticatedOrPublished,
     update: editorOrHigher,
+  },
+  hooks: {
+    afterChange: [createRevalidateHook('actualites')],
+    afterDelete: [createRevalidateDeleteHook('actualites')],
   },
   defaultPopulate: {
     title: true,

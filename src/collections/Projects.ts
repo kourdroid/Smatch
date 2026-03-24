@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { createRAGAfterChangeHook, createRAGAfterDeleteHook } from '@/hooks/ragSync'
 import { adminOrHigher, adminPanelEditorOrHigher, editorOrHigher } from '@/access/roles'
+import { createRevalidateHook, createRevalidateDeleteHook } from './hooks/revalidateEntity'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -20,8 +21,8 @@ export const Projects: CollectionConfig = {
     defaultColumns: ['title', 'type', 'status', 'date'],
   },
   hooks: {
-    afterChange: [createRAGAfterChangeHook('projects')],
-    afterDelete: [createRAGAfterDeleteHook('projects')],
+    afterChange: [createRevalidateHook('projects'), createRAGAfterChangeHook('projects')],
+    afterDelete: [createRevalidateDeleteHook('projects'), createRAGAfterDeleteHook('projects')],
   },
   fields: [
     {
