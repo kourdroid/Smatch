@@ -93,13 +93,13 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
-      // Supabase Free Tier: 60 direct connections, 200 pooler connections
-      // Production: 15 (safe for Vercel serverless concurrency)
-      // Dev: 10 (comfortable for local development)
-      max: process.env.NODE_ENV === 'production' ? 15 : 10,
+      // Vercel Serverless: each function gets its own pool.
+      // Supabase Transaction Pooler (port 6543) handles multiplexing.
+      // Keep max LOW to avoid exhausting the pooler's connection limit.
+      max: process.env.NODE_ENV === 'production' ? 5 : 10,
       min: 0,
-      idleTimeoutMillis: 10000,
-      connectionTimeoutMillis: 60000,
+      idleTimeoutMillis: 5000, // Release idle connections after 5s (serverless functions are short-lived)
+      connectionTimeoutMillis: 10000, // Fail fast if pool is exhausted
       allowExitOnIdle: true,
     },
     // Only push in local dev, NEVER in production/CI builds
