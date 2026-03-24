@@ -1,6 +1,4 @@
 import type { Endpoint } from 'payload'
-import { JSDOM } from 'jsdom'
-import { convertHTMLToLexical } from '@payloadcms/richtext-lexical'
 import { z } from 'zod'
 import { defaultLexical } from '@/fields/defaultLexical'
 
@@ -114,6 +112,12 @@ export const n8nIngestEndpoint: Endpoint = {
       }
 
       // 5. HTML to Lexical Conversion
+      // Dynamically import jsdom + convertHTMLToLexical to avoid ESM/CJS crash on Vercel
+      // jsdom's dependency chain (html-encoding-sniffer → @exodus/bytes) is ESM-only
+      // and cannot be statically bundled into Vercel's CJS serverless functions.
+      const { JSDOM } = await import('jsdom')
+      const { convertHTMLToLexical } = await import('@payloadcms/richtext-lexical')
+
       // Basic strip of scripts/iframes for security
       let safeHtml = validData.bodyHtml.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
       safeHtml = safeHtml.replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')

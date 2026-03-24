@@ -45,6 +45,9 @@ const nextConfig = {
     return webpackConfig
   },
   reactStrictMode: false,
+  // Prevent jsdom and its ESM-only transitive deps from being bundled
+  // into Vercel serverless functions (causes ERR_REQUIRE_ESM at runtime).
+  serverExternalPackages: ['jsdom', 'html-encoding-sniffer', '@exodus/bytes'],
   redirects,
 
   // Type Safety: Enforce strict checks in production builds
