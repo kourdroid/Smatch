@@ -13,6 +13,8 @@ import { PostHero } from '@/heros/PostHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { getBreadcrumbJsonLd, getProjectJsonLd } from '@/utilities/jsonLd'
+import { getServerSideURL } from '@/utilities/getURL'
 
 export async function generateStaticParams() {
   const payload = await getPayload()
@@ -40,12 +42,13 @@ export async function generateStaticParams() {
 type Args = {
   params: Promise<{
     slug?: string
+    locale?: string
   }>
 }
 
 export default async function Post({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug = '' } = await paramsPromise
+  const { slug = '', locale = 'fr' } = await paramsPromise
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
   const url = '/posts/' + decodedSlug
@@ -53,8 +56,53 @@ export default async function Post({ params: paramsPromise }: Args) {
 
   if (!post) return <PayloadRedirects url={url} />
 
+  // Structured Data (JSON-LD)
+  const serverUrl = getServerSideURL()
+  const postUrl = `${serverUrl}/${locale}${url}`
+
+  const rawImageUrl =
+    // @ts-ignore - 'image' field might be dynamically added or inferred incorrectly by TS in meta
+    post.meta?.image && typeof post.meta.image === 'object' && post.meta.image.url
+      // @ts-ignore
+      ? post.meta.image.url
+      : null
+
+  const imageUrl = rawImageUrl
+    ? rawImageUrl.startsWith('http')
+      ? rawImageUrl
+      : `${serverUrl}${rawImageUrl}`
+    : null
+
+  const breadcrumbJsonLd = getBreadcrumbJsonLd([
+    { name: 'Home', url: `${serverUrl}/${locale}` },
+    { name: locale === 'fr' ? 'Articles' : 'Posts', url: `${serverUrl}/${locale}/posts` },
+    { name: post.title, url: postUrl },
+  ])
+
+  const postJsonLd = getProjectJsonLd({
+    name: post.title,
+    description: post.meta?.description || '',
+    url: postUrl,
+    datePublished: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
+    image: imageUrl,
+    type: 'BlogPosting',
+  })
+
+  // Escape `<` and `>` to prevent XSS issues inside <script> tags
+  const safeBreadcrumbJsonLd = JSON.stringify(breadcrumbJsonLd).replace(/</g, '\\u003C').replace(/>/g, '\\u003E')
+  const safePostJsonLd = JSON.stringify(postJsonLd).replace(/</g, '\\u003C').replace(/>/g, '\\u003E')
+
   return (
     <article className="py-16">
+      {/* Search Engine Optimization Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeBreadcrumbJsonLd }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safePostJsonLd }}
+      />
       <PageClient />
 
       {/* Allows redirects for valid pages too */}
