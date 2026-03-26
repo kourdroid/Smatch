@@ -28,9 +28,11 @@ export const Pagination: React.FC<{
       <PaginationComponent>
         <PaginationContent>
           <PaginationItem>
+            {/* SEO: rel="prev" helps search engines understand the relationship between paginated pages */}
             <PaginationPrevious
               disabled={!hasPrevPage}
               href={`/posts/page/${page - 1}`}
+              rel="prev"
             />
           </PaginationItem>
 
@@ -72,9 +74,11 @@ export const Pagination: React.FC<{
           )}
 
           <PaginationItem>
+            {/* SEO: rel="next" helps search engines understand the relationship between paginated pages */}
             <PaginationNext
               disabled={!hasNextPage}
               href={`/posts/page/${page + 1}`}
+              rel="next"
             />
           </PaginationItem>
         </PaginationContent>
