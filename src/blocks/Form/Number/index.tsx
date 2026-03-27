@@ -28,6 +28,8 @@ export const Number: React.FC<
         defaultValue={defaultValue}
         id={name}
         type="number"
+        aria-invalid={!!errors[name]}
+        aria-describedby={errors[name] ? `error-${name}` : undefined}
         {...register(name, { required })}
       />
       {errors[name] && <Error name={name} />}
