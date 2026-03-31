@@ -58,6 +58,8 @@ const PaginationPrevious = ({
     className={cn('gap-1 pl-2.5', className)}
     size="default"
     {...props}
+    // SEO: Add rel="prev" to establish relationships between paginated URLs for search engine crawlers
+    rel="prev"
   >
     <ChevronLeft className="size-4" />
     <span>Previous</span>
@@ -70,6 +72,8 @@ const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof Pag
     className={cn('gap-1 pr-2.5', className)}
     size="default"
     {...props}
+    // SEO: Add rel="next" to establish relationships between paginated URLs for search engine crawlers
+    rel="next"
   >
     <span>Next</span>
     <ChevronRight className="size-4" />
