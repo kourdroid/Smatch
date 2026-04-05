@@ -147,10 +147,12 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
 
           {/* Socials (Phosphor Icons) */}
           <div className="flex gap-4">
-            <Link href={member.linkedin} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
+            {/* SEO: Add aria-label to icon-only link for accessibility and crawlability */}
+            <Link href={member.linkedin} aria-label={`Profil LinkedIn de ${member.name}`} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
               <LinkedinLogo size={32} weight="duotone" />
             </Link>
-            <Link href={member.email} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
+            {/* SEO: Add aria-label to icon-only link for accessibility and crawlability */}
+            <Link href={member.email} aria-label={`Envoyer un email à ${member.name}`} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
               <EnvelopeSimple size={32} weight="duotone" />
             </Link>
           </div>
@@ -212,10 +214,10 @@ const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
         </p>
       </div>
       {/* <div className="flex gap-4">
-        <Link href={member.linkedin} className="group flex h-8 w-8 items-center justify-center rounded-sm  transition-all  text-white">
+        <Link href={member.linkedin} aria-label={`Profil LinkedIn de ${member.name}`} className="group flex h-8 w-8 items-center justify-center rounded-sm  transition-all  text-white">
           <LinkedinLogo size={32} weight="duotone" className='hover' />
         </Link>
-        <Link href={member.email} className="group flex h-8 w-8 items-center justify-center rounded-sm  transition-all  text-white">
+        <Link href={member.email} aria-label={`Envoyer un email à ${member.name}`} className="group flex h-8 w-8 items-center justify-center rounded-sm  transition-all  text-white">
           <EnvelopeSimple size={32} weight="duotone" className='hover' />
         </Link>
       </div> */}
