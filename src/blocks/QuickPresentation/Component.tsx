@@ -30,7 +30,7 @@ export const QuickPresentationBlock: React.FC<QuickPresentationBlockProps> = ({
           <div className="flex-1">
             {subheadline && (
               <div className="mb-6 inline-block rounded-full border border-[#FFAA00]/20 bg-[#FFAA00]/5 px-4 py-1.5 backdrop-blur-sm">
-                <span className="bg-gradient-to-r from-[#FFAA00] to-yellow-200 bg-clip-text text-sm font-bold uppercase tracking-widest text-transparent">
+                <span className="smatch-gradient-text bg-gradient-to-r from-[#FFAA00] to-yellow-200 bg-clip-text text-sm font-bold uppercase tracking-widest">
                   {subheadline}
                 </span>
               </div>

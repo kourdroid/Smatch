@@ -270,7 +270,7 @@ export default function TeamSection() {
               <div className="pointer-events-none absolute left-4 top-0 select-none font-sans text-[200px] font-black leading-none text-white/5 mix-blend-overlay">
                 <Image className='pointer-events-none select-none opacity-10 mix-blend-overlay  ' src="/assets/comma-first.svg" alt="" width={200} height={150} />
               </div>
-              <p className='my-auto bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text pt-20 text-justify font-sans text-lg font-light leading-relaxed text-transparent md:text-xl'>
+              <p className='smatch-gradient-text my-auto bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text pt-20 text-justify font-sans text-lg font-light leading-relaxed md:text-xl'>
                 Dans un contexte économique exigeant, Smatch Digital s'impose comme le partenaire opérationnel des PME marocaines.
                 <br />
                 Notre mission : élever les standards de la Supply Chain par des solutions concrètes et immédiates. <br /> Nous privilégions le pragmatisme et la proximité pour bâtir notre notoriété sur une seule exigence : l'excellence au service de votre performance.

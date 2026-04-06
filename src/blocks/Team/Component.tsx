@@ -226,7 +226,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
           </span>
           <h2 className="font-heading text-4xl font-black uppercase tracking-tighter text-white md:text-6xl">
             {title.split(' ')[0]}{' '}
-            <span className="bg-gradient-to-r from-white to-gray-600 bg-clip-text text-transparent">
+            <span className="smatch-gradient-text bg-gradient-to-r from-white to-gray-600 bg-clip-text">
               {title.split(' ').slice(1).join(' ')}
             </span>
           </h2>
@@ -258,7 +258,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
                     height={150}
                   />
                 </div>
-                <p className="my-auto bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text pt-20 text-justify font-sans text-lg font-light leading-relaxed text-transparent md:text-xl">
+                <p className="smatch-gradient-text my-auto bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text pt-20 text-justify font-sans text-lg font-light leading-relaxed md:text-xl">
                   {quoteText}
                 </p>
                 <div className="relative z-10 my-auto flex h-full flex-col justify-end">

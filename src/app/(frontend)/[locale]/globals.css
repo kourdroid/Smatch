@@ -141,7 +141,7 @@ nav a:hover::after {
   /* Global Body Styles */
 
   body {
-    @apply bg-smatch-black text-foreground min-h-[100vh] flex flex-col relative;
+    @apply bg-smatch-black text-foreground min-h-[100dvh] flex flex-col relative;
   }
 
   body {
