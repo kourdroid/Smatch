@@ -10,6 +10,8 @@ import Link from 'next/link'
 import { ArrowLeft, Clock, Calendar, ArrowUpRight, HelpCircle, ChevronRight } from 'lucide-react'
 
 import { generateMeta } from '@/utilities/generateMeta'
+import { getProjectJsonLd, getBreadcrumbJsonLd } from '@/utilities/jsonLd'
+import { getServerSideURL } from '@/utilities/getURL'
 
 export async function generateStaticParams() {
   const payload = await getPayload()
@@ -54,10 +56,27 @@ export default async function Actualite({ params: paramsPromise }: Args) {
   if (!post) return <PayloadRedirects url={url} />
 
   // Fetch Sidebars Data
-  const latestPosts = await queryLatestActualites({ excludeId: post.id, locale })
+  const latestPosts = await queryLatestActualites({ excludeId: String(post.id), locale })
   const allCategories = await queryCategories({ locale })
 
   // Schema
+  const serverUrl = getServerSideURL()
+  const articleUrl = `${serverUrl}/${locale}/actualites/${post.slug}`
+
+  const articleSchema = getProjectJsonLd({
+    name: post.meta?.title || post.title,
+    description: post.meta?.description || post.excerpt || '',
+    url: articleUrl,
+    datePublished: post.publishedAt || post.createdAt,
+    image: post.meta?.image && typeof post.meta.image === 'object' && post.meta.image !== null && 'url' in post.meta.image && typeof post.meta.image.url === 'string' ? post.meta.image.url : null,
+  })
+
+  const breadcrumbSchema = getBreadcrumbJsonLd([
+    { name: 'Home', url: `${serverUrl}/${locale}` },
+    { name: 'Actualités', url: `${serverUrl}/${locale}/actualites` },
+    { name: post.title, url: articleUrl },
+  ])
+
   const hasFaqs = post.faqEntries && Array.isArray(post.faqEntries) && post.faqEntries.length > 0
   const faqSchema = hasFaqs ? {
     '@context': 'https://schema.org',
@@ -82,6 +101,12 @@ export default async function Actualite({ params: paramsPromise }: Args) {
   return (
     <div className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
       <PayloadRedirects disableNotFound url={url} />
+
+      {/* SEO: Inject Article structured data for rich snippets and better crawlability of news content */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      {/* SEO: Inject Breadcrumb structured data to establish page hierarchy in search results */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       {faqSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
