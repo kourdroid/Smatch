@@ -41,11 +41,12 @@ export function getProjectJsonLd(args: {
     url: string
     datePublished?: string
     image?: string | null
+    type?: 'Article' | 'BlogPosting'
 }) {
     const serverUrl = getServerSideURL()
     return {
         '@context': 'https://schema.org',
-        '@type': 'Article',
+        '@type': args.type || 'Article',
         headline: args.name,
         description: args.description,
         ...(args.image ? { image: [args.image] } : {}),
