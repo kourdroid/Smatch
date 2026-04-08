@@ -30,9 +30,11 @@ export const Email: React.FC<
         id={name}
         type="text"
         {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
+        aria-invalid={!!errors[name]}
+        aria-describedby={errors[name] ? `${name}-error` : undefined}
       />
 
-      {errors[name] && <Error name={name} />}
+      {errors[name] && <Error name={name} id={`${name}-error`} />}
     </Width>
   )
 }

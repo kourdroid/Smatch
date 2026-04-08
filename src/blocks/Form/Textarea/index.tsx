@@ -32,9 +32,11 @@ export const Textarea: React.FC<
         id={name}
         rows={rows}
         {...register(name, { required: required })}
+        aria-invalid={!!errors[name]}
+        aria-describedby={errors[name] ? `${name}-error` : undefined}
       />
 
-      {errors[name] && <Error name={name} />}
+      {errors[name] && <Error name={name} id={`${name}-error`} />}
     </Width>
   )
 }
