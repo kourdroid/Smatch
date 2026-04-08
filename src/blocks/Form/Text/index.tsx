@@ -14,6 +14,9 @@ export const Text: React.FC<
     register: UseFormRegister<FieldValues>
   }
 > = ({ name, defaultValue, errors, label, register, required, width }) => {
+  const errorId = `error-${name}`
+  const hasError = !!errors[name]
+
   return (
     <Width width={width}>
       <Label htmlFor={name}>
@@ -25,8 +28,15 @@ export const Text: React.FC<
           </span>
         )}
       </Label>
-      <Input defaultValue={defaultValue} id={name} type="text" {...register(name, { required })} />
-      {errors[name] && <Error name={name} />}
+      <Input
+        defaultValue={defaultValue}
+        id={name}
+        type="text"
+        aria-invalid={hasError}
+        aria-describedby={hasError ? errorId : undefined}
+        {...register(name, { required })}
+      />
+      {hasError && <Error id={errorId} name={name} />}
     </Width>
   )
 }
