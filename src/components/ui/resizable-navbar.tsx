@@ -73,7 +73,9 @@ export const NavCenterPill = ({
 }) => {
   return (
     <div className="pointer-events-none fixed inset-x-0 top-6 flex justify-center">
-      <div
+      {/* SEO: Using <nav> instead of <div> for the main navigation container improves crawlability and provides a semantic landmark */}
+      <nav
+        aria-label="Main Navigation"
         className={cn(
           'pointer-events-auto relative flex flex-row items-center gap-1',
           'bg-[#0a0a0a]/50 smatch-backdrop-blur-xl smatch-glass-fallback border border-white/10',
@@ -84,7 +86,7 @@ export const NavCenterPill = ({
       >
         <div className="absolute inset-x-4 -top-px h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         {children}
-      </div>
+      </nav>
     </div>
   )
 }
@@ -93,7 +95,7 @@ export const NavLinks = ({ items, activePath }: { items: NavItem[]; activePath?:
   const [hovered, setHovered] = useState<number | null>(null)
 
   return (
-    <nav className="flex items-center">
+    <div className="flex items-center">
       {items.map((item, idx) => {
         const isActive = activePath === item.link || (activePath === '/' && item.link === '/')
         return (
@@ -132,7 +134,7 @@ export const NavLinks = ({ items, activePath }: { items: NavItem[]; activePath?:
           </Link>
         )
       })}
-    </nav>
+    </div>
   )
 }
 
@@ -188,9 +190,10 @@ export const MobileTopBar = ({ children }: { children: React.ReactNode }) => {
 export const MobileBottomDock = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="pointer-events-none absolute bottom-4 left-0 z-50 flex w-full justify-center md:hidden">
-      <div className="smatch-backdrop-blur-2xl smatch-glass-fallback pointer-events-auto flex items-center gap-6 rounded-md border border-white/10 bg-[#0F0F0F]/80 px-8 py-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]">
+      {/* SEO: Using <nav> instead of <div> for the mobile dock creates a proper landmark and aids bot structure comprehension */}
+      <nav aria-label="Mobile Quick Actions" className="smatch-backdrop-blur-2xl smatch-glass-fallback pointer-events-auto flex items-center gap-6 rounded-md border border-white/10 bg-[#0F0F0F]/80 px-8 py-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]">
         {children}
-      </div>
+      </nav>
     </div>
   )
 }
