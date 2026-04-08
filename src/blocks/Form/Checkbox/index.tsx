@@ -25,6 +25,8 @@ export const Checkbox: React.FC<
         <CheckboxUi
           defaultChecked={defaultValue}
           id={name}
+          aria-invalid={!!errors[name]}
+          aria-describedby={errors[name] ? `error-${name}` : undefined}
           {...props}
           onCheckedChange={(checked) => {
             setValue(props.name, checked)

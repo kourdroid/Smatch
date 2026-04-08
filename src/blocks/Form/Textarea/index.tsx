@@ -31,6 +31,8 @@ export const Textarea: React.FC<
         defaultValue={defaultValue}
         id={name}
         rows={rows}
+        aria-invalid={!!errors[name]}
+        aria-describedby={errors[name] ? `error-${name}` : undefined}
         {...register(name, { required: required })}
       />
 
