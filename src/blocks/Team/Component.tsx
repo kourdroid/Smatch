@@ -96,6 +96,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           <div className="flex gap-3">
             {member.linkedin && (
               <Link
+                aria-label={`Profil LinkedIn de ${member.name}`}
                 href={member.linkedin}
                 className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black"
               >
@@ -104,6 +105,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
             )}
             {member.email && (
               <Link
+                aria-label={`Envoyer un email à ${member.name}`}
                 href={`mailto:${member.email}`}
                 className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black"
               >

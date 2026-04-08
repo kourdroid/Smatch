@@ -1,3 +1,7 @@
 ## 2024-03-14 - Convert Client-Side Pagination to SSR Links
 **Learning:** The default Shadcn UI `PaginationLink` component implementation uses a native HTML `<button>` element with `onClick` event handlers (relying on `useRouter().push()` in `src/components/Pagination/index.tsx`). Search engine crawlers (like Googlebot) do not execute JavaScript routing logic, meaning they cannot discover or crawl pagination links built this way, severely harming the indexability of deeper content pages.
 **Action:** When implementing pagination or any critical navigation components in Next.js, always use semantic `<a>` tags via the `next/link` component. When disabled states are needed for links, do not use the HTML `disabled` attribute; instead, rely on `aria-disabled="true"`, `tabIndex={-1}`, visual utility classes (`pointer-events-none opacity-50`), and `href="#"` to ensure accessibility and prevent Next.js from prefetching invalid routes.
+
+## 2024-03-26 - Icon-Only Links Require aria-label
+**Learning:** Icon-only navigation links (such as Phosphor icons wrapped in `<Link>`) do not have intrinsic text context. Without an `aria-label`, search engine crawlers and screen readers cannot determine the purpose or destination of the link, harming crawlability and accessibility.
+**Action:** When implementing icon-only links (e.g., social links, action buttons), always include a descriptive `aria-label` attribute on the `<Link>` or `<a>` tag to explain the link destination or action.

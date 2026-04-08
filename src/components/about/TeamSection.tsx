@@ -147,10 +147,10 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
 
           {/* Socials (Phosphor Icons) */}
           <div className="flex gap-4">
-            <Link href={member.linkedin} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
+            <Link aria-label={`Profil LinkedIn de ${member.name}`} href={member.linkedin} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
               <LinkedinLogo size={32} weight="duotone" />
             </Link>
-            <Link href={member.email} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
+            <Link aria-label={`Envoyer un email à ${member.name}`} href={member.email} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
               <EnvelopeSimple size={32} weight="duotone" />
             </Link>
           </div>
