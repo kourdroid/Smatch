@@ -31,49 +31,59 @@ type PaginationLinkProps = {
 } & Pick<ButtonProps, 'size'> &
   React.ComponentProps<typeof Link>
 
-const PaginationLink = ({ className, isActive, disabled, size = 'icon', ...props }: PaginationLinkProps) => (
-  <Link
-    aria-current={isActive ? 'page' : undefined}
-    aria-disabled={disabled}
-    tabIndex={disabled ? -1 : undefined}
-    className={cn(
-      buttonVariants({
-        size,
-        variant: isActive ? 'outline' : 'ghost',
-      }),
-      disabled && 'pointer-events-none opacity-50',
-      className,
-    )}
-    {...props}
-    href={disabled ? '#' : props.href}
-  />
-)
+const PaginationLink = ({ className, isActive, disabled, size = 'icon', ...props }: PaginationLinkProps) => {
+  return (
+    <Link
+      aria-current={isActive ? 'page' : undefined}
+      aria-disabled={disabled}
+      tabIndex={disabled ? -1 : undefined}
+      className={cn(
+        buttonVariants({
+          size,
+          variant: isActive ? 'outline' : 'ghost',
+        }),
+        disabled && 'pointer-events-none opacity-50',
+        className,
+      )}
+      {...props}
+      href={disabled ? '#' : props.href}
+    />
+  )
+}
 
 const PaginationPrevious = ({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
-  <PaginationLink
-    aria-label="Go to previous page"
-    className={cn('gap-1 pl-2.5', className)}
-    size="default"
-    {...props}
-  >
-    <ChevronLeft className="size-4" />
-    <span>Previous</span>
-  </PaginationLink>
+  <React.Fragment>
+    {/* SEO: Adding rel='prev' helps search engines understand the relationship between paginated URLs */}
+    <PaginationLink
+      aria-label="Go to previous page"
+      className={cn('gap-1 pl-2.5', className)}
+      size="default"
+      rel={props.disabled ? undefined : 'prev'}
+      {...props}
+    >
+      <ChevronLeft className="size-4" />
+      <span>Previous</span>
+    </PaginationLink>
+  </React.Fragment>
 )
 
 const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>) => (
-  <PaginationLink
-    aria-label="Go to next page"
-    className={cn('gap-1 pr-2.5', className)}
-    size="default"
-    {...props}
-  >
-    <span>Next</span>
-    <ChevronRight className="size-4" />
-  </PaginationLink>
+  <React.Fragment>
+    {/* SEO: Adding rel='next' helps search engines understand the relationship between paginated URLs */}
+    <PaginationLink
+      aria-label="Go to next page"
+      className={cn('gap-1 pr-2.5', className)}
+      size="default"
+      rel={props.disabled ? undefined : 'next'}
+      {...props}
+    >
+      <span>Next</span>
+      <ChevronRight className="size-4" />
+    </PaginationLink>
+  </React.Fragment>
 )
 
 const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (
