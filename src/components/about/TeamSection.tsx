@@ -127,7 +127,7 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
           {/* Name (Font Heading / Antonio) */}
           <h3 className="mb-4 font-heading text-5xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-[5rem]">
             {member.name.split(' ')[0]} <br />
-            <span className="smatch-gradient-text bg-gradient-to-b from-white to-white/40 bg-clip-text">
+            <span className="text-white/80">
               {member.name.split(' ').slice(1).join(' ')}
             </span>
           </h3>
@@ -139,8 +139,8 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
 
           {/* Description Block (Moved back inside card as per request) */}
           <div className="relative mb-10 border-l-2 border-[#FFAA00] pl-6">
-            {/* Gradient Quote (Font Sans / Inter) */}
-            <p className="smatch-gradient-text bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-lg font-light leading-relaxed md:text-xl">
+            {/* Text Quote (Font Sans / Inter) */}
+            <p className="text-gray-300 font-sans text-lg font-light leading-relaxed md:text-xl">
               "{member.description}"
             </p>
           </div>
@@ -250,7 +250,7 @@ export default function TeamSection() {
                         // THE MINDS BEHIND
           </span>
           <h2 className="font-heading text-4xl font-black uppercase tracking-tighter text-white md:text-6xl">
-            Notre <span className="smatch-gradient-text bg-gradient-to-r from-white to-gray-600 bg-clip-text">Équipe.</span>
+            Notre <span className="text-gray-300">Équipe.</span>
           </h2>
         </div>
 
@@ -270,7 +270,7 @@ export default function TeamSection() {
               <div className="pointer-events-none absolute left-4 top-0 select-none font-sans text-[200px] font-black leading-none text-white/5 mix-blend-overlay">
                 <Image className='pointer-events-none select-none opacity-10 mix-blend-overlay  ' src="/assets/comma-first.svg" alt="" width={200} height={150} />
               </div>
-              <p className='smatch-gradient-text my-auto bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text pt-20 text-justify font-sans text-lg font-light leading-relaxed md:text-xl'>
+              <p className="text-gray-300 my-auto pt-20 text-justify font-sans text-lg font-light leading-relaxed md:text-xl">
                 Dans un contexte économique exigeant, Smatch Digital s'impose comme le partenaire opérationnel des PME marocaines.
                 <br />
                 Notre mission : élever les standards de la Supply Chain par des solutions concrètes et immédiates. <br /> Nous privilégions le pragmatisme et la proximité pour bâtir notre notoriété sur une seule exigence : l'excellence au service de votre performance.

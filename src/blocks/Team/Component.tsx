@@ -73,7 +73,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Name (Font Heading / Antonio) */}
           <h3 className="mb-2 font-heading text-3xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-5xl">
             {member.name.split(' ')[0]} <br />
-            <span className="smatch-gradient-text bg-gradient-to-b from-white to-white/40 bg-clip-text">
+            <span className="text-white/80">
               {member.name.split(' ').slice(1).join(' ')}
             </span>
           </h3>
@@ -86,7 +86,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Description Block */}
           {member.description && (
             <div className="relative mb-6 border-l-2 border-[#FFAA00] pl-4">
-              <p className="smatch-gradient-text bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-sm font-light leading-relaxed md:text-base">
+              <p className="text-gray-300 font-sans text-sm font-light leading-relaxed md:text-base">
                 &ldquo;{member.description}&rdquo;
               </p>
             </div>
@@ -226,7 +226,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
           </span>
           <h2 className="font-heading text-4xl font-black uppercase tracking-tighter text-white md:text-6xl">
             {title.split(' ')[0]}{' '}
-            <span className="smatch-gradient-text bg-gradient-to-r from-white to-gray-600 bg-clip-text">
+            <span className="text-gray-300">
               {title.split(' ').slice(1).join(' ')}
             </span>
           </h2>
@@ -258,7 +258,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
                     height={150}
                   />
                 </div>
-                <p className="smatch-gradient-text my-auto bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text pt-20 text-justify font-sans text-lg font-light leading-relaxed md:text-xl">
+                <p className="text-gray-300 my-auto pt-20 text-justify font-sans text-lg font-light leading-relaxed md:text-xl">
                   {quoteText}
                 </p>
                 <div className="relative z-10 my-auto flex h-full flex-col justify-end">
