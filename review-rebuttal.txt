@@ -1,0 +1,1 @@
+The code review mentioned that getProjectJsonLd uses a Project schema, which is incorrect. However, inspecting src/utilities/jsonLd.ts reveals that getProjectJsonLd actually explicitly generates an @type: 'Article' schema. So the feedback was incorrect.
