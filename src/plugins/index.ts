@@ -14,8 +14,33 @@ import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
-const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Smatch Digital` : 'Smatch Digital | Solutions WMS & Supply Chain'
+const generateTitle: GenerateTitle<Post | Page> = ({ doc, req }) => {
+  let title: any = doc?.title
+
+  const locale = req?.locale || 'fr'
+
+  // Handle case where title is an object containing locales
+  if (typeof title === 'object' && title !== null) {
+    title = title[locale] || title['fr'] || title['en'] || Object.values(title)[0]
+  }
+
+  // Handle case where title was previously stringified as JSON (can happen with localized field misconfigurations)
+  let safeParseCount = 0
+  while (typeof title === 'string' && title.trim().startsWith('{') && safeParseCount < 5) {
+    try {
+      const parsed = JSON.parse(title)
+      title = parsed[locale] || parsed['fr'] || parsed['en'] || Object.values(parsed)[0]
+      safeParseCount++
+    } catch (e) {
+      break // Not valid JSON
+    }
+  }
+
+  if (typeof title !== 'string' || !title) {
+    title = ''
+  }
+
+  return title ? `${title} | Smatch Digital` : 'Smatch Digital | Solutions WMS & Supply Chain'
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
