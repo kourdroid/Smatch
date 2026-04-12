@@ -86,7 +86,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Description Block */}
           {member.description && (
             <div className="relative mb-6 border-l-2 border-[#FFAA00] pl-4">
-              <p className="text-gray-300 font-sans text-sm font-light leading-relaxed md:text-base">
+              <p className="font-sans text-sm font-light leading-relaxed text-gray-300 md:text-base">
                 &ldquo;{member.description}&rdquo;
               </p>
             </div>
@@ -258,7 +258,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
                     height={150}
                   />
                 </div>
-                <p className="text-gray-300 my-auto pt-20 text-justify font-sans text-lg font-light leading-relaxed md:text-xl">
+                <p className="my-auto pt-20 text-justify font-sans text-lg font-light leading-relaxed text-gray-300 md:text-xl">
                   {quoteText}
                 </p>
                 <div className="relative z-10 my-auto flex h-full flex-col justify-end">

@@ -140,7 +140,7 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
           {/* Description Block (Moved back inside card as per request) */}
           <div className="relative mb-10 border-l-2 border-[#FFAA00] pl-6">
             {/* Text Quote (Font Sans / Inter) */}
-            <p className="text-gray-300 font-sans text-lg font-light leading-relaxed md:text-xl">
+            <p className="font-sans text-lg font-light leading-relaxed text-gray-300 md:text-xl">
               "{member.description}"
             </p>
           </div>
@@ -270,7 +270,7 @@ export default function TeamSection() {
               <div className="pointer-events-none absolute left-4 top-0 select-none font-sans text-[200px] font-black leading-none text-white/5 mix-blend-overlay">
                 <Image className='pointer-events-none select-none opacity-10 mix-blend-overlay  ' src="/assets/comma-first.svg" alt="" width={200} height={150} />
               </div>
-              <p className="text-gray-300 my-auto pt-20 text-justify font-sans text-lg font-light leading-relaxed md:text-xl">
+              <p className="my-auto pt-20 text-justify font-sans text-lg font-light leading-relaxed text-gray-300 md:text-xl">
                 Dans un contexte économique exigeant, Smatch Digital s'impose comme le partenaire opérationnel des PME marocaines.
                 <br />
                 Notre mission : élever les standards de la Supply Chain par des solutions concrètes et immédiates. <br /> Nous privilégions le pragmatisme et la proximité pour bâtir notre notoriété sur une seule exigence : l'excellence au service de votre performance.
