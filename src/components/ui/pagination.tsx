@@ -51,30 +51,41 @@ const PaginationLink = ({ className, isActive, disabled, size = 'icon', ...props
 
 const PaginationPrevious = ({
   className,
+  disabled,
   ...props
-}: React.ComponentProps<typeof PaginationLink>) => (
-  <PaginationLink
-    aria-label="Go to previous page"
-    className={cn('gap-1 pl-2.5', className)}
-    size="default"
-    {...props}
-  >
-    <ChevronLeft className="size-4" />
-    <span>Previous</span>
-  </PaginationLink>
-)
+}: React.ComponentProps<typeof PaginationLink>) => {
+  return (
+    // SEO benefit: 'rel="prev"' allows search engines to understand pagination sequences, improving crawlability of historical content.
+    <PaginationLink
+      aria-label="Go to previous page"
+      className={cn('gap-1 pl-2.5', className)}
+      size="default"
+      disabled={disabled}
+      rel={!disabled ? 'prev' : undefined}
+      {...props}
+    >
+      <ChevronLeft className="size-4" />
+      <span>Previous</span>
+    </PaginationLink>
+  )
+}
 
-const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>) => (
-  <PaginationLink
-    aria-label="Go to next page"
-    className={cn('gap-1 pr-2.5', className)}
-    size="default"
-    {...props}
-  >
-    <span>Next</span>
-    <ChevronRight className="size-4" />
-  </PaginationLink>
-)
+const PaginationNext = ({ className, disabled, ...props }: React.ComponentProps<typeof PaginationLink>) => {
+  return (
+    // SEO benefit: 'rel="next"' allows search engines to follow pagination sequences to index deeper pages.
+    <PaginationLink
+      aria-label="Go to next page"
+      className={cn('gap-1 pr-2.5', className)}
+      size="default"
+      disabled={disabled}
+      rel={!disabled ? 'next' : undefined}
+      {...props}
+    >
+      <span>Next</span>
+      <ChevronRight className="size-4" />
+    </PaginationLink>
+  )
+}
 
 const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (
   <span

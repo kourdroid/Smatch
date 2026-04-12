@@ -80,34 +80,34 @@ export default async function Actualite({ params: paramsPromise }: Args) {
   }) : 'Récemment'
 
   return (
-    <div className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
+    <div className="min-h-screen bg-smatch-black py-32 text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black">
       <PayloadRedirects disableNotFound url={url} />
       {faqSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
 
       {/* 3-Column Dashboard Layout */}
-      <div className="container grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="container grid grid-cols-1 gap-12 lg:grid-cols-12">
         
         {/* LEFT COLUMN: Navigation & Categories */}
-        <aside className="hidden lg:block lg:col-span-2">
+        <aside className="hidden lg:col-span-2 lg:block">
           <div className="sticky top-32 space-y-12">
             <Link 
               href="/actualites"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-smatch-charcoal bg-[#0a0a0a] text-smatch-text-secondary hover:text-white hover:border-smatch-gold transition-colors duration-300 font-mono text-xs uppercase tracking-widest"
+              className="inline-flex items-center gap-2 rounded-xl border border-smatch-charcoal bg-[#0a0a0a] px-4 py-2 font-mono text-xs uppercase tracking-widest text-smatch-text-secondary transition-colors duration-300 hover:border-smatch-gold hover:text-white"
             >
-              <ArrowLeft className="w-3.5 h-3.5" />
+              <ArrowLeft className="size-3.5" />
               Retour
             </Link>
 
             <div>
-              <h3 className="font-heading text-lg text-white mb-6 border-b border-smatch-charcoal pb-4">Rechercher par Catégorie</h3>
+              <h3 className="mb-6 border-b border-smatch-charcoal pb-4 font-heading text-lg text-white">Rechercher par Catégorie</h3>
               <ul className="space-y-3">
                 {allCategories.map((c, i) => (
                   <li key={i}>
-                    <Link href={`/actualites`} className="flex items-center justify-between group">
-                      <span className="font-sans text-sm text-smatch-text-secondary group-hover:text-smatch-gold transition-colors">{c.title}</span>
-                      <ChevronRight className="w-3.5 h-3.5 text-smatch-charcoal group-hover:text-smatch-gold group-hover:translate-x-1 transition-all" />
+                    <Link href={`/actualites`} className="group flex items-center justify-between">
+                      <span className="font-sans text-sm text-smatch-text-secondary transition-colors group-hover:text-smatch-gold">{c.title}</span>
+                      <ChevronRight className="size-3.5 text-smatch-charcoal transition-all group-hover:translate-x-1 group-hover:text-smatch-gold" />
                     </Link>
                   </li>
                 ))}
@@ -122,38 +122,38 @@ export default async function Actualite({ params: paramsPromise }: Args) {
             
             {/* Hero Image */}
             {post.heroImage && typeof post.heroImage !== 'string' && (
-              <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden border border-smatch-charcoal bg-[#0a0a0a] relative mb-10">
+              <div className="relative mb-10 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-smatch-charcoal bg-[#0a0a0a]">
                 <Media resource={post.heroImage} fill imgClassName="object-cover w-full h-full" />
               </div>
             )}
 
             {/* Header Content */}
             <header className="mb-10 border-b border-smatch-charcoal pb-10">
-              <div className="flex items-center gap-4 text-xs font-mono uppercase tracking-widest text-smatch-text-secondary mb-6">
-                <span className="text-smatch-gold flex items-center gap-2">
-                   <span className="w-1.5 h-1.5 rounded-full bg-smatch-gold" />
+              <div className="mb-6 flex items-center gap-4 font-mono text-xs uppercase tracking-widest text-smatch-text-secondary">
+                <span className="flex items-center gap-2 text-smatch-gold">
+                   <span className="size-1.5 rounded-full bg-smatch-gold" />
                    {catTitle}
                 </span>
-                <span className="w-1 h-3 border-l border-smatch-charcoal" />
-                <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> {publishedDate}</span>
-                <span className="w-1 h-3 border-l border-smatch-charcoal" />
-                <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> {post.estimatedReadTime || 5} min read</span>
+                <span className="h-3 w-1 border-l border-smatch-charcoal" />
+                <span className="flex items-center gap-1.5"><Calendar className="size-3.5" /> {publishedDate}</span>
+                <span className="h-3 w-1 border-l border-smatch-charcoal" />
+                <span className="flex items-center gap-1.5"><Clock className="size-3.5" /> {post.estimatedReadTime || 5} min read</span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-8 text-left">
+              <h1 className="mb-8 text-left font-heading text-4xl leading-[1.1] text-white md:text-5xl lg:text-6xl">
                 {post.title}
               </h1>
 
               {/* Source/Origin Callout inline */}
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full border border-smatch-gold bg-smatch-gold/10 flex items-center justify-center text-smatch-gold">
+                <div className="flex size-10 items-center justify-center rounded-full border border-smatch-gold bg-smatch-gold/10 text-smatch-gold">
                   {post.source === 'ai-generated' ? 'IA' : 'ED'}
                 </div>
                 <div>
-                  <p className="text-white font-sans text-sm">
+                  <p className="font-sans text-sm text-white">
                     {post.source === 'ai-generated' ? 'Smatch.AI Intelligence' : 'Éditorial Smatch'}
                   </p>
-                  <p className="text-smatch-text-secondary text-xs font-mono uppercase tracking-widest">
+                  <p className="font-mono text-xs uppercase tracking-widest text-smatch-text-secondary">
                     {post.source === 'ai-generated' ? 'Généré Automatiquement' : 'Rédigé'}
                   </p>
                 </div>
@@ -162,40 +162,40 @@ export default async function Actualite({ params: paramsPromise }: Args) {
 
             {/* Excerpt */}
             {post.excerpt && (
-              <p className="text-xl font-sans text-white/90 leading-relaxed mb-10 font-light text-left pl-6 border-l-2 border-smatch-gold bg-gradient-to-r from-smatch-surface/50 to-transparent py-4 rounded-r-lg">
+              <p className="mb-10 rounded-r-lg border-l-2 border-smatch-gold bg-gradient-to-r from-smatch-surface/50 to-transparent py-4 pl-6 text-left font-sans text-xl font-light leading-relaxed text-white/90">
                 {post.excerpt}
               </p>
             )}
 
             {/* Formatted Lexical Output Wrapper (Left aligned) */}
-            <div className="prose prose-lg dark:prose-invert max-w-none text-left
-                            prose-headings:font-heading prose-headings:text-white prose-headings:font-normal prose-h2:text-3xl prose-h3:text-2xl prose-headings:mt-12
-                            prose-p:font-sans prose-p:text-smatch-text-secondary prose-p:leading-relaxed prose-p:font-light
+            <div className="prose prose-lg max-w-none text-left dark:prose-invert
+                            prose-headings:mt-12 prose-headings:font-heading prose-headings:font-normal prose-headings:text-white prose-h2:text-3xl prose-h3:text-2xl
+                            prose-p:font-sans prose-p:font-light prose-p:leading-relaxed prose-p:text-smatch-text-secondary
                             prose-a:text-smatch-gold prose-a:no-underline hover:prose-a:underline
-                            prose-strong:text-white prose-strong:font-normal
-                            prose-li:text-smatch-text-secondary prose-ul:list-disc prose-ul:pl-6
-                            prose-blockquote:border-l-smatch-charcoal prose-blockquote:bg-transparent prose-blockquote:py-2 prose-blockquote:px-0 prose-blockquote:font-sans prose-blockquote:italic prose-blockquote:text-white/80
-                            [&>img]:rounded-xl [&>img]:border [&>img]:border-smatch-charcoal [&>img]:w-full">
+                            prose-blockquote:border-l-smatch-charcoal prose-blockquote:bg-transparent
+                            prose-blockquote:px-0 prose-blockquote:py-2 prose-blockquote:font-sans
+                            prose-blockquote:italic prose-blockquote:text-white/80 prose-strong:font-normal prose-strong:text-white prose-ul:list-disc prose-ul:pl-6 prose-li:text-smatch-text-secondary
+                            [&>img]:w-full [&>img]:rounded-xl [&>img]:border [&>img]:border-smatch-charcoal">
               <RichText data={post.body} enableGutter={false} />
             </div>
 
-            <div className="w-full h-px bg-smatch-charcoal mt-20 mb-12" />
+            <div className="mb-12 mt-20 h-px w-full bg-smatch-charcoal" />
 
             {/* FAQ Section */}
             {post.faqEntries && post.faqEntries.length > 0 && (
               <div className="mt-12">
-                <h2 className="text-2xl font-heading text-white mb-6 flex items-center gap-3">
-                  <HelpCircle className="w-5 h-5 text-smatch-gold" />
+                <h2 className="mb-6 flex items-center gap-3 font-heading text-2xl text-white">
+                  <HelpCircle className="size-5 text-smatch-gold" />
                   Questions Fréquentes
                 </h2>
                 <div className="space-y-3">
                   {post.faqEntries.map((faq: any, i: number) => (
-                    <details key={i} className="group bg-[#0a0a0a] border border-smatch-charcoal rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-all duration-300 hover:border-smatch-gold/30">
-                      <summary className="cursor-pointer p-5 text-lg font-heading text-white flex justify-between items-center transition-colors">
+                    <details key={i} className="group overflow-hidden rounded-xl border border-smatch-charcoal bg-[#0a0a0a] transition-all duration-300 hover:border-smatch-gold/30 [&_summary::-webkit-details-marker]:hidden">
+                      <summary className="flex cursor-pointer items-center justify-between p-5 font-heading text-lg text-white transition-colors">
                         <span className="pr-4">{faq.question}</span>
-                        <ChevronRight className="shrink-0 w-5 h-5 text-smatch-text-secondary group-open:rotate-90 group-open:text-smatch-gold transition-transform duration-300" />
+                        <ChevronRight className="size-5 shrink-0 text-smatch-text-secondary transition-transform duration-300 group-open:rotate-90 group-open:text-smatch-gold" />
                       </summary>
-                      <div className="px-5 pb-5 text-smatch-text-secondary font-sans leading-relaxed text-left text-sm">
+                      <div className="px-5 pb-5 text-left font-sans text-sm leading-relaxed text-smatch-text-secondary">
                         {faq.answer}
                       </div>
                     </details>
@@ -205,10 +205,10 @@ export default async function Actualite({ params: paramsPromise }: Args) {
             )}
 
             {/* Footer Tags */}
-            <div className="flex flex-wrap items-center justify-start gap-2 mt-12 pt-8 border-t border-smatch-charcoal">
-               <span className="text-xs font-mono uppercase tracking-widest text-smatch-text-secondary mr-2">Mots-clés :</span>
+            <div className="mt-12 flex flex-wrap items-center justify-start gap-2 border-t border-smatch-charcoal pt-8">
+               <span className="mr-2 font-mono text-xs uppercase tracking-widest text-smatch-text-secondary">Mots-clés :</span>
                {post.tags?.map((item: any, i: number) => (
-                  <span key={i} className="px-3 py-1 bg-smatch-surface border border-smatch-charcoal text-smatch-text-secondary text-xs font-mono uppercase tracking-widest rounded-full hover:border-smatch-gold hover:text-white transition-colors cursor-default">
+                  <span key={i} className="cursor-default rounded-full border border-smatch-charcoal bg-smatch-surface px-3 py-1 font-mono text-xs uppercase tracking-widest text-smatch-text-secondary transition-colors hover:border-smatch-gold hover:text-white">
                     #{item.tag}
                   </span>
                ))}
@@ -218,9 +218,9 @@ export default async function Actualite({ params: paramsPromise }: Args) {
         </main>
 
         {/* RIGHT COLUMN: Related / Latest News */}
-        <aside className="hidden lg:block lg:col-span-3">
+        <aside className="hidden lg:col-span-3 lg:block">
           <div className="sticky top-32">
-            <h3 className="font-heading text-lg text-white mb-6 border-b border-smatch-charcoal pb-4">Dernières Actualités</h3>
+            <h3 className="mb-6 border-b border-smatch-charcoal pb-4 font-heading text-lg text-white">Dernières Actualités</h3>
             <div className="flex flex-col gap-6">
               {latestPosts.map((doc, idx) => {
                 const docCat = doc.categories?.[0]
@@ -231,19 +231,19 @@ export default async function Actualite({ params: paramsPromise }: Args) {
                     href={`/actualites/${doc.slug}`}
                     className="group flex flex-col gap-3"
                   >
-                    <div className="w-full aspect-[16/10] rounded-xl overflow-hidden border border-smatch-charcoal bg-[#0a0a0a] relative">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-smatch-charcoal bg-[#0a0a0a]">
                       {doc.heroImage && typeof doc.heroImage !== 'string' ? (
                         <Media resource={doc.heroImage} fill imgClassName="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out" />
                       ) : (
-                        <div className="w-full h-full bg-smatch-black/50" />
+                        <div className="size-full bg-smatch-black/50" />
                       )}
-                      <div className="absolute top-2 left-2 z-10 bg-smatch-black/80 backdrop-blur-md border border-smatch-charcoal px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-widest text-smatch-text-primary">
+                      <div className="absolute left-2 top-2 z-10 rounded border border-smatch-charcoal bg-smatch-black/80 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-smatch-text-primary backdrop-blur-md">
                         {doc.estimatedReadTime || 5} min
                       </div>
                     </div>
                     <div>
-                      <p className="text-xs font-mono text-smatch-gold uppercase tracking-widest mb-1.5">{docCatTitle}</p>
-                      <h4 className="text-white font-heading text-base leading-snug group-hover:text-smatch-gold transition-colors line-clamp-2">
+                      <p className="mb-1.5 font-mono text-xs uppercase tracking-widest text-smatch-gold">{docCatTitle}</p>
+                      <h4 className="line-clamp-2 font-heading text-base leading-snug text-white transition-colors group-hover:text-smatch-gold">
                         {doc.title}
                       </h4>
                     </div>
