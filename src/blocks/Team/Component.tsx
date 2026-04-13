@@ -95,20 +95,28 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Socials (Phosphor Icons) */}
           <div className="flex gap-3">
             {member.linkedin && (
-              <Link
-                href={member.linkedin}
-                className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black"
-              >
-                <LinkedinLogo size={20} weight="duotone" />
-              </Link>
+              <>
+                {/* SEO: Add aria-label to icon-only link for crawlability and accessibility */}
+                <Link
+                  href={member.linkedin}
+                  aria-label={`LinkedIn profile for ${member.name}`}
+                  className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black"
+                >
+                  <LinkedinLogo size={20} weight="duotone" />
+                </Link>
+              </>
             )}
             {member.email && (
-              <Link
-                href={`mailto:${member.email}`}
-                className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black"
-              >
-                <EnvelopeSimple size={20} weight="duotone" />
-              </Link>
+              <>
+                {/* SEO: Add aria-label to icon-only link for crawlability and accessibility */}
+                <Link
+                  href={`mailto:${member.email}`}
+                  aria-label={`Email ${member.name}`}
+                  className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black"
+                >
+                  <EnvelopeSimple size={20} weight="duotone" />
+                </Link>
+              </>
             )}
           </div>
         </div>
