@@ -10,6 +10,8 @@ import Link from 'next/link'
 import { ArrowLeft, Clock, Calendar, ArrowUpRight, HelpCircle, ChevronRight } from 'lucide-react'
 
 import { generateMeta } from '@/utilities/generateMeta'
+import { getProjectJsonLd } from '@/utilities/jsonLd'
+import { getServerSideURL } from '@/utilities/getURL'
 
 export async function generateStaticParams() {
   const payload = await getPayload()
@@ -79,8 +81,34 @@ export default async function Actualite({ params: paramsPromise }: Args) {
     day: 'numeric', month: 'long', year: 'numeric'
   }) : 'Récemment'
 
+  const serverUrl = getServerSideURL()
+  const articleUrl = `${serverUrl}/${locale || 'fr'}${url}`
+
+  // Extract absolute image URL for JSON-LD
+  let imageUrl: string | undefined
+  if (post.heroImage && typeof post.heroImage === 'object' && post.heroImage.url) {
+    imageUrl = post.heroImage.url.startsWith('http')
+      ? post.heroImage.url
+      : `${serverUrl}${post.heroImage.url}`
+  } else if (post.meta?.image && typeof post.meta.image === 'object' && post.meta.image.url) {
+    imageUrl = post.meta.image.url.startsWith('http')
+      ? post.meta.image.url
+      : `${serverUrl}${post.meta.image.url}`
+  }
+
+  // Article structured data for SEO indexing
+  const articleJsonLd = getProjectJsonLd({
+    name: post.title,
+    description: post.excerpt || post.meta?.description || '',
+    url: articleUrl,
+    datePublished: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
+    image: imageUrl,
+  })
+
   return (
     <div className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
+      {/* Search Engine Optimization Structured Data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <PayloadRedirects disableNotFound url={url} />
       {faqSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
