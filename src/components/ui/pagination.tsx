@@ -57,6 +57,8 @@ const PaginationPrevious = ({
     aria-label="Go to previous page"
     className={cn('gap-1 pl-2.5', className)}
     size="default"
+    // SEO: Helps search engines understand the sequential relationship between paginated URLs
+    rel="prev"
     {...props}
   >
     <ChevronLeft className="size-4" />
@@ -69,6 +71,8 @@ const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof Pag
     aria-label="Go to next page"
     className={cn('gap-1 pr-2.5', className)}
     size="default"
+    // SEO: Helps search engines understand the sequential relationship between paginated URLs
+    rel="next"
     {...props}
   >
     <span>Next</span>
