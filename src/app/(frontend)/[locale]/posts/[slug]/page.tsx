@@ -13,6 +13,8 @@ import { PostHero } from '@/heros/PostHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { getBreadcrumbJsonLd, getProjectJsonLd } from '@/utilities/jsonLd'
+import { getServerSideURL } from '@/utilities/getURL'
 
 export async function generateStaticParams() {
   const payload = await getPayload()
@@ -40,18 +42,49 @@ export async function generateStaticParams() {
 type Args = {
   params: Promise<{
     slug?: string
+    locale?: string
   }>
 }
 
 export default async function Post({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug = '' } = await paramsPromise
+  const { slug = '', locale = 'en' } = await paramsPromise
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
   const url = '/posts/' + decodedSlug
   const post = await queryPostBySlug({ slug: decodedSlug })
 
   if (!post) return <PayloadRedirects url={url} />
+
+  // Structured Data (JSON-LD)
+  const serverUrl = getServerSideURL()
+  const postUrl = `${serverUrl}/${locale}${url}`
+
+  const breadcrumbJsonLd = getBreadcrumbJsonLd([
+    { name: 'Home', url: `${serverUrl}/${locale}` },
+    { name: locale === 'fr' ? 'Articles' : 'Posts', url: `${serverUrl}/${locale}/posts` },
+    { name: post.title, url: postUrl },
+  ])
+
+  // Extract plain text description from meta or fallback
+  const description = post.meta?.description || ''
+
+  // Extract image URL from heroImage
+  const imageUrl =
+    typeof post.heroImage === 'object' &&
+    post.heroImage !== null &&
+    'url' in post.heroImage &&
+    post.heroImage.url
+      ? post.heroImage.url
+      : null
+
+  const articleJsonLd = getProjectJsonLd({
+    name: post.title,
+    description: description,
+    url: postUrl,
+    datePublished: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
+    image: imageUrl,
+  })
 
   return (
     <article className="py-16">
@@ -62,6 +95,15 @@ export default async function Post({ params: paramsPromise }: Args) {
 
       {draft && <LivePreviewListener />}
 
+      {/* Search Engine Optimization Structured Data - Adds Article and Breadcrumb schemas to improve indexation and search result display */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <PostHero post={post} />
 
       <div className="flex flex-col items-center gap-4 pt-8">
