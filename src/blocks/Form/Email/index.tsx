@@ -25,10 +25,13 @@ export const Email: React.FC<
           </span>
         )}
       </Label>
+      {/* SEO/A11y: Link input to error message via aria attributes for semantic error association */}
       <Input
         defaultValue={defaultValue}
         id={name}
         type="text"
+        aria-invalid={!!errors[name]}
+        aria-describedby={errors[name] ? `error-${name}` : undefined}
         {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
       />
 

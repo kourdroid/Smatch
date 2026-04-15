@@ -27,10 +27,13 @@ export const Textarea: React.FC<
         )}
       </Label>
 
+      {/* SEO/A11y: Link input to error message via aria attributes for semantic error association */}
       <TextAreaComponent
         defaultValue={defaultValue}
         id={name}
         rows={rows}
+        aria-invalid={!!errors[name]}
+        aria-describedby={errors[name] ? `error-${name}` : undefined}
         {...register(name, { required: required })}
       />
 

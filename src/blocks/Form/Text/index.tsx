@@ -25,7 +25,15 @@ export const Text: React.FC<
           </span>
         )}
       </Label>
-      <Input defaultValue={defaultValue} id={name} type="text" {...register(name, { required })} />
+      {/* SEO/A11y: Link input to error message via aria attributes for semantic error association */}
+      <Input
+        defaultValue={defaultValue}
+        id={name}
+        type="text"
+        aria-invalid={!!errors[name]}
+        aria-describedby={errors[name] ? `error-${name}` : undefined}
+        {...register(name, { required })}
+      />
       {errors[name] && <Error name={name} />}
     </Width>
   )
