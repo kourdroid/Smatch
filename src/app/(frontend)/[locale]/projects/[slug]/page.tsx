@@ -169,9 +169,10 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-12">
                 <div>
-                  <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-[#FFAA00]">
+                  {/* SEO: Changed from h3 to h2 to maintain proper heading hierarchy (H1 -> H2) */}
+                  <h2 className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-[#FFAA00]">
                     {locale === 'fr' ? 'Spécifications' : 'Specifications'}
-                  </h3>
+                  </h2>
                   <dl className="space-y-6 divide-y divide-white/10 border-t border-white/10 pt-6">
                     {formattedDate && (
                       <div className="flex justify-between py-2">
