@@ -113,7 +113,8 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
               {/* 3D PLUG IMAGE */}
               <div className="pointer-events-none absolute inset-0 -left-20 z-30 md:-left-20 md:-top-20">
                 <div className="relative transition-transform duration-700 ease-out group-hover:scale-110">
-                  <Image className='relative w-[280px] md:w-[320px]' alt='' src="/assets/ecosystem/plug.webp" width={400} height={400} />
+                {/* SEO: Descriptive alt text for structural ecosystem image to improve image search indexation */}
+                <Image className='relative w-[280px] md:w-[320px]' alt="Connectivité et intégration de l'écosystème Smatch" src="/assets/ecosystem/plug.webp" width={400} height={400} />
                   <div className='absolute left-20 top-20 z-0 size-[100px] rounded-full bg-smatch-gold opacity-50 mix-blend-screen blur-[80px] transition-opacity duration-700 group-hover:opacity-80'></div>
                 </div>
               </div>
@@ -137,7 +138,8 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
             {/* 3D Asset - z-20 above content */}
             <div className="pointer-events-none absolute -right-16 -top-20 z-20 md:-bottom-24 md:-right-20">
               <div className="relative transition-transform duration-700 ease-out group-hover:scale-110">
-                <Image className="w-[180px] md:w-[350px]" alt='' src="/assets/ecosystem/support.png" width={300} height={300} />
+                {/* SEO: Descriptive alt text for structural ecosystem image to improve image search indexation */}
+                <Image className="w-[180px] md:w-[350px]" alt="Interface de support et chatbot" src="/assets/ecosystem/support.png" width={300} height={300} />
                 <div className='absolute left-10 top-10 -z-10 size-[80px] rounded-full bg-smatch-gold opacity-30 blur-[60px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
@@ -177,7 +179,8 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
           <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-7 md:col-end-9 md:row-start-1 md:row-end-5">
             <div className="pointer-events-none absolute -right-12 top-1/4 z-20 md:bottom-20 md:right-[-40px] md:top-auto">
               <div className="relative transition-transform duration-700 ease-out group-hover:scale-110">
-                <Image className="w-[140px] md:w-[250px]" alt='' src="/assets/ecosystem/api.png" width={300} height={300} />
+                {/* SEO: Descriptive alt text for structural ecosystem image to improve image search indexation */}
+                <Image className="w-[140px] md:w-[250px]" alt="Architecture API First et configuration" src="/assets/ecosystem/api.png" width={300} height={300} />
                 <div className='absolute left-10 top-10 -z-10 size-[60px] rounded-full bg-smatch-gold opacity-30 blur-[50px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
@@ -224,7 +227,8 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
           <div className="group relative flex w-full justify-center overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/50 md:col-start-3 md:col-end-7 md:row-start-3 md:row-end-5">
             <div className="pointer-events-none inset-0 left-10 z-20 flex w-full md:left-4">
               <div className="relative flex items-center justify-center">
-                <Image className="w-[160px] opacity-90 transition-transform duration-700 ease-out group-hover:scale-110 md:w-[250px]" alt='' src="/assets/ecosystem/at.png" width={250} height={250} />
+                {/* SEO: Descriptive alt text for structural ecosystem image to improve image search indexation */}
+                <Image className="w-[160px] opacity-90 transition-transform duration-700 ease-out group-hover:scale-110 md:w-[250px]" alt="Intelligence fondamentale et Neural Engine" src="/assets/ecosystem/at.png" width={250} height={250} />
                 <div className='absolute left-14 top-14 -z-10 size-[80px] rounded-full bg-smatch-gold opacity-30 blur-[60px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
@@ -249,7 +253,8 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
 
             <div className="pointer-events-none absolute -bottom-10 -right-16 z-20 md:-bottom-20 md:-right-10">
               <div className="relative transition-transform duration-700 ease-out group-hover:scale-110">
-                <Image className='relative w-[280px] md:w-[350px]' alt='' src="/assets/ecosystem/chart.png" width={400} height={400} />
+                {/* SEO: Descriptive alt text for structural ecosystem image to improve image search indexation */}
+                <Image className='relative w-[280px] md:w-[350px]' alt="Analyse et optimisation des performances" src="/assets/ecosystem/chart.png" width={400} height={400} />
                 <div className='absolute right-20 top-20 -z-10 size-[100px] rounded-full bg-smatch-gold opacity-30 blur-[70px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
@@ -269,7 +274,8 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
           <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-5 md:col-end-9 md:row-start-5 md:row-end-7">
             <div className="pointer-events-none absolute -bottom-12 -right-12 z-20 md:-bottom-20 md:-right-20">
               <div className="relative transition-transform duration-700 ease-out group-hover:scale-110">
-                <Image className='relative w-[220px] -rotate-12 md:w-[380px]' alt='' src="/assets/ecosystem/joystick.png" width={300} height={300} />
+                {/* SEO: Descriptive alt text for structural ecosystem image to improve image search indexation */}
+                <Image className='relative w-[220px] -rotate-12 md:w-[380px]' alt="Contrôle total et pilotage" src="/assets/ecosystem/joystick.png" width={300} height={300} />
                 <div className='absolute right-20 top-20 -z-10 size-[100px] rounded-full bg-smatch-gold opacity-30 blur-[70px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
