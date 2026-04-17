@@ -56,7 +56,7 @@ export default async function Actualite({ params: paramsPromise }: Args) {
   if (!post) return <PayloadRedirects url={url} />
 
   // Fetch Sidebars Data
-  const latestPosts = await queryLatestActualites({ excludeId: post.id, locale })
+  const latestPosts = await queryLatestActualites({ excludeId: String(post.id), locale })
   const allCategories = await queryCategories({ locale })
 
   // Schema
@@ -106,7 +106,8 @@ export default async function Actualite({ params: paramsPromise }: Args) {
   })
 
   return (
-    <div className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
+    <main className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
+      {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
       {/* Search Engine Optimization Structured Data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <PayloadRedirects disableNotFound url={url} />
@@ -283,7 +284,7 @@ export default async function Actualite({ params: paramsPromise }: Args) {
         </aside>
 
       </div>
-    </div>
+    </main>
   )
 }
 
