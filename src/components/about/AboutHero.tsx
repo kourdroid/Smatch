@@ -28,7 +28,8 @@ export function AboutHero({
           fill="#FFE6A1"
         />
         <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFAA00" />
-        <Image className="object-cover " src={'/assets/hero/AboutHero.webp'} alt="" fill priority />
+        {/* SEO: Add descriptive alt text for the background hero image to improve image search indexation and accessibility */}
+        <Image className="object-cover " src={'/assets/hero/AboutHero.webp'} alt="Équipe SMATCH Digital en pleine collaboration" fill priority />
         <div className="absolute left-1/2 top-1/2 size-[80vw] max-h-[800px] max-w-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/10 blur-[100px]" />
       </div>
 
