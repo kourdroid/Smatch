@@ -172,8 +172,23 @@ export default async function ActualitesPage(props: {
 }
 
 export function generateMetadata(): Metadata {
+  const defaultDesc = 'Insights et analyses générés par notre intelligence artificielle sur la Supply Chain et la transformation digitale.';
+  
   return {
     title: 'Actualités | Smatch',
-    description: 'Insights et analyses générés par notre intelligence artificielle sur la Supply Chain et la transformation digitale.',
+    description: defaultDesc,
+    openGraph: {
+      title: 'Actualités | Smatch',
+      description: defaultDesc,
+      url: '/fr/actualites', 
+    },
+    alternates: {
+      canonical: '/fr/actualites',
+      languages: {
+        en: '/en/actualites',
+        fr: '/fr/actualites',
+        'x-default': '/fr/actualites',
+      },
+    },
   }
 }

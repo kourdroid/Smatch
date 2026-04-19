@@ -14,7 +14,7 @@ import { Antonio, Inter, JetBrains_Mono } from 'next/font/google'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
-import { getOrganizationJsonLd, getWebSiteJsonLd } from '@/utilities/jsonLd'
+import { getOrganizationJsonLd, getWebSiteJsonLd, getLocalBusinessJsonLd } from '@/utilities/jsonLd'
 import { IntroLoader } from '@/components/Loader/IntroLoader'
 import { i18nConfig, type Locale, isValidLocale } from '@/utilities/i18n'
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -88,6 +88,12 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(getWebSiteJsonLd()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getLocalBusinessJsonLd()),
           }}
         />
       </head>

@@ -27,6 +27,10 @@ export default function robots(): MetadataRoute.Robots {
                     '/api/graphql-playground',
                 ],
             },
+            {
+                userAgent: ['GPTBot', 'ClaudeBot', 'PerplexityBot', 'Google-Extended', 'OAI-SearchBot'],
+                allow: '/',
+            },
         ],
         sitemap: `${baseUrl}/sitemap.xml`,
     }

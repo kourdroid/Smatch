@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "skills": {
+    "alert-manager": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "9da7170e950405f9261d4d4b774e4c7bb7dad3cdf4686f624a8bbae746ff321c"
+    },
+    "backlink-analyzer": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "3e4b699322e9aa74bf6a39fdff204bc858c1fa1ec3e31c83782a3f297b7666d6"
+    },
+    "competitor-analysis": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "2082b3e615afc6464310ceab65c2156c9fc82075ca7b3cef80aa4f1b5bd172b1"
+    },
+    "content-gap-analysis": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "7a9b6b8d66a63cf48b1ff01e62cf2ad142e0c2a8101cad44430d7be0a1988982"
+    },
+    "content-quality-auditor": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "a18aaebc8580e815af19dd13fe693d994a6f913a920090022b9fba163abd24f7"
+    },
+    "content-refresher": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "0e9a34adc6f2b697a937cd639c7dd9866f3845f24f1b731122dcc843d4fafc3e"
+    },
+    "domain-authority-auditor": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "a5eb4f87b1ea54a099efa6f5efee5d28cd8fc7031a1fe1c8355b40967f63e15f"
+    },
+    "entity-optimizer": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "6d322f4cc7f70459648d4bf221276464a3948474c057ed775eb27c90aeb1931b"
+    },
+    "geo-content-optimizer": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "2b434b13d9a26dc761895e6629d19e925a6c34a6cc3208c0f4da40235a28ddbe"
+    },
+    "internal-linking-optimizer": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "e54a756a30941da678e970698c115be61d434b0e01c6ea344c2facf9a22d49a0"
+    },
+    "keyword-research": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "203173569c923fbcb46363500c438f659c18ea478b6e21ccf66e277866b15d00"
+    },
+    "memory-management": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "cf95be34c55a110f56cb8d317aac48de614cd1a7d05e33f156869a926c47df6f"
+    },
+    "meta-tags-optimizer": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "b7dde4ba97581334ce0be2d7503d76416fb26f3fba6ce45a298c5562a0e5773a"
+    },
+    "on-page-seo-auditor": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "fb47bd5edb67f0a211e8d0885224dece30927aca1323f8767238b1aca478ab64"
+    },
+    "performance-reporter": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "de80d652befa5fb67b207f7d830cd9d74872a5ec14f2cfcd115fecb519cc4d48"
+    },
+    "rank-tracker": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "a859c0711147d51bcd9e8f3d4c3d3b58e5cc83c7d43fbcebcd0b24572d99effa"
+    },
+    "schema-markup-generator": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "50a44f421b0191fc805cb94d6748c624eaff85017b75e3d2d03fe0b42419d058"
+    },
+    "seo-content-writer": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "41c7ea10af1046bfabe379782c85d158e2ca38c1d11e21cf7a84479e44005245"
+    },
+    "serp-analysis": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "4d4a9e7d0d847057caebc24ba94eddc4b8d494fe30bdeb747938d1d2288b104f"
+    },
+    "technical-seo-checker": {
+      "source": "aaron-he-zhu/seo-geo-claude-skills",
+      "sourceType": "github",
+      "computedHash": "91f4c0e2926ff53af9c711eab35fae17d3d7cfc9fd987cfa67d8717261c9174c"
+    }
+  }
+}

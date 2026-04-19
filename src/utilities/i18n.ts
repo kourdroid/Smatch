@@ -7,7 +7,7 @@
 
 export const i18nConfig = {
     locales: ['en', 'fr'] as const,
-    defaultLocale: 'en' as const,
+    defaultLocale: 'fr' as const,
     fallback: true,
 } as const
 

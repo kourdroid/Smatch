@@ -10,7 +10,7 @@ import Link from 'next/link'
 import { ArrowLeft, Clock, Calendar, ArrowUpRight, HelpCircle, ChevronRight } from 'lucide-react'
 
 import { generateMeta } from '@/utilities/generateMeta'
-import { getProjectJsonLd } from '@/utilities/jsonLd'
+import { getBlogPostingJsonLd, getFAQPageJsonLd, getProjectJsonLd } from '@/utilities/jsonLd'
 import { getServerSideURL } from '@/utilities/getURL'
 
 export async function generateStaticParams() {
@@ -61,18 +61,17 @@ export default async function Actualite({ params: paramsPromise }: Args) {
 
   // Schema
   const hasFaqs = post.faqEntries && Array.isArray(post.faqEntries) && post.faqEntries.length > 0
-  const faqSchema = hasFaqs ? {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: post.faqEntries?.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  } : null
+  const faqSchema = hasFaqs ? getFAQPageJsonLd(post.faqEntries) : null
+
+  const blogSchema = getBlogPostingJsonLd({
+    headline: post.title,
+    description: post.excerpt || '',
+    url: `${getServerSideURL()}/fr/actualites/${post.slug}`,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    image: post.heroImage && typeof post.heroImage === 'object' ? post.heroImage.url : null,
+    authorName: post.source === 'ai-generated' ? 'Smatch.AI' : 'Smatch Editorial'
+  })
 
   // Metadata
   const cat = post.categories?.[0]
@@ -114,6 +113,7 @@ export default async function Actualite({ params: paramsPromise }: Args) {
       {faqSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }} />
 
       {/* 3-Column Dashboard Layout */}
       <div className="container grid grid-cols-1 lg:grid-cols-12 gap-12">

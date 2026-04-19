@@ -15,7 +15,7 @@ import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc, req }) => {
-  let title: any = doc?.title
+  let title: any = doc?.title || doc?.name || (doc as any)?.hero?.title
 
   const locale = req?.locale || 'fr'
 
@@ -36,8 +36,19 @@ const generateTitle: GenerateTitle<Post | Page> = ({ doc, req }) => {
     }
   }
 
-  if (typeof title !== 'string' || !title) {
+  // Nested object failsafe
+  if (typeof title === 'object' && title !== null) {
+    title = typeof Object.values(title)[0] === 'string' ? Object.values(title)[0] : ''
+  }
+
+  if (typeof title !== 'string' || !title || title === '[object Object]') {
     title = ''
+  }
+
+  // Fallback if no valid title was found
+  if (title === '' && doc?.slug && typeof doc.slug === 'string') {
+    // Basic formatting of slug, eg: 'prolog-wms' -> 'Prolog WMS'
+    title = doc.slug.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase())
   }
 
   return title ? `${title} | Smatch Digital` : 'Smatch Digital | Solutions WMS & Supply Chain'

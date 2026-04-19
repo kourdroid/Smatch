@@ -21,12 +21,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'],
         lastModified: Date,
     ) => {
-        for (const locale of locales) {
-            const url = `${baseUrl}/${locale}${path === '/' ? '' : path}`
-            if (!seenUrls.has(url)) {
-                seenUrls.add(url)
-                entries.push({ url, lastModified, changeFrequency, priority })
-            }
+        const primaryUrl = `${baseUrl}/fr${path === '/' ? '' : path}`
+        const enUrl = `${baseUrl}/en${path === '/' ? '' : path}`
+
+        if (!seenUrls.has(primaryUrl)) {
+            seenUrls.add(primaryUrl)
+            entries.push({ 
+                url: primaryUrl, 
+                lastModified, 
+                changeFrequency, 
+                priority,
+                alternates: {
+                    languages: {
+                        en: enUrl,
+                        fr: primaryUrl,
+                        'x-default': primaryUrl,
+                    }
+                }
+            })
+            
+            seenUrls.add(enUrl)
+            entries.push({ 
+                url: enUrl, 
+                lastModified, 
+                changeFrequency, 
+                priority,
+                alternates: {
+                    languages: {
+                        en: enUrl,
+                        fr: primaryUrl,
+                        'x-default': primaryUrl,
+                    }
+                }
+            })
         }
     }
 
@@ -36,7 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     addEntry(entries, '/', 1.0, 'daily', new Date())
     addEntry(entries, '/solutions', 0.8, 'daily', new Date())
     addEntry(entries, '/projects', 0.8, 'daily', new Date())
-    addEntry(entries, '/posts', 0.8, 'daily', new Date())
+    addEntry(entries, '/actualites', 0.8, 'daily', new Date())
 
     try {
         const payload = await getPayload()
@@ -84,17 +111,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             }
         }
 
-        // 4. Blog posts
-        const posts = await payload.find({
-            collection: 'posts',
+        // 4. Actualites (News / Blog posts)
+        const actualites = await payload.find({
+            collection: 'actualites',
             depth: 0,
             limit: 1000,
             pagination: false,
             select: { slug: true, updatedAt: true },
         })
-        for (const post of posts.docs) {
-            if (post.slug) {
-                addEntry(entries, `/posts/${post.slug}`, 0.6, 'weekly', new Date(post.updatedAt))
+        for (const article of actualites.docs) {
+            if (article.slug) {
+                addEntry(entries, `/actualites/${article.slug}`, 0.6, 'weekly', new Date(article.updatedAt))
             }
         }
 

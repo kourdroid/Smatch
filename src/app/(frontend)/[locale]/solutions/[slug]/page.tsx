@@ -11,7 +11,7 @@ import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { i18nConfig } from '@/utilities/i18n'
 import { getServerSideURL } from '@/utilities/getURL'
-import { getBreadcrumbJsonLd, getServiceJsonLd } from '@/utilities/jsonLd'
+import { getBreadcrumbJsonLd, getServiceJsonLd, getSoftwareApplicationJsonLd } from '@/utilities/jsonLd'
 
 export async function generateStaticParams() {
   try {
@@ -89,6 +89,14 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
       : null,
   })
 
+  const softwareAppJsonLd = getSoftwareApplicationJsonLd({
+    name: title,
+    description: description || heroSubtitle || title,
+    url: pageUrl,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+  })
+
   return (
     <article className="min-h-screen bg-smatch-black">
       <PayloadRedirects disableNotFound url={url} />
@@ -101,6 +109,10 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
       />
 
       <SolutionsHero

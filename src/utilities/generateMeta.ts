@@ -39,9 +39,30 @@ export const generateMeta = async (args: {
 
   const ogImage = getImageURL(doc?.meta?.image)
 
-  const title = doc?.meta?.title
-    ? doc?.meta?.title + ' | Smatch Digital'
-    : 'Smatch Digital | Solutions WMS & Supply Chain'
+  let titleString = 'Smatch Digital | Solutions WMS & Supply Chain'
+  const rawTitle = doc?.meta?.title
+
+  if (rawTitle) {
+    if (typeof rawTitle === 'object') {
+      // JSON recursion guard: extract the correct locale string
+      titleString = rawTitle[locale as keyof typeof rawTitle] ?? rawTitle['fr'] ?? rawTitle['en'] ?? titleString
+      // Unwrap nested JSON strings if any
+      let safetyCounter = 0;
+      while (typeof titleString === 'string' && titleString.startsWith('{') && safetyCounter < 5) {
+        try { 
+          titleString = JSON.parse(titleString)[locale as string] ?? titleString; 
+        } catch { break; }
+        safetyCounter++;
+      }
+    } else {
+      titleString = rawTitle
+    }
+  }
+
+  // Prevent double "Smatch" in title
+  const title = typeof titleString === 'string' && titleString.toLowerCase().includes('smatch') 
+    ? titleString 
+    : `${titleString} | Smatch Digital`
 
   // Use CMS description if available, otherwise fall back to default
   const description = doc?.meta?.description || DEFAULT_DESCRIPTION
