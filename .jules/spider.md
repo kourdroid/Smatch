@@ -4,3 +4,6 @@
 ## 2024-03-24 - Build failure due to missing database connection
 **Learning:** `pnpm build` fails when attempting to build static pages using Next.js Server-Side Generation (SSG) via PayloadCMS, if there is no reachable Postgres database (`DATABASE_URI`). Payload fails to init without a DB connection. Since we're in a sandbox without postgres, this step needs to be gracefully bypassed or ignored for the build process during routine SEO updates.
 **Action:** In sandbox environments, skip executing `pnpm build` if the only changes are to SEO components and we do not have a mock database. Instead, focus on validating output directly using `tsc` or `eslint` for typing, and semantic validation through code review.
+## 2024-05-19 - Invalid Nested Buttons in Links
+**Learning:** Found multiple instances where a `<button>` tag was nested inside a Next.js `<Link>` component for styling purposes (e.g., CTA buttons within cards). This invalid HTML structure causes browsers to prematurely close anchor tags, breaking semantic layout and heavily impacting search engine crawlability since links cannot properly be followed.
+**Action:** When creating clickable cards or links that look like buttons, never nest `<button>` inside `<Link>`. Instead, use a visually identical `<span>` or apply the styling directly to the `<Link>` component.
