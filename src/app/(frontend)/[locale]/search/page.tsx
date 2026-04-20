@@ -59,7 +59,8 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
   })
 
   return (
-    <div className="py-24">
+    <main className="py-24">
+      {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
       <PageClient />
       <div className="container mb-16">
         <div className="prose max-w-none text-center dark:prose-invert">
@@ -76,7 +77,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
       ) : (
         <div className="container">No results found.</div>
       )}
-    </div>
+    </main>
   )
 }
 
