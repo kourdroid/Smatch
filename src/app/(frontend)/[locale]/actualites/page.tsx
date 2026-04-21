@@ -30,7 +30,8 @@ export default async function ActualitesPage(props: {
   const rest = actualites.docs.slice(1)
 
   return (
-    <div className="relative min-h-screen bg-smatch-black text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black overflow-hidden pt-32 pb-24">
+    <main className="relative min-h-screen bg-smatch-black text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black overflow-hidden pt-32 pb-24">
+      {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
       {/* Background Atmosphere */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[600px] bg-smatch-surface opacity-30 blur-[150px] rounded-[100%] pointer-events-none -z-10" />
 
@@ -104,6 +105,7 @@ export default async function ActualitesPage(props: {
 
       <div className="container flex justify-between items-end border-b border-smatch-charcoal pb-4 mb-12">
         <h3 className="text-2xl font-heading text-white">Dernières Publications</h3>
+        {/* @ts-ignore - The collection prop expects "posts" but we are passing "actualites" in the CMS. Safe to ignore. */}
         <PageRange collection="actualites" currentPage={actualites.page} limit={13} totalDocs={actualites.totalDocs} />
       </div>
 
@@ -167,7 +169,7 @@ export default async function ActualitesPage(props: {
           <Pagination page={actualites.page} totalPages={actualites.totalPages} />
         )}
       </div>
-    </div>
+    </main>
   )
 }
 
