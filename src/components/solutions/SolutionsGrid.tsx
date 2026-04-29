@@ -127,10 +127,11 @@ const InteractiveCard = ({ data, locale = 'en' }: { data: SolutionDoc; locale?: 
                 hover: { height: 'auto', opacity: 1 },
               }}
             >
-              <button className="mt-4 flex w-full items-center justify-between rounded-[4px] bg-[#FFAA00] px-6 py-4 text-xs font-bold uppercase tracking-widest text-black transition-colors hover:bg-[#D99200]">
+              {/* SEO: Using span instead of button to avoid invalid nested <button> inside <Link> which breaks crawlability */}
+              <span className="mt-4 flex w-full items-center justify-between rounded-[4px] bg-[#FFAA00] px-6 py-4 text-xs font-bold uppercase tracking-widest text-black transition-colors hover:bg-[#D99200]">
                 {t.cardCta}
                 <ArrowRight size={16} weight="bold" />
-              </button>
+              </span>
             </motion.div>
           </motion.div>
         </div>

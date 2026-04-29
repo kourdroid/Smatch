@@ -178,11 +178,11 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                             </div>
                         )}
 
-                        {/* CTA Button */}
-                        <button className="mt-2 flex items-center gap-2 rounded border border-[#FFAA00] bg-transparent px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest text-[#FFAA00] transition-all hover:bg-[#FFAA00] hover:text-black md:ml-auto md:mt-auto">
+                        {/* SEO: Using span instead of button to avoid invalid nested <button> inside <Link> which breaks crawlability */}
+                        <span className="mt-2 flex items-center gap-2 rounded border border-[#FFAA00] bg-transparent px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest text-[#FFAA00] transition-all hover:bg-[#FFAA00] hover:text-black md:ml-auto md:mt-auto">
                             {item.linkLabel || 'Voir les détails'}
                             <PhosphorIcons.ArrowRight size={12} weight="bold" />
-                        </button>
+                        </span>
                     </div>
                 </div>
             </Link>

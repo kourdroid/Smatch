@@ -27,7 +27,8 @@ export default async function Page() {
   })
 
   return (
-    <div className="py-24">
+    <main className="py-24">
+      {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
       <PageClient />
       <div className="container mb-16">
         <div className="prose max-w-none dark:prose-invert">
@@ -51,7 +52,7 @@ export default async function Page() {
           <Pagination page={posts.page} totalPages={posts.totalPages} />
         )}
       </div>
-    </div>
+    </main>
   )
 }
 
