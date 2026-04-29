@@ -12,6 +12,13 @@ import { SolutionCustomSection } from '@/blocks/SolutionCustomSection/config'
 import { SolutionAccordion } from '@/blocks/SolutionAccordion/config'
 import { adminOrHigher, adminPanelEditorOrHigher, editorOrHigher } from '@/access/roles'
 import { createRevalidateHook, createRevalidateDeleteHook } from './hooks/revalidateEntity'
+import {
+  MetaDescriptionField,
+  MetaImageField,
+  MetaTitleField,
+  OverviewField,
+  PreviewField,
+} from '@payloadcms/plugin-seo/fields'
 
 export const Solutions: CollectionConfig<'solutions'> = {
   slug: 'solutions',
@@ -142,6 +149,29 @@ export const Solutions: CollectionConfig<'solutions'> = {
                 SolutionAccordion,
               ],
             },
+          ],
+        },
+        {
+          name: 'meta',
+          label: 'SEO',
+          fields: [
+            OverviewField({
+              titlePath: 'meta.title',
+              descriptionPath: 'meta.description',
+              imagePath: 'meta.image',
+            }),
+            MetaTitleField({
+              hasGenerateFn: true,
+            }),
+            MetaImageField({
+              relationTo: 'media',
+            }),
+            MetaDescriptionField({}),
+            PreviewField({
+              hasGenerateFn: true,
+              titlePath: 'meta.title',
+              descriptionPath: 'meta.description',
+            }),
           ],
         },
       ],

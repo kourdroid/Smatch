@@ -2,6 +2,13 @@ import type { CollectionConfig } from 'payload'
 import { createRAGAfterChangeHook, createRAGAfterDeleteHook } from '@/hooks/ragSync'
 import { adminOrHigher, adminPanelEditorOrHigher, editorOrHigher } from '@/access/roles'
 import { createRevalidateHook, createRevalidateDeleteHook } from './hooks/revalidateEntity'
+import {
+  MetaDescriptionField,
+  MetaImageField,
+  MetaTitleField,
+  OverviewField,
+  PreviewField,
+} from '@payloadcms/plugin-seo/fields'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -238,6 +245,29 @@ export const Projects: CollectionConfig = {
                 },
               ],
             },
+          ],
+        },
+        {
+          name: 'meta',
+          label: 'SEO',
+          fields: [
+            OverviewField({
+              titlePath: 'meta.title',
+              descriptionPath: 'meta.description',
+              imagePath: 'meta.image',
+            }),
+            MetaTitleField({
+              hasGenerateFn: true,
+            }),
+            MetaImageField({
+              relationTo: 'media',
+            }),
+            MetaDescriptionField({}),
+            PreviewField({
+              hasGenerateFn: true,
+              titlePath: 'meta.title',
+              descriptionPath: 'meta.description',
+            }),
           ],
         },
       ],

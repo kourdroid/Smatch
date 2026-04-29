@@ -92,3 +92,6 @@ lint_output.txt
 /backup
 production-backup-*.json
 pnpm.exe
+audit/rapport-audit-smatch.docx
+audit/rapport-audit-smatch.txt
+audit/read.py

@@ -14,41 +14,45 @@ import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
-const generateTitle: GenerateTitle<Post | Page> = ({ doc, req }) => {
-  let title: any = doc?.title || doc?.name || (doc as any)?.hero?.title
-
-  const locale = req?.locale || 'fr'
-
-  // Handle case where title is an object containing locales
-  if (typeof title === 'object' && title !== null) {
-    title = title[locale] || title['fr'] || title['en'] || Object.values(title)[0]
-  }
-
-  // Handle case where title was previously stringified as JSON (can happen with localized field misconfigurations)
-  let safeParseCount = 0
-  while (typeof title === 'string' && title.trim().startsWith('{') && safeParseCount < 5) {
-    try {
-      const parsed = JSON.parse(title)
-      title = parsed[locale] || parsed['fr'] || parsed['en'] || Object.values(parsed)[0]
-      safeParseCount++
-    } catch (e) {
-      break // Not valid JSON
+const resolveLocalizedValue = (value: unknown, locale: string): string => {
+  if (typeof value === 'string') {
+    let parsed = value
+    let safety = 0
+    while (typeof parsed === 'string' && parsed.trim().startsWith('{') && safety < 5) {
+      try {
+        const obj = JSON.parse(parsed) as Record<string, unknown>
+        parsed = (obj[locale] ?? obj['fr'] ?? obj['en'] ?? Object.values(obj)[0]) as string
+        safety++
+      } catch {
+        break
+      }
     }
+    return typeof parsed === 'string' && parsed !== '[object Object]' ? parsed : ''
   }
 
-  // Nested object failsafe
-  if (typeof title === 'object' && title !== null) {
-    title = typeof Object.values(title)[0] === 'string' ? Object.values(title)[0] : ''
+  if (typeof value === 'object' && value !== null) {
+    const obj = value as Record<string, unknown>
+    const resolved = obj[locale] ?? obj['fr'] ?? obj['en'] ?? Object.values(obj)[0]
+    return resolveLocalizedValue(resolved, locale)
   }
 
-  if (typeof title !== 'string' || !title || title === '[object Object]') {
-    title = ''
-  }
+  return ''
+}
 
-  // Fallback if no valid title was found
-  if (title === '' && doc?.slug && typeof doc.slug === 'string') {
-    // Basic formatting of slug, eg: 'prolog-wms' -> 'Prolog WMS'
-    title = doc.slug.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase())
+const generateTitle: GenerateTitle<Post | Page> = async ({ doc, req }) => {
+  const locale = req?.locale || 'fr'
+  const source = (doc as unknown as Record<string, unknown>) || {}
+
+  let title = resolveLocalizedValue(
+    source?.title ?? source?.name ?? (source?.hero as Record<string, unknown>)?.title,
+    locale,
+  )
+
+  if (!title) {
+    const slug = source?.slug
+    if (slug && typeof slug === 'string') {
+      title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+    }
   }
 
   return title ? `${title} | Smatch Digital` : 'Smatch Digital | Solutions WMS & Supply Chain'
@@ -57,7 +61,8 @@ const generateTitle: GenerateTitle<Post | Page> = ({ doc, req }) => {
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
   const url = getServerSideURL()
 
-  return doc?.slug ? `${url}/${doc.slug}` : url
+  const slug = (doc as unknown as Record<string, unknown>)?.slug
+  return slug && typeof slug === 'string' ? `${url}/${slug}` : url
 }
 
 export const plugins: Plugin[] = [
@@ -88,7 +93,7 @@ export const plugins: Plugin[] = [
     generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
   }),
   seoPlugin({
-    collections: ['pages', 'posts', 'projects', 'solutions'],
+    collections: [],
     generateTitle,
     generateURL,
   }),
@@ -129,21 +134,21 @@ export const plugins: Plugin[] = [
   }),
   ...(process.env.S3_ENABLED === 'true'
     ? [
-      s3Storage({
-        collections: {
-          media: true,
-        },
-        bucket: process.env.S3_BUCKET || '',
-        config: {
-          credentials: {
-            accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-            secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+        s3Storage({
+          collections: {
+            media: true,
           },
-          region: process.env.S3_REGION || 'us-east-1',
-          endpoint: process.env.S3_ENDPOINT || '',
-          forcePathStyle: true,
-        },
-      }),
-    ]
+          bucket: process.env.S3_BUCKET || '',
+          config: {
+            credentials: {
+              accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+              secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+            },
+            region: process.env.S3_REGION || 'us-east-1',
+            endpoint: process.env.S3_ENDPOINT || '',
+            forcePathStyle: true,
+          },
+        }),
+      ]
     : []),
 ]

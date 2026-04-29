@@ -312,6 +312,10 @@ export interface Page {
   )[];
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -351,6 +355,10 @@ export interface Post {
   categories?: (number | Category)[] | null;
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -825,6 +833,10 @@ export interface Project {
     | null;
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   updatedAt: string;
@@ -1449,6 +1461,10 @@ export interface Solution {
     | null;
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   updatedAt: string;
@@ -2161,6 +2177,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   publishedAt?: T;
@@ -2673,6 +2690,7 @@ export interface PostsSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   publishedAt?: T;
@@ -2837,6 +2855,7 @@ export interface SolutionsSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   updatedAt?: T;
@@ -3015,6 +3034,7 @@ export interface ProjectsSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   updatedAt?: T;
