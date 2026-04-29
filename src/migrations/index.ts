@@ -14,6 +14,7 @@ import * as migration_20260223_120000_add_seo_meta_to_projects_solutions from '.
 import * as migration_20260317_192837_add_modular_solutions_blocks from './20260317_192837_add_modular_solutions_blocks';
 import * as migration_20260318_144605 from './20260318_144605';
 import * as migration_20260324_150857_i18n_solution_block_titles from './20260324_150857_i18n_solution_block_titles';
+import * as migration_20260429_143515_add_seo_fields from './20260429_143515_add_seo_fields';
 
 export const migrations = [
   {
@@ -94,6 +95,11 @@ export const migrations = [
   {
     up: migration_20260324_150857_i18n_solution_block_titles.up,
     down: migration_20260324_150857_i18n_solution_block_titles.down,
-    name: '20260324_150857_i18n_solution_block_titles'
+    name: '20260324_150857_i18n_solution_block_titles',
+  },
+  {
+    up: migration_20260429_143515_add_seo_fields.up,
+    down: migration_20260429_143515_add_seo_fields.down,
+    name: '20260429_143515_add_seo_fields'
   },
 ];
