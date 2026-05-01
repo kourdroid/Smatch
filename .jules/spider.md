@@ -7,3 +7,6 @@
 ## 2024-05-19 - Invalid Nested Buttons in Links
 **Learning:** Found multiple instances where a `<button>` tag was nested inside a Next.js `<Link>` component for styling purposes (e.g., CTA buttons within cards). This invalid HTML structure causes browsers to prematurely close anchor tags, breaking semantic layout and heavily impacting search engine crawlability since links cannot properly be followed.
 **Action:** When creating clickable cards or links that look like buttons, never nest `<button>` inside `<Link>`. Instead, use a visually identical `<span>` or apply the styling directly to the `<Link>` component.
+## 2026-05-01 - Fix Nested <main> Tags
+**Learning:** Found an instance in the `actualites` detail page where a `<main>` tag was used as a root layout wrapper, but the inner article was also wrapped in a `<main>` tag. HTML5 semantics dictate that a `<main>` element must not be a descendant of another `<main>` element. This creates confusing semantics for screen readers and search engine crawlers.
+**Action:** Always ensure there is only one visible `<main>` tag per page that wraps the primary content. Use `<div>` for outer layout structures or wrappers. When updating components, verify the full page layout tree doesn't inadvertently introduce nested `<main>` tags.
