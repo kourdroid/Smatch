@@ -16,7 +16,8 @@ export default function Error({
     }, [error])
 
     return (
-        <div className="container flex min-h-[70vh] flex-col items-center justify-center py-28 text-center">
+        <main className="container flex min-h-[70vh] flex-col items-center justify-center py-28 text-center">
+            {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
             <div className="relative mb-8">
                 <div className="flex size-24 animate-pulse items-center justify-center rounded-full border-2 border-error">
                     <span className="text-4xl">⚠️</span>
@@ -45,6 +46,6 @@ export default function Error({
                 <p>ERROR_DIGEST: {error.digest || 'UNKNOWN'}</p>
                 <p>ERROR_MSG: {error.message}</p>
             </div>
-        </div>
+        </main>
     )
 }
