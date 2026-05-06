@@ -87,7 +87,8 @@ export default async function Post({ params: paramsPromise }: Args) {
   })
 
   return (
-    <article className="py-16">
+    <main className="py-16">
+      {/* SEO: Using <main> as the primary page wrapper instead of <article> ensures proper HTML5 semantics, telling crawlers this is the primary content of the document. */}
       <PageClient />
 
       {/* Allows redirects for valid pages too */}
@@ -117,7 +118,7 @@ export default async function Post({ params: paramsPromise }: Args) {
           )}
         </div>
       </div>
-    </article>
+    </main>
   )
 }
 

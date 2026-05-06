@@ -84,7 +84,8 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
   })
 
   return (
-    <article className="min-h-screen bg-smatch-black selection:bg-smatch-gold selection:text-black">
+    <main className="min-h-screen bg-smatch-black selection:bg-smatch-gold selection:text-black">
+      {/* SEO: Using <main> as the primary page wrapper instead of <article> ensures proper HTML5 semantics, telling crawlers this is the primary content of the document. */}
       {/* Search Engine Optimization Structured Data */}
       <script
         type="application/ld+json"
@@ -289,7 +290,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
           <Link href="/projects" className="inline-block font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-white">{locale === 'fr' ? 'Retour à l\'Index' : 'Back to Index'}</Link>
         </div>
       </div>
-    </article>
+    </main>
   )
 }
 

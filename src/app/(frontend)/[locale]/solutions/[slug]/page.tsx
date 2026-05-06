@@ -98,7 +98,8 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
   })
 
   return (
-    <article className="min-h-screen bg-smatch-black">
+    <main className="min-h-screen bg-smatch-black">
+      {/* SEO: Using <main> as the primary page wrapper instead of <article> ensures proper HTML5 semantics, telling crawlers this is the primary content of the document. */}
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
 
@@ -123,7 +124,7 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
       />
 
       {layout && <RenderBlocks blocks={layout} locale={locale} />}
-    </article>
+    </main>
   )
 }
 
