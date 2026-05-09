@@ -61,14 +61,14 @@ export default async function Actualite({ params: paramsPromise }: Args) {
 
   // Schema
   const hasFaqs = post.faqEntries && Array.isArray(post.faqEntries) && post.faqEntries.length > 0
-  const faqSchema = hasFaqs ? getFAQPageJsonLd(post.faqEntries) : null
+  const faqSchema = hasFaqs ? getFAQPageJsonLd(post.faqEntries as { question: string; answer: string; }[]) : null
 
   const blogSchema = getBlogPostingJsonLd({
     headline: post.title,
     description: post.excerpt || '',
     url: `${getServerSideURL()}/fr/actualites/${post.slug}`,
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt,
+    datePublished: post.publishedAt || undefined,
+    dateModified: post.updatedAt || undefined,
     image: post.heroImage && typeof post.heroImage === 'object' ? post.heroImage.url : null,
     authorName: post.source === 'ai-generated' ? 'Smatch.AI' : 'Smatch Editorial'
   })
@@ -105,8 +105,9 @@ export default async function Actualite({ params: paramsPromise }: Args) {
   })
 
   return (
-    <main className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
-      {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
+    <>
+      {/* SEO: Using div instead of main for outer wrapper to prevent invalid nested <main> tags, preserving semantic HTML structure and crawlability. */}
+      <div className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
       {/* Search Engine Optimization Structured Data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <PayloadRedirects disableNotFound url={url} />
@@ -284,7 +285,8 @@ export default async function Actualite({ params: paramsPromise }: Args) {
         </aside>
 
       </div>
-    </main>
+    </div>
+    </>
   )
 }
 
