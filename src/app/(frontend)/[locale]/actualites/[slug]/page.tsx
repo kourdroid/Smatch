@@ -105,8 +105,8 @@ export default async function Actualite({ params: paramsPromise }: Args) {
   })
 
   return (
-    <main className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
-      {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
+    <div className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
+      {/* SEO: Replaced outer <main> with <div> to prevent invalid nested <main> tags, keeping the inner <main> for the primary article content. */}
       {/* Search Engine Optimization Structured Data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <PayloadRedirects disableNotFound url={url} />
@@ -284,7 +284,7 @@ export default async function Actualite({ params: paramsPromise }: Args) {
         </aside>
 
       </div>
-    </main>
+    </div>
   )
 }
 
