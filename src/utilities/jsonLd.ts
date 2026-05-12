@@ -88,7 +88,7 @@ export function getProjectJsonLd(args: {
 }
 
 /** WebSite schema with sitelinks searchbox — injected once in root layout */
-export function getWebSiteJsonLd() {
+export function getWebSiteJsonLd(locale: string = 'fr') {
     const serverUrl = getServerSideURL()
 
     return {
@@ -97,11 +97,12 @@ export function getWebSiteJsonLd() {
         name: 'Smatch Digital',
         url: serverUrl,
         inLanguage: ['fr', 'en'],
+        // SEO: Dynamically use the current locale for the search action to ensure search engine sitelinks direct users to the correct localized search page.
         potentialAction: {
             '@type': 'SearchAction',
             target: {
                 '@type': 'EntryPoint',
-                urlTemplate: `${serverUrl}/fr/search?q={search_term_string}`,
+                urlTemplate: `${serverUrl}/${locale}/search?q={search_term_string}`,
             },
             'query-input': 'required name=search_term_string',
         },
