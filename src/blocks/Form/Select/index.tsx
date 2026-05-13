@@ -40,7 +40,8 @@ export const Select: React.FC<
 
           return (
             <SelectComponent onValueChange={(val) => onChange(val)} value={controlledValue?.value}>
-              <SelectTrigger className="w-full" id={name}>
+              {/* SEO/A11y: Link input to error message via aria attributes for semantic error association */}
+              <SelectTrigger className="w-full" id={name} aria-invalid={!!errors[name]} aria-describedby={errors[name] ? `error-${name}` : undefined}>
                 <SelectValue placeholder={label} />
               </SelectTrigger>
               <SelectContent>

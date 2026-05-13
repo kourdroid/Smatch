@@ -24,10 +24,13 @@ export const Number: React.FC<
           </span>
         )}
       </Label>
+      {/* SEO/A11y: Link input to error message via aria attributes for semantic error association */}
       <Input
         defaultValue={defaultValue}
         id={name}
         type="number"
+        aria-invalid={!!errors[name]}
+        aria-describedby={errors[name] ? `error-${name}` : undefined}
         {...register(name, { required })}
       />
       {errors[name] && <Error name={name} />}
