@@ -7,6 +7,7 @@ import {
   useTransform,
   useMotionValue,
 } from 'framer-motion'
+import Link from 'next/link'
 
 const INTRO_DATA = {
   headingPart1: 'ÉDITEUR.',
@@ -124,7 +125,11 @@ export function Intro() {
 
               {/* CTA Button */}
               <div>
-                <button className="group relative overflow-hidden rounded-[6px] border border-gray-800 bg-transparent px-8 py-3 transition-colors duration-300">
+                {/* SEO: Using Next.js <Link> with href instead of meaningless <button> improves crawlability for search engines */}
+                <Link
+                  href="#"
+                  className="group relative inline-block overflow-hidden rounded-[6px] border border-gray-800 bg-transparent px-8 py-3 transition-colors duration-300"
+                >
                   {/* Hover Background Fill */}
                   <span className="absolute inset-0 translate-y-full bg-[#FFAA00] transition-transform duration-300 ease-out group-hover:translate-y-0" />
 
@@ -136,7 +141,7 @@ export function Intro() {
                       &rarr;
                     </span>
                   </span>
-                </button>
+                </Link>
               </div>
             </motion.div>
           </div>
