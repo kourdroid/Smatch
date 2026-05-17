@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion'
+import Link from 'next/link'
 
 const INTRO_DATA = {
   headingPart1: 'QUI SOMMES',
@@ -16,9 +17,10 @@ export interface QuiSommesNousProps {
   title?: string
   description?: string
   locationLabel?: string
+  ctaLink?: string
 }
 
-export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNousProps) {
+export function QuiSommesNous({ title, description, locationLabel, ctaLink }: QuiSommesNousProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -126,7 +128,11 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
 
               {/* CTA Button */}
               <div>
-                <button className="group relative overflow-hidden rounded-[6px] border border-gray-800 bg-transparent px-8 py-3 transition-colors duration-300">
+                {/* SEO: Using Next.js <Link> with href instead of meaningless <button> improves crawlability for search engines */}
+                <Link
+                  href={ctaLink || '#'}
+                  className="group relative inline-block overflow-hidden rounded-[6px] border border-gray-800 bg-transparent px-8 py-3 transition-colors duration-300"
+                >
                   {/* Hover Background Fill */}
                   <span className="absolute inset-0 translate-y-full bg-[#FFAA00] transition-transform duration-300 ease-out group-hover:translate-y-0" />
 
@@ -138,7 +144,7 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
                       &rarr;
                     </span>
                   </span>
-                </button>
+                </Link>
               </div>
             </motion.div>
           </div>
