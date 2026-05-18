@@ -10,7 +10,7 @@ import Link from 'next/link'
 import { ArrowLeft, Clock, Calendar, ArrowUpRight, HelpCircle, ChevronRight } from 'lucide-react'
 
 import { generateMeta } from '@/utilities/generateMeta'
-import { getBlogPostingJsonLd, getFAQPageJsonLd, getProjectJsonLd } from '@/utilities/jsonLd'
+import { getBlogPostingJsonLd, getFAQPageJsonLd, getProjectJsonLd, getBreadcrumbJsonLd } from '@/utilities/jsonLd'
 import { getServerSideURL } from '@/utilities/getURL'
 
 export async function generateStaticParams() {
@@ -61,14 +61,14 @@ export default async function Actualite({ params: paramsPromise }: Args) {
 
   // Schema
   const hasFaqs = post.faqEntries && Array.isArray(post.faqEntries) && post.faqEntries.length > 0
-  const faqSchema = hasFaqs ? getFAQPageJsonLd(post.faqEntries) : null
+  const faqSchema = hasFaqs ? getFAQPageJsonLd(post.faqEntries as { question: string; answer: string; }[]) : null
 
   const blogSchema = getBlogPostingJsonLd({
     headline: post.title,
     description: post.excerpt || '',
-    url: `${getServerSideURL()}/fr/actualites/${post.slug}`,
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt,
+    url: `${getServerSideURL()}/${locale || 'fr'}/actualites/${post.slug}`,
+    datePublished: post.publishedAt || undefined,
+    dateModified: post.updatedAt || undefined,
     image: post.heroImage && typeof post.heroImage === 'object' ? post.heroImage.url : null,
     authorName: post.source === 'ai-generated' ? 'Smatch.AI' : 'Smatch Editorial'
   })
@@ -96,6 +96,7 @@ export default async function Actualite({ params: paramsPromise }: Args) {
   }
 
   // Article structured data for SEO indexing
+
   const articleJsonLd = getProjectJsonLd({
     name: post.title,
     description: post.excerpt || post.meta?.description || '',
@@ -104,10 +105,19 @@ export default async function Actualite({ params: paramsPromise }: Args) {
     image: imageUrl,
   })
 
+  // SEO: Generate BreadcrumbList structured data to help search engines understand the site's hierarchy and improve SERP display
+  const breadcrumbJsonLd = getBreadcrumbJsonLd([
+    { name: 'Home', url: `${serverUrl}/${locale || 'fr'}` },
+    { name: locale === 'fr' ? 'Actualités' : 'News', url: `${serverUrl}/${locale || 'fr'}/actualites` },
+    { name: post.title, url: articleUrl },
+  ])
+
+
   return (
     <main className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
       {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
       {/* Search Engine Optimization Structured Data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <PayloadRedirects disableNotFound url={url} />
       {faqSchema && (
