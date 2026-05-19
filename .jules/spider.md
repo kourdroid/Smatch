@@ -7,3 +7,6 @@
 ## 2024-05-19 - Invalid Nested Buttons in Links
 **Learning:** Found multiple instances where a `<button>` tag was nested inside a Next.js `<Link>` component for styling purposes (e.g., CTA buttons within cards). This invalid HTML structure causes browsers to prematurely close anchor tags, breaking semantic layout and heavily impacting search engine crawlability since links cannot properly be followed.
 **Action:** When creating clickable cards or links that look like buttons, never nest `<button>` inside `<Link>`. Instead, use a visually identical `<span>` or apply the styling directly to the `<Link>` component.
+## 2024-05-19 - Typechecking JSON-LD Date Properties
+**Learning:** When passing potentially null date fields (like `publishedAt`, `updatedAt`) from Payload CMS to jsonLd generator functions, using the fields directly can cause strict TypeScript compilation failures since the schemas explicitly expect `string | undefined` and not `null`.
+**Action:** Always use the logical OR operator with `undefined` (e.g., `datePublished: post.publishedAt || undefined`) when passing date properties to JSON-LD generator functions to satisfy strict type requirements and prevent build regressions.
