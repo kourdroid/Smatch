@@ -32,10 +32,11 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
           {/* Fallback Static Links if CMS is empty during dev */}
           {navItems.length === 0 && (
             <>
-              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">A PROPOS</a>
-              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">SOLUTIONS</a>
-              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">PROJECTS</a>
-              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">EXPERTISES</a>
+              {/* SEO: Replaced href="#" with real URLs to ensure links are crawlable by search engines even in fallback mode. */}
+              <a href="/about" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">A PROPOS</a>
+              <a href="/solutions" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">SOLUTIONS</a>
+              <a href="/projects" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">PROJECTS</a>
+              <a href="/expertises" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">EXPERTISES</a>
             </>
           )}
         </div>
