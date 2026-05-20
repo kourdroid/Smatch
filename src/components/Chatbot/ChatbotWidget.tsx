@@ -135,6 +135,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
         <>
             {/* Floating Action Button - Desktop Only */}
             <button
+                type="button"
                 onClick={openChat}
                 className={cn(
                     'chatbot-fab fixed bottom-6 right-6 z-[10001] hidden h-16 w-16 items-center justify-center rounded-full bg-smatch-gold text-smatch-black shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-glow-lg md:flex',
@@ -172,6 +173,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                         </div>
                     </div>
                     <button
+                        type="button"
                         onClick={closeChat}
                         className="flex size-9 items-center justify-center rounded-full text-smatch-text-secondary transition-colors hover:bg-white/10 hover:text-white"
                         aria-label={strings.closeChat}
@@ -232,6 +234,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                             className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold disabled:opacity-50"
                         />
                         <button
+                            type="button"
                             onClick={handleSend}
                             disabled={!inputValue.trim() || isLoading}
                             className="flex size-12 items-center justify-center rounded-xl bg-smatch-gold text-smatch-black transition-all hover:bg-smatch-gold-light disabled:cursor-not-allowed disabled:opacity-50"

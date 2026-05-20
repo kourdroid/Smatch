@@ -10,3 +10,6 @@
 ## 2024-05-19 - Typechecking JSON-LD Date Properties
 **Learning:** When passing potentially null date fields (like `publishedAt`, `updatedAt`) from Payload CMS to jsonLd generator functions, using the fields directly can cause strict TypeScript compilation failures since the schemas explicitly expect `string | undefined` and not `null`.
 **Action:** Always use the logical OR operator with `undefined` (e.g., `datePublished: post.publishedAt || undefined`) when passing date properties to JSON-LD generator functions to satisfy strict type requirements and prevent build regressions.
+## 2026-05-20 - Explicit Button Types and Nav Crawlability
+**Learning:** HTML `<button>` tags without an explicit `type` attribute default to `type="submit"`, which can trigger unintended form submissions when used near forms. Additionally, interactive UI elements meant to navigate should be `<a>` or `<Link>` for crawlability, not `<button>`s. Dropdown toggles must explicitly use ARIA tags (`aria-expanded`, `aria-haspopup`) since custom components lack native semantics.
+**Action:** Always explicitly set `type="button"` on non-submitting `<button>` tags, including generic UI wrappers (e.g. `type={props.type || 'button'}`). Convert non-functional visual buttons to `<Link>` components when their primary purpose is navigation. Explicitly manage ARIA state on custom dropdowns.

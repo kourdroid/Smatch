@@ -74,6 +74,7 @@ export function Domains() {
           <div className="flex flex-col pt-4 lg:col-span-3">
             {DOMAINS_DATA.tabs.map((tab) => (
               <button
+                type="button"
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`

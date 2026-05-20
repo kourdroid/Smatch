@@ -174,7 +174,7 @@ export const n8nIngestEndpoint: Endpoint = {
       }
 
       // 7. Handle Category
-      let categoryIds: (string | number)[] = []
+      const categoryIds: (string | number)[] = []
       if (validData.category) {
         const catRes = await req.payload.find({
           collection: 'categories',

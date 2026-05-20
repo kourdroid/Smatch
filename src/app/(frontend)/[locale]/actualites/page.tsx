@@ -30,30 +30,30 @@ export default async function ActualitesPage(props: {
   const rest = actualites.docs.slice(1)
 
   return (
-    <main className="relative min-h-screen bg-smatch-black text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black overflow-hidden pt-32 pb-24">
+    <main className="relative min-h-screen overflow-hidden bg-smatch-black pb-24 pt-32 text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black">
       {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
       {/* Background Atmosphere */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[600px] bg-smatch-surface opacity-30 blur-[150px] rounded-[100%] pointer-events-none -z-10" />
+      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[600px] w-full max-w-[1200px] -translate-x-1/2 rounded-[100%] bg-smatch-surface opacity-30 blur-[150px]" />
 
       <div className="container relative z-10 mb-24">
-        <div className="flex flex-col items-center text-center space-y-6 max-w-4xl mx-auto mb-20">
-          <p className="text-smatch-gold font-mono uppercase tracking-[0.2em] text-sm">Insights & Intelligence</p>
-          <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-heading tracking-tight leading-[0.9] text-white">
+        <div className="mx-auto mb-20 flex max-w-4xl flex-col items-center space-y-6 text-center">
+          <p className="font-mono text-sm uppercase tracking-[0.2em] text-smatch-gold">Insights & Intelligence</p>
+          <h1 className="font-heading text-5xl leading-[0.9] tracking-tight text-white md:text-7xl lg:text-[7rem]">
             Actualités
           </h1>
-          <p className="text-smatch-text-secondary text-lg md:text-xl max-w-2xl font-sans mt-6">
+          <p className="mt-6 max-w-2xl font-sans text-lg text-smatch-text-secondary md:text-xl">
             Analyses générées par IA et insights exclusifs pour propulser votre supply chain et embrasser l'industrie 4.0 avec une précision chirurgicale.
           </p>
         </div>
         
         {/* Featured Article - Industrial Luxury Overlap Layout */}
         {featured && (
-          <div className="group relative w-full rounded-2xl overflow-hidden border border-smatch-charcoal bg-[#0a0a0a] transition-all duration-700 hover:border-smatch-gold/30">
-            <div className="flex flex-col lg:flex-row min-h-[500px] lg:min-h-[600px]">
+          <div className="group relative w-full overflow-hidden rounded-2xl border border-smatch-charcoal bg-[#0a0a0a] transition-all duration-700 hover:border-smatch-gold/30">
+            <div className="flex min-h-[500px] flex-col lg:min-h-[600px] lg:flex-row">
               
               {/* Image Side */}
-              <div className="relative w-full lg:w-[60%] h-[300px] lg:h-auto overflow-hidden">
-                <div className="absolute inset-0 bg-smatch-black/20 z-10 group-hover:bg-transparent transition-colors duration-500" />
+              <div className="relative h-[300px] w-full overflow-hidden lg:h-auto lg:w-3/5">
+                <div className="absolute inset-0 z-10 bg-smatch-black/20 transition-colors duration-500 group-hover:bg-transparent" />
                 {featured.heroImage && typeof featured.heroImage !== 'string' ? (
                   <Media 
                     resource={featured.heroImage} 
@@ -61,41 +61,41 @@ export default async function ActualitesPage(props: {
                     imgClassName="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-1000 ease-out" 
                   />
                 ) : (
-                  <div className="w-full h-full bg-smatch-surface" />
+                  <div className="size-full bg-smatch-surface" />
                 )}
               </div>
 
               {/* Content Side */}
-              <div className="w-full lg:w-[40%] flex flex-col justify-center p-8 md:p-12 lg:p-16 relative z-20">
-                <div className="flex items-center gap-4 mb-6 text-xs font-mono uppercase tracking-widest text-smatch-text-secondary">
+              <div className="relative z-20 flex w-full flex-col justify-center p-8 md:p-12 lg:w-2/5 lg:p-16">
+                <div className="mb-6 flex items-center gap-4 font-mono text-xs uppercase tracking-widest text-smatch-text-secondary">
                   {featured.categories && featured.categories.length > 0 && typeof featured.categories[0] === 'object' && (
-                    <span className="text-smatch-gold flex items-center gap-2">
-                       <span className="w-1.5 h-1.5 rounded-full bg-smatch-gold" />
+                    <span className="flex items-center gap-2 text-smatch-gold">
+                       <span className="size-1.5 rounded-full bg-smatch-gold" />
                        {featured.categories[0].title}
                     </span>
                   )}
                   {featured.estimatedReadTime && (
                     <span className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5" />
+                      <Clock className="size-3.5" />
                       {featured.estimatedReadTime} min
                     </span>
                   )}
                 </div>
                 
-                <h2 className="text-3xl md:text-5xl font-heading text-white leading-tight mb-6">
+                <h2 className="mb-6 font-heading text-3xl leading-tight text-white md:text-5xl">
                   {featured.title}
                 </h2>
                 
-                <p className="text-smatch-text-secondary font-sans leading-relaxed mb-10 line-clamp-3">
+                <p className="mb-10 line-clamp-3 font-sans leading-relaxed text-smatch-text-secondary">
                   {featured.excerpt}
                 </p>
                 
                 <Link 
                   href={`/actualites/${featured.slug}`}
-                  className="inline-flex items-center gap-2 text-smatch-gold hover:text-white font-mono uppercase tracking-widest text-sm transition-colors duration-300 mt-auto"
+                  className="mt-auto inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-smatch-gold transition-colors duration-300 hover:text-white"
                 >
                   Lire l'article
-                  <ArrowUpRight className="w-4 h-4" />
+                  <ArrowUpRight className="size-4" />
                 </Link>
               </div>
             </div>
@@ -103,14 +103,14 @@ export default async function ActualitesPage(props: {
         )}
       </div>
 
-      <div className="container flex justify-between items-end border-b border-smatch-charcoal pb-4 mb-12">
-        <h3 className="text-2xl font-heading text-white">Dernières Publications</h3>
+      <div className="container mb-12 flex items-end justify-between border-b border-smatch-charcoal pb-4">
+        <h3 className="font-heading text-2xl text-white">Dernières Publications</h3>
         {/* @ts-ignore - The collection prop expects "posts" but we are passing "actualites" in the CMS. Safe to ignore. */}
         <PageRange collection="actualites" currentPage={actualites.page} limit={13} totalDocs={actualites.totalDocs} />
       </div>
 
       {/* Grid of Standard Articles */}
-      <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+      <div className="container mb-24 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {rest.map((doc, idx) => {
           const cat = doc.categories?.[0]
           const catTitle = typeof cat === 'object' ? cat?.title : 'News'
@@ -119,10 +119,10 @@ export default async function ActualitesPage(props: {
             <Link 
               key={idx} 
               href={`/actualites/${doc.slug}`}
-              className="group flex flex-col h-full bg-[#0a0a0a] border border-smatch-charcoal rounded-xl overflow-hidden hover:border-smatch-gold/40 transition-all duration-500"
+              className="group flex h-full flex-col overflow-hidden rounded-xl border border-smatch-charcoal bg-[#0a0a0a] transition-all duration-500 hover:border-smatch-gold/40"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <div className="absolute inset-0 bg-smatch-black/10 z-10 group-hover:bg-transparent transition-colors duration-500" />
+                <div className="absolute inset-0 z-10 bg-smatch-black/10 transition-colors duration-500 group-hover:bg-transparent" />
                 {doc.heroImage && typeof doc.heroImage !== 'string' ? (
                   <Media 
                     resource={doc.heroImage} 
@@ -136,26 +136,26 @@ export default async function ActualitesPage(props: {
                     imgClassName="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out" 
                   />
                 ) : (
-                  <div className="w-full h-full bg-smatch-surface flex items-center justify-center text-smatch-charcoal">
+                  <div className="flex size-full items-center justify-center bg-smatch-surface text-smatch-charcoal">
                     <span className="font-mono text-xs">NO IMAGE</span>
                   </div>
                 )}
-                <div className="absolute top-4 left-4 z-20 bg-smatch-black/80 backdrop-blur-md border border-smatch-charcoal px-3 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-smatch-text-primary">
+                <div className="absolute left-4 top-4 z-20 rounded-full border border-smatch-charcoal bg-smatch-black/80 px-3 py-1 font-mono text-xs uppercase tracking-widest text-smatch-text-primary backdrop-blur-md">
                   {catTitle}
                 </div>
               </div>
               
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-heading text-white leading-snug mb-3 group-hover:text-smatch-gold transition-colors duration-300 line-clamp-2">
+              <div className="flex grow flex-col p-6">
+                <h3 className="mb-3 line-clamp-2 font-heading text-xl leading-snug text-white transition-colors duration-300 group-hover:text-smatch-gold">
                   {doc.title}
                 </h3>
-                <p className="text-smatch-text-secondary text-sm line-clamp-2 mb-6 flex-grow">
+                <p className="mb-6 line-clamp-2 grow text-sm text-smatch-text-secondary">
                   {doc.excerpt}
                 </p>
-                <div className="flex items-center justify-between text-xs font-mono text-smatch-text-secondary uppercase mt-auto">
-                   <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> {doc.estimatedReadTime || 5} min</span>
-                   <span className="text-smatch-gold group-hover:translate-x-1 transition-transform duration-300">
-                     <ArrowUpRight className="w-4 h-4" />
+                <div className="mt-auto flex items-center justify-between font-mono text-xs uppercase text-smatch-text-secondary">
+                   <span className="flex items-center gap-1.5"><Clock className="size-3.5" /> {doc.estimatedReadTime || 5} min</span>
+                   <span className="text-smatch-gold transition-transform duration-300 group-hover:translate-x-1">
+                     <ArrowUpRight className="size-4" />
                    </span>
                 </div>
               </div>

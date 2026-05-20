@@ -198,6 +198,7 @@ export const IconGallery: React.FC = () => {
 
                             return (
                                 <button
+                                    type="button"
                                     key={name}
                                     onClick={() => handleCopy(name)}
                                     style={{
