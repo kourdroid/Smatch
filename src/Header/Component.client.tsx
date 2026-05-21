@@ -215,7 +215,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
             </button>
           </div>
 
-          <div className="flex flex-col gap-6">
+          {/* SEO: Use semantic <nav> instead of <div> for the mobile menu links to improve crawlability and screen reader navigation */}
+          <nav aria-label={locale === 'fr' ? 'Navigation mobile' : 'Mobile navigation'} className="flex flex-col gap-6">
             {items.map((item, i) => (
               <Link
                 key={i}
@@ -253,7 +254,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
               </span>
               <NavLanguageSelector openUp />
             </div>
-          </div>
+          </nav>
         </MobileMenuOverlay>
       </NavbarLayout>
     </>
