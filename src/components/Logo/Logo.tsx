@@ -15,8 +15,9 @@ export const Logo = (props: Props) => {
 
   return (
     /* eslint-disable @next/next/no-img-element */
+    /* SEO: Updated alt text to accurately describe the brand logo for better image search visibility */
     <img
-      alt="Payload Logo"
+      alt="Smatch Logo"
       width={193}
       height={34}
       loading={loading}
