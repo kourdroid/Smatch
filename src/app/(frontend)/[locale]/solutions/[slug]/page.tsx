@@ -98,8 +98,10 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
   })
 
   return (
-    <article className="min-h-screen bg-smatch-black">
-      <PayloadRedirects disableNotFound url={url} />
+    <main className="min-h-screen bg-smatch-black">
+      {/* SEO: Using <main> for the document body and nesting <article> for the self-contained content ensures valid semantic HTML5 */}
+      <article>
+        <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
 
       <script
@@ -122,8 +124,9 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
         locale={locale}
       />
 
-      {layout && <RenderBlocks blocks={layout} locale={locale} />}
-    </article>
+        {layout && <RenderBlocks blocks={layout} locale={locale} />}
+      </article>
+    </main>
   )
 }
 
