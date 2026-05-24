@@ -84,8 +84,10 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
   })
 
   return (
-    <article className="min-h-screen bg-smatch-black selection:bg-smatch-gold selection:text-black">
-      {/* Search Engine Optimization Structured Data */}
+    <main className="min-h-screen bg-smatch-black selection:bg-smatch-gold selection:text-black">
+      {/* SEO: Using <main> for the document body and nesting <article> for the self-contained content ensures valid semantic HTML5 */}
+      <article>
+        {/* Search Engine Optimization Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -289,7 +291,8 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
           <Link href="/projects" className="inline-block font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-white">{locale === 'fr' ? 'Retour à l\'Index' : 'Back to Index'}</Link>
         </div>
       </div>
-    </article>
+      </article>
+    </main>
   )
 }
 

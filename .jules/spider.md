@@ -10,3 +10,6 @@
 ## 2024-05-19 - Typechecking JSON-LD Date Properties
 **Learning:** When passing potentially null date fields (like `publishedAt`, `updatedAt`) from Payload CMS to jsonLd generator functions, using the fields directly can cause strict TypeScript compilation failures since the schemas explicitly expect `string | undefined` and not `null`.
 **Action:** Always use the logical OR operator with `undefined` (e.g., `datePublished: post.publishedAt || undefined`) when passing date properties to JSON-LD generator functions to satisfy strict type requirements and prevent build regressions.
+## 2024-05-24 - Semantic Main and Article Landmarks
+**Learning:** Using `<article>` as the outermost element for detail pages (like posts or projects) creates invalid HTML5 when there is no `<main>` element to define the primary document body. Furthermore, simply replacing `<article>` with `<main>` degrades the semantics of self-contained content.
+**Action:** When structuring detail page components in Next.js, always use `<main>` for the outermost layout wrapper, and explicitly nest `<article>` inside it for the primary self-contained content, preserving both landmarks for search engine crawlers. Ensure only one `<main>` tag exists per route.

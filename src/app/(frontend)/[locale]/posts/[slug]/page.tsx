@@ -87,8 +87,10 @@ export default async function Post({ params: paramsPromise }: Args) {
   })
 
   return (
-    <article className="py-16">
-      <PageClient />
+    <main className="py-16">
+      {/* SEO: Using <main> for the document body and nesting <article> for the self-contained content ensures valid semantic HTML5 */}
+      <article>
+        <PageClient />
 
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
@@ -117,7 +119,8 @@ export default async function Post({ params: paramsPromise }: Args) {
           )}
         </div>
       </div>
-    </article>
+      </article>
+    </main>
   )
 }
 
