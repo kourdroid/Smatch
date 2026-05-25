@@ -61,6 +61,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      type={props.type || 'button'}
       className={cn(buttonVariants({ className, size, variant }))}
       disabled={isLoading || props.disabled}
       ref={ref}

@@ -77,6 +77,10 @@ export const LanguageSwitcherDropdown: React.FC<LanguageSwitcherProps> = ({
     return (
         <div className={`relative ${className}`}>
             <button
+                type="button"
+                aria-expanded={isOpen}
+                aria-haspopup="true"
+                aria-label={`Select language. Current language is ${localeNames[currentLocale]}`}
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-white/80 transition-colors hover:border-smatch-gold hover:text-smatch-gold"
             >
