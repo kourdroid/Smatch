@@ -10,3 +10,6 @@
 ## 2024-05-19 - Typechecking JSON-LD Date Properties
 **Learning:** When passing potentially null date fields (like `publishedAt`, `updatedAt`) from Payload CMS to jsonLd generator functions, using the fields directly can cause strict TypeScript compilation failures since the schemas explicitly expect `string | undefined` and not `null`.
 **Action:** Always use the logical OR operator with `undefined` (e.g., `datePublished: post.publishedAt || undefined`) when passing date properties to JSON-LD generator functions to satisfy strict type requirements and prevent build regressions.
+## 2024-05-25 - Detail Page Landmark Rules
+**Learning:** The detail page components `projects/[slug]/page.tsx`, `posts/[slug]/page.tsx`, and `solutions/[slug]/page.tsx` must use `<main>` as their outermost wrapper instead of `<article>`, while nesting `<article>` inside it to ensure semantic HTML constraints are met.
+**Action:** When working on generic list/detail pages, ensure semantic tag usage correctly nests `<article>` within `<main>`. Do not replace `<article>` wrappers with `<main>` if `<article>` represents self-contained content without nesting it first.
