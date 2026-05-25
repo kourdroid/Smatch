@@ -84,7 +84,8 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
   })
 
   return (
-    <article className="min-h-screen bg-smatch-black selection:bg-smatch-gold selection:text-black">
+    <main className="min-h-screen bg-smatch-black selection:bg-smatch-gold selection:text-black">
+      {/* SEO: Use semantic <main> tag as outermost wrapper to indicate primary content, improving crawlability and accessibility. */}
       {/* Search Engine Optimization Structured Data */}
       <script
         type="application/ld+json"
@@ -98,6 +99,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
 
+      <article className="w-full">
       {/* Enhanced Hero Section */}
       <section className="relative flex min-h-[85vh] items-end overflow-hidden">
         {/* Background Image with Gradient Overlay */}
@@ -289,7 +291,8 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
           <Link href="/projects" className="inline-block font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-white">{locale === 'fr' ? 'Retour à l\'Index' : 'Back to Index'}</Link>
         </div>
       </div>
-    </article>
+      </article>
+    </main>
   )
 }
 
