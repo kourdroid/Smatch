@@ -114,8 +114,8 @@ export default async function Actualite({ params: paramsPromise }: Args) {
 
 
   return (
-    <main className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
-      {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
+    <article className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
+      {/* SEO: Use semantic <article> tag as the outer layout wrapper to prevent nested <main> tags while maintaining valid HTML5 semantics for news content, improving crawlability. */}
       {/* Search Engine Optimization Structured Data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
@@ -294,7 +294,7 @@ export default async function Actualite({ params: paramsPromise }: Args) {
         </aside>
 
       </div>
-    </main>
+    </article>
   )
 }
 
