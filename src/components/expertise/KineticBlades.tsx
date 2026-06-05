@@ -3,6 +3,7 @@
 import React, { useRef, useState } from 'react'
 import { Plant, Bed, UsersThree, ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import clsx from 'clsx'
+import Link from 'next/link'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 
@@ -20,6 +21,7 @@ const BLADES_DATA = [
             { label: 'Rendement', value: '+30%' },
             { label: 'Eau', value: '-40%' },
         ],
+        href: '/solutions',
     },
     {
         id: 'hospitality',
@@ -32,6 +34,7 @@ const BLADES_DATA = [
             { label: 'Satisfaction', value: '9.8/10' },
             { label: 'Ops Cost', value: '-15%' },
         ],
+        href: '/solutions',
     },
     {
         id: 'citizenship',
@@ -44,6 +47,7 @@ const BLADES_DATA = [
             { label: 'Accès', value: '24/7' },
             { label: 'Délai', value: '-50%' },
         ],
+        href: '/solutions',
     },
 ]
 
@@ -247,10 +251,11 @@ export function KineticBlades() {
                                     </div>
 
                                     {/* CTA */}
-                                    <button className="group mt-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-colors hover:text-[#FFAA00]">
+                                    {/* SEO: Using Next.js <Link> instead of meaningless <button> improves crawlability for search engines */}
+                                    <Link href={blade.href || '/solutions'} className="group mt-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-colors hover:text-[#FFAA00]">
                                         Découvrir la solution
                                         <ArrowRight className="transition-transform group-hover:translate-x-1" />
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
 
