@@ -230,6 +230,20 @@ export function getFAQPageJsonLd(faqs: { question: string; answer: string }[]) {
     }
 }
 
+/** ItemList schema — use on archive/listing pages to help search engines understand a collection of items */
+export function getItemListJsonLd(items: { name: string; url: string; position: number }[]) {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: items.map((item) => ({
+            '@type': 'ListItem',
+            position: item.position,
+            url: item.url,
+            name: item.name,
+        })),
+    }
+}
+
 /** BlogPosting schema — use on actualites detail pages */
 export function getBlogPostingJsonLd(args: {
     headline: string
