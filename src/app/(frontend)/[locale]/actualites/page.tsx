@@ -4,6 +4,8 @@ import { Pagination } from '@/components/Pagination'
 import { getPayload } from '@/getPayload'
 import React from 'react'
 import Link from 'next/link'
+import { getItemListJsonLd } from '@/utilities/jsonLd'
+import { getServerSideURL } from '@/utilities/getURL'
 import { Media } from '@/components/Media'
 import { ArrowUpRight, Clock } from 'lucide-react'
 
@@ -29,8 +31,18 @@ export default async function ActualitesPage(props: {
   const featured = actualites.docs[0]
   const rest = actualites.docs.slice(1)
 
+  const itemListSchema = getItemListJsonLd(
+    actualites.docs.map((doc, i) => ({
+      name: doc.title,
+      url: `${getServerSideURL()}/${locale === 'fr' ? 'fr' : 'en'}/actualites/${doc.slug}`,
+      position: i + 1,
+    }))
+  )
+
   return (
     <main className="relative min-h-screen bg-smatch-black text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black overflow-hidden pt-32 pb-24">
+      {/* SEO: Add ItemList schema to help search engines understand this is an archive of related articles. */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
       {/* Background Atmosphere */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[600px] bg-smatch-surface opacity-30 blur-[150px] rounded-[100%] pointer-events-none -z-10" />
