@@ -10,3 +10,6 @@
 ## 2024-05-19 - Typechecking JSON-LD Date Properties
 **Learning:** When passing potentially null date fields (like `publishedAt`, `updatedAt`) from Payload CMS to jsonLd generator functions, using the fields directly can cause strict TypeScript compilation failures since the schemas explicitly expect `string | undefined` and not `null`.
 **Action:** Always use the logical OR operator with `undefined` (e.g., `datePublished: post.publishedAt || undefined`) when passing date properties to JSON-LD generator functions to satisfy strict type requirements and prevent build regressions.
+## 2024-06-10 - Replace meaningless <button> wrappers with semantic <Link> tags
+**Learning:** In sections with Call to Actions (CTAs) acting as navigation but using `<button>` wrappers without explicit `href` or `onClick` (such as in `KineticBlades.tsx`), search engine crawlers are unable to follow the pseudo-links, severely impacting indexability of the deeper content like `/solutions`.
+**Action:** Always use semantic `<Link>` components with an explicit `href` instead of `<button>` tags for interactive elements that trigger navigation, in order to maximize crawlability.
