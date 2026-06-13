@@ -5,6 +5,7 @@ import { Plant, Bed, UsersThree, ArrowRight } from '@phosphor-icons/react/dist/s
 import clsx from 'clsx'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import Link from 'next/link'
 
 // --- DATA ---
 const BLADES_DATA = [
@@ -247,10 +248,11 @@ export function KineticBlades() {
                                     </div>
 
                                     {/* CTA */}
-                                    <button className="group mt-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-colors hover:text-[#FFAA00]">
+                                    {/* SEO: Using Next.js <Link> with href instead of meaningless <button> improves crawlability for search engines */}
+                                    <Link href="/solutions" className="group mt-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-colors hover:text-[#FFAA00]">
                                         Découvrir la solution
                                         <ArrowRight className="transition-transform group-hover:translate-x-1" />
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
 
