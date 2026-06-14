@@ -15,8 +15,9 @@ export const Logo = (props: Props) => {
 
   return (
     /* eslint-disable @next/next/no-img-element */
+    /* SEO: Use localized, descriptive alt text for the main site logo to improve image search relevance and accessibility */
     <img
-      alt="Payload Logo"
+      alt="Logo de Smatch Digital"
       width={193}
       height={34}
       loading={loading}
