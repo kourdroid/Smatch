@@ -10,3 +10,6 @@
 ## 2024-05-19 - Typechecking JSON-LD Date Properties
 **Learning:** When passing potentially null date fields (like `publishedAt`, `updatedAt`) from Payload CMS to jsonLd generator functions, using the fields directly can cause strict TypeScript compilation failures since the schemas explicitly expect `string | undefined` and not `null`.
 **Action:** Always use the logical OR operator with `undefined` (e.g., `datePublished: post.publishedAt || undefined`) when passing date properties to JSON-LD generator functions to satisfy strict type requirements and prevent build regressions.
+## 2024-06-25 - Modal Semantic Structure
+**Learning:** Found instances where custom modals (like AnnouncementPopup) lacked proper ARIA roles (`role="dialog"`) and `aria-modal="true"`. This prevents screen readers from understanding that a modal has opened and traps focus appropriately, severely impacting accessibility and semantic structure which search engines value for usability.
+**Action:** Always add `role="dialog"` and `aria-modal="true"` to the root container of custom modal dialogs. Additionally, ensure they have a descriptive `aria-label` or `aria-labelledby` referencing their title.
