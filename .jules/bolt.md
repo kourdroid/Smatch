@@ -1,0 +1,3 @@
+## 2026-01-20 - Invalid Image Sizes Optimization
+**Learning:** The `Media` component was generating invalid `sizes` attributes (e.g., `(max-width: 768px) 1536w`), which caused browsers to ignore the attribute or behave unpredictably, often leading to downloading overly large images. `NextImage` uses `size` prop (singular) to map to `sizes` attribute.
+**Action:** When working with `NextImage` wrappers, always verify that `sizes` attributes use length units (`px`, `vw`) and not width descriptors (`w`). Default to `undefined` (Next.js default) rather than inventing complex custom logic if unsure.
