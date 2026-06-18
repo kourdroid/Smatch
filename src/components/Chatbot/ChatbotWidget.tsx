@@ -221,6 +221,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                 {/* Input Area */}
                 <div className="border-t border-smatch-border bg-smatch-black/50 p-4">
                     <div className="flex items-center gap-3">
+                        {/* SEO: Add aria-label to text input for better accessibility and semantic structure */}
                         <input
                             ref={inputRef}
                             type="text"
@@ -228,6 +229,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder={strings.placeholder}
+                            aria-label={strings.placeholder}
                             disabled={isLoading}
                             className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold disabled:opacity-50"
                         />
