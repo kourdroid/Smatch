@@ -12,6 +12,7 @@ import { cssVariables } from '@/cssVariables'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 const { breakpoints } = cssVariables
+const largestBreakpoint = Object.values(breakpoints).reduce((a, b) => Math.max(a, b), 0)
 
 // A base64 encoded image to use as a placeholder while the image is loading
 const placeholderBlur =
@@ -52,9 +53,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   // NOTE: this is used by the browser to determine which image to download at different screen sizes
   const sizes = sizeFromProps
     ? sizeFromProps
-    : Object.entries(breakpoints)
-      .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
-      .join(', ')
+    : `(max-width: ${largestBreakpoint}px) 100vw, ${largestBreakpoint}px`
 
   return (
     <picture className={cn(pictureClassName)}>
