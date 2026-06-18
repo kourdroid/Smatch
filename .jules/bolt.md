@@ -1,0 +1,3 @@
+## 2025-05-15 - Correct `sizes` Attribute Usage
+**Learning:** The `sizes` attribute in HTML images/`next/image` requires length units (e.g., `100vw`, `px`), not width descriptors (`w`). Using `w` units in `sizes` is invalid. Additionally, manually doubling values in `sizes` to force higher resolution downloads is an anti-pattern; browsers automatically calculate the required resource width based on `sizes` (layout width), `srcset`, and the device's DPR.
+**Action:** When auditing `next/image` usage, ensure `sizes` reflects the *layout* width of the image. Default to `100vw` for full-width/unknown sizes, but avoid invalid syntax or manual density multiplication.
