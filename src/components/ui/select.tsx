@@ -16,7 +16,7 @@ const SelectTrigger: React.FC<
 > = ({ children, className, ref, ...props }) => (
   <SelectPrimitive.Trigger
     className={cn(
-      'flex h-12 w-full items-center justify-between rounded border border-white/10 bg-zinc-900/50 px-4 py-2 text-sm text-white ring-offset-black placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-smatch-gold focus:border-smatch-gold disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 transition-colors',
+      'flex h-12 w-full items-center justify-between rounded border border-white/10 bg-zinc-900/50 px-4 py-2 text-sm text-white ring-offset-black placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-smatch-gold focus:border-smatch-gold disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 transition duration-200',
       className,
     )}
     ref={ref}
@@ -104,7 +104,7 @@ const SelectItem: React.FC<
 > = ({ children, className, ref, ...props }) => (
   <SelectPrimitive.Item
     className={cn(
-      'relative flex w-full cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-zinc-800 focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-zinc-800 transition-colors',
+      'relative flex w-full cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-zinc-800 focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-zinc-800 transition duration-200',
       className,
     )}
     ref={ref}
