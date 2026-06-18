@@ -1,0 +1,3 @@
+## 2024-05-23 - [Invalid `sizes` Attribute Syntax in Image Component]
+**Learning:** The `sizes` attribute in HTML/Next.js images expects a length unit (like `px` or `vw`) for the source size value, NOT a width descriptor (like `w`). Using `w` (e.g., `(max-width: 768px) 1536w`) is invalid syntax and can cause the browser to ignore the attribute or default to downloading the largest available image in the `srcset`, leading to massive over-fetching.
+**Action:** Always validate `sizes` attribute syntax. Use standard length units. For a generic responsive image component, defaulting to `100vw` is a safe, valid, and performant baseline compared to invalid syntax or "double width" assumptions.
