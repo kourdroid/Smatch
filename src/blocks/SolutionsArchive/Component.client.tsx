@@ -128,9 +128,10 @@ export const SolutionsGridClient: React.FC<SolutionsGridClientProps> = ({
 
             <div className="container relative z-10 mx-auto px-4">
                 <div className="mb-12 text-center">
-                    <span className="mb-2 block text-lg font-bold text-white">
+                    {/* SEO: Using <h2> instead of <span> to establish proper heading hierarchy before the <h3> tags in the cards */}
+                    <h2 className="mb-2 block text-lg font-bold text-white">
                         {sectionTitle || 'Nos Solutions'}
-                    </span>
+                    </h2>
                     <p className="mx-auto max-w-2xl text-sm text-gray-500">
                         {sectionDescription || 'Trois piliers technologiques pour transformer vos opérations industrielles.'}
                     </p>
