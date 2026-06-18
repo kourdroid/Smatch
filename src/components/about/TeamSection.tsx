@@ -178,10 +178,12 @@ const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
       <div className="relative z-10 mb-6 flex items-start justify-between">
         <div className="relative size-24 overflow-hidden rounded-lg border border-white/10 bg-[#151515]">
           {member.image ? (
-            <img
+            <Image
               src={member.image}
               alt={member.name}
-              className="size-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+              fill
+              sizes="96px"
+              className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
             />
           ) : (
             <div className="flex size-full items-center justify-center text-[10px] text-white/20">IMG</div>

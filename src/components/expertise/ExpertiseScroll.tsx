@@ -12,6 +12,7 @@ import {
   CheckCircle,
 } from '@phosphor-icons/react/dist/ssr'
 import { cn } from '@/utilities/ui'
+import Image from 'next/image'
 
 // --- DATA ---
 const EXPERTISE_DATA = [
@@ -188,11 +189,15 @@ export default function ExpertiseScroll() {
                         <div className="absolute inset-0 flex items-center justify-center p-8">
                           {/* Glow behind image */}
                           <div className="absolute size-[200px] rounded-full bg-yellow-500/20 blur-[80px]" />
-                          <img
-                            src={card.image}
-                            alt={card.title}
-                            className="relative z-10 size-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
-                          />
+                          <div className="relative z-10 size-full transition-transform duration-700 group-hover:scale-105 drop-shadow-2xl">
+                            <Image
+                              src={card.image}
+                              alt={card.title}
+                              fill
+                              sizes="(max-width: 1024px) 100vw, 50vw"
+                              className="object-contain"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
