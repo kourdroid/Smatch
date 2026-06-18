@@ -22,9 +22,12 @@ export const Checkbox: React.FC<
   return (
     <Width width={width}>
       <div className="flex items-center gap-2">
+        {/* SEO/A11y: Link input to error message via aria attributes for semantic error association */}
         <CheckboxUi
           defaultChecked={defaultValue}
           id={name}
+          aria-invalid={!!errors[name]}
+          aria-describedby={errors[name] ? `error-${name}` : undefined}
           {...props}
           onCheckedChange={(checked) => {
             setValue(props.name, checked)
