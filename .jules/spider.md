@@ -10,3 +10,6 @@
 ## 2024-05-19 - Typechecking JSON-LD Date Properties
 **Learning:** When passing potentially null date fields (like `publishedAt`, `updatedAt`) from Payload CMS to jsonLd generator functions, using the fields directly can cause strict TypeScript compilation failures since the schemas explicitly expect `string | undefined` and not `null`.
 **Action:** Always use the logical OR operator with `undefined` (e.g., `datePublished: post.publishedAt || undefined`) when passing date properties to JSON-LD generator functions to satisfy strict type requirements and prevent build regressions.
+## 2026-05-19 - Fallback Link Paths for Crawlability
+**Learning:** Fallback state links in components (like `HeaderNav` when CMS data is missing) often use dummy `href="#"` paths. This prevents crawlers from indexing these structural links if the fallback is ever rendered, reducing crawlability and breaking Next.js semantic routing rules.
+**Action:** Always replace dummy `href="#"` paths with real, semantic relative routes (e.g., `/about`, `/solutions`) even in development fallbacks to maintain strong SEO patterns and structure.
