@@ -73,7 +73,8 @@ export const NavCenterPill = ({
 }) => {
   return (
     <div className="pointer-events-none fixed inset-x-0 top-6 flex justify-center">
-      <div
+      <nav
+        aria-label="Main navigation"
         className={cn(
           'pointer-events-auto relative flex flex-row items-center gap-1',
           'bg-[#0a0a0a]/50 smatch-backdrop-blur-xl smatch-glass-fallback border border-white/10',
@@ -84,7 +85,7 @@ export const NavCenterPill = ({
       >
         <div className="absolute inset-x-4 -top-px h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         {children}
-      </div>
+      </nav>
     </div>
   )
 }
@@ -188,9 +189,9 @@ export const MobileTopBar = ({ children }: { children: React.ReactNode }) => {
 export const MobileBottomDock = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="pointer-events-none absolute bottom-4 left-0 z-50 flex w-full justify-center md:hidden">
-      <div className="smatch-backdrop-blur-2xl smatch-glass-fallback pointer-events-auto flex items-center gap-6 rounded-md border border-white/10 bg-[#0F0F0F]/80 px-8 py-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]">
+      <nav aria-label="Mobile navigation" className="smatch-backdrop-blur-2xl smatch-glass-fallback pointer-events-auto flex items-center gap-6 rounded-md border border-white/10 bg-[#0F0F0F]/80 px-8 py-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]">
         {children}
-      </div>
+      </nav>
     </div>
   )
 }
