@@ -228,6 +228,7 @@ export function ChatbotWidget({ locale }: { locale: Locale }) {
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder={strings.placeholder}
+                            aria-label={strings.placeholder}
                             disabled={isLoading}
                             className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold disabled:opacity-50"
                         />
