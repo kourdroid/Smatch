@@ -3,7 +3,8 @@ import { Button } from '@/components/ui/button'
 
 export default function NotFound() {
   return (
-    <div className="container flex min-h-[70vh] flex-col items-center justify-center py-28 text-center">
+    <main className="container flex min-h-[70vh] flex-col items-center justify-center py-28 text-center">
+      {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
       <div className="relative">
         <h1 className="select-none font-heading text-[12rem] font-bold leading-none text-smatch-gold/10">
           404
@@ -23,6 +24,6 @@ export default function NotFound() {
           <Link href="/">INITIATE_HOME_PROTOCOL</Link>
         </Button>
       </div>
-    </div>
+    </main>
   )
 }
