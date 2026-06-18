@@ -76,10 +76,12 @@ const InteractiveCard = ({ data, locale = 'en' }: { data: SolutionDoc; locale?: 
       >
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
+          {/* SEO: Add sizes attribute to Next.js Image for optimal LCP and responsive loading */}
           <Image
             src={imageUrl}
             alt={data.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
             className="object-cover opacity-40 transition-all duration-700 ease-out group-hover:scale-110 group-hover:opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-80" />
