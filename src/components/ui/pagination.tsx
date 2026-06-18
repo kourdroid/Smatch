@@ -60,6 +60,8 @@ const PaginationPrevious = ({
     // SEO: Helps search engines understand the sequential relationship between paginated URLs
     rel="prev"
     {...props}
+    // SEO: Add rel="prev" to indicate this link goes to the previous page in a paginated sequence
+    rel="prev"
   >
     <ChevronLeft className="size-4" />
     <span>Previous</span>
@@ -74,6 +76,8 @@ const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof Pag
     // SEO: Helps search engines understand the sequential relationship between paginated URLs
     rel="next"
     {...props}
+    // SEO: Add rel="next" to indicate this link goes to the next page in a paginated sequence
+    rel="next"
   >
     <span>Next</span>
     <ChevronRight className="size-4" />
