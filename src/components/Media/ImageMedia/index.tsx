@@ -8,7 +8,6 @@ import React from 'react'
 
 import type { Props as MediaProps } from '../types'
 
-import { cssVariables } from '@/cssVariables'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 const { breakpoints } = cssVariables
@@ -50,11 +49,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
 
   // NOTE: this is used by the browser to determine which image to download at different screen sizes
-  const sizes = sizeFromProps
-    ? sizeFromProps
-    : Object.entries(breakpoints)
-      .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
-      .join(', ')
+  const sizes = sizeFromProps || '100vw'
 
   return (
     <picture className={cn(pictureClassName)}>
