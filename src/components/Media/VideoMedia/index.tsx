@@ -24,7 +24,8 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
   }, [])
 
   if (resource && typeof resource === 'object') {
-    const { filename } = resource
+    const { filename, thumbnailURL } = resource
+    const poster = thumbnailURL ? getMediaUrl(thumbnailURL) : undefined
 
     return (
       <video
@@ -35,6 +36,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         muted
         onClick={onClick}
         playsInline
+        poster={poster}
         ref={videoRef}
       >
         <source src={getMediaUrl(`/media/${filename}`)} />
