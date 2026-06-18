@@ -16,6 +16,7 @@ type Props = MediaBlockProps & {
   imgClassName?: string
   staticImage?: StaticImageData
   disableInnerContainer?: boolean
+  size?: string
 }
 
 export const MediaBlock: React.FC<Props> = (props) => {
@@ -27,6 +28,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
     media,
     staticImage,
     disableInnerContainer,
+    size,
   } = props
 
   let caption
@@ -47,6 +49,9 @@ export const MediaBlock: React.FC<Props> = (props) => {
           imgClassName={cn('border border-border rounded-[0.8rem]', imgClassName)}
           resource={media}
           src={staticImage}
+          // Optimization: If in a container (enableGutter), cap the image size at the container max-width (1600px)
+          // to prevent downloading full-viewport images on ultra-wide screens.
+          size={size || (enableGutter ? '(max-width: 1600px) 100vw, 1600px' : undefined)}
         />
       )}
       {caption && (
