@@ -1,0 +1,3 @@
+## 2024-05-22 - Invalid Image Sizes Attribute
+**Learning:** The `ImageMedia` component was generating invalid `sizes` attributes using `w` descriptors (e.g., `(max-width: 640px) 1280w`). This is not only invalid HTML (sizes expects length units like px or vw) but also likely ignored by browsers, falling back to defaults. Additionally, the logic attempted to force 2x image width, which would be a massive performance penalty if it worked.
+**Action:** When working with responsive images, verify that `sizes` attributes use valid length units and allow the browser/framework (Next.js) to handle defaults unless specific layout constraints are known.
