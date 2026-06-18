@@ -7,6 +7,7 @@ import { i18nConfig, isValidLocale, type Locale } from '@/utilities/i18n'
 import { notFound } from 'next/navigation'
 import { getServerSideURL } from '@/utilities/getURL'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { getBreadcrumbJsonLd } from '@/utilities/jsonLd'
 
 type Args = {
   params: Promise<{
@@ -91,8 +92,19 @@ export default async function SolutionsPage({ params }: Args) {
     },
   })
 
+  const serverUrl = getServerSideURL()
+  const breadcrumbJsonLd = getBreadcrumbJsonLd([
+    { name: locale === 'fr' ? 'Accueil' : 'Home', url: `${serverUrl}/${locale}` },
+    { name: 'Solutions', url: `${serverUrl}/${locale}/solutions` },
+  ])
+
   return (
     <main className="flex w-full flex-col">
+      {/* SEO: Inject JSON-LD Breadcrumb Schema for search engine crawlers */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <SolutionsHero image={'/assets/hero/SolutionHero.webp'} locale={locale} />
       {/* 3. Pass the fetched data + locale to the Grid */}
       <SolutionsGrid solutions={solutions} locale={locale} />
