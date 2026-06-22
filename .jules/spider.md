@@ -10,3 +10,6 @@
 ## 2024-05-19 - Typechecking JSON-LD Date Properties
 **Learning:** When passing potentially null date fields (like `publishedAt`, `updatedAt`) from Payload CMS to jsonLd generator functions, using the fields directly can cause strict TypeScript compilation failures since the schemas explicitly expect `string | undefined` and not `null`.
 **Action:** Always use the logical OR operator with `undefined` (e.g., `datePublished: post.publishedAt || undefined`) when passing date properties to JSON-LD generator functions to satisfy strict type requirements and prevent build regressions.
+## 2026-06-22 - Nested Main Tags in Page Layouts
+**Learning:** Detailed page layouts (like `actualites/[slug]/page.tsx`) often define `<main>` as their outermost wrapper. If inner column structures also use `<main>`, it results in invalid HTML5 (nested `<main>` tags). This negatively impacts semantic structure and crawler readability.
+**Action:** When working on page components, always verify the outermost wrapper tag before using `<main>` for inner content areas. Use semantic `<div>` elements for structural grid/column wrappers if a `<main>` or `<article>` wrapper already exists at a higher level.
