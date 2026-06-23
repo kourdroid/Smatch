@@ -15,8 +15,9 @@ export const Logo = (props: Props) => {
 
   return (
     /* eslint-disable @next/next/no-img-element */
+    // SEO: Updated generic "Payload Logo" alt text to specific brand entity "Smatch Digital Logo" to improve image search indexation and brand relevance
     <img
-      alt="Payload Logo"
+      alt="Smatch Digital Logo"
       width={193}
       height={34}
       loading={loading}
