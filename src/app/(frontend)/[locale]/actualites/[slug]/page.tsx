@@ -156,7 +156,8 @@ export default async function Actualite({ params: paramsPromise }: Args) {
         </aside>
 
         {/* CENTER COLUMN: Main Article (Left aligned flow) */}
-        <main className="col-span-1 lg:col-span-7">
+        {/* SEO: Replaced nested <main> with <div> to maintain valid HTML5 semantics and prevent crawlability issues caused by multiple <main> tags. */}
+        <div className="col-span-1 lg:col-span-7">
           <article className="w-full">
             
             {/* Hero Image */}
@@ -254,7 +255,7 @@ export default async function Actualite({ params: paramsPromise }: Args) {
             </div>
             
           </article>
-        </main>
+        </div>
 
         {/* RIGHT COLUMN: Related / Latest News */}
         <aside className="hidden lg:block lg:col-span-3">
