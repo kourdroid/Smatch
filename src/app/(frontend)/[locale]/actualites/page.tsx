@@ -6,6 +6,8 @@ import React from 'react'
 import Link from 'next/link'
 import { Media } from '@/components/Media'
 import { ArrowUpRight, Clock } from 'lucide-react'
+import { getItemListJsonLd } from '@/utilities/jsonLd'
+import { getServerSideURL } from '@/utilities/getURL'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
@@ -29,9 +31,19 @@ export default async function ActualitesPage(props: {
   const featured = actualites.docs[0]
   const rest = actualites.docs.slice(1)
 
+  const serverUrl = getServerSideURL()
+  const itemListJsonLd = getItemListJsonLd(
+    actualites.docs.map((doc) => ({
+      name: doc.title,
+      url: `${serverUrl}/${locale || 'fr'}/actualites/${doc.slug}`,
+    }))
+  )
+
   return (
     <main className="relative min-h-screen bg-smatch-black text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black overflow-hidden pt-32 pb-24">
       {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
+      {/* SEO: Inject ItemList structured data to help search engines understand the collection of items. */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       {/* Background Atmosphere */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[600px] bg-smatch-surface opacity-30 blur-[150px] rounded-[100%] pointer-events-none -z-10" />
 

@@ -267,3 +267,17 @@ export function getBlogPostingJsonLd(args: {
         },
     }
 }
+
+/** ItemList schema — use on archive/listing pages */
+export function getItemListJsonLd(items: { name: string; url: string }[]) {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: items.map((item, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: item.name,
+            url: item.url,
+        })),
+    }
+}
