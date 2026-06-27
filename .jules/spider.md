@@ -10,3 +10,5 @@
 ## 2024-05-19 - Typechecking JSON-LD Date Properties
 **Learning:** When passing potentially null date fields (like `publishedAt`, `updatedAt`) from Payload CMS to jsonLd generator functions, using the fields directly can cause strict TypeScript compilation failures since the schemas explicitly expect `string | undefined` and not `null`.
 **Action:** Always use the logical OR operator with `undefined` (e.g., `datePublished: post.publishedAt || undefined`) when passing date properties to JSON-LD generator functions to satisfy strict type requirements and prevent build regressions.
+
+## 2024-06-27 - [Added dialog roles] **Learning:** Modals using Framer Motion (`motion.div`) in this codebase often act as dialogs but miss proper ARIA roles out of the box. **Action:** Always check interactive popups/modals for `role="dialog"`, `aria-modal="true"`, and `aria-labelledby` attributes to ensure they are accessible and their semantic structure is understood by crawlers.
