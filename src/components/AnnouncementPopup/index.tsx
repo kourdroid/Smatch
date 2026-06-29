@@ -109,12 +109,16 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
             />
 
             {/* Modal Content */}
+            {/* SEO: Add role dialog and aria attributes to improve semantics and accessibility */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', duration: 0.5, bounce: 0.3 }}
               className="relative flex max-h-[85vh] w-full max-w-[1000px] flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] shadow-2xl"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="announcement-title"
             >
               {/* Noise Overlay */}
               <div
@@ -153,7 +157,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                 {/* Right Side: Content */}
                 <div className="flex w-full flex-col justify-between overflow-hidden p-5 sm:p-6 lg:w-1/2 lg:p-8">
                   {/* Title */}
-                  <h2 className="mb-2 font-heading text-2xl font-black uppercase tracking-tighter text-white sm:text-3xl lg:text-4xl">
+                  <h2 id="announcement-title" className="mb-2 font-heading text-2xl font-black uppercase tracking-tighter text-white sm:text-3xl lg:text-4xl">
                     {title}
                   </h2>
 
