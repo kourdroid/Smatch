@@ -15,8 +15,9 @@ export const Logo = (props: Props) => {
 
   return (
     /* eslint-disable @next/next/no-img-element */
+    // SEO: Using the brand name for the main logo alt text improves relevance
     <img
-      alt="Payload Logo"
+      alt="Smatch Digital Logo"
       width={193}
       height={34}
       loading={loading}
