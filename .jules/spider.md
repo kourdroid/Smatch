@@ -10,3 +10,5 @@
 ## 2024-05-19 - Typechecking JSON-LD Date Properties
 **Learning:** When passing potentially null date fields (like `publishedAt`, `updatedAt`) from Payload CMS to jsonLd generator functions, using the fields directly can cause strict TypeScript compilation failures since the schemas explicitly expect `string | undefined` and not `null`.
 **Action:** Always use the logical OR operator with `undefined` (e.g., `datePublished: post.publishedAt || undefined`) when passing date properties to JSON-LD generator functions to satisfy strict type requirements and prevent build regressions.
+
+## 2024-05-18 - [Fix Semantic HTML] **Learning:** Do not commit temporary modification scripts to the repository. **Action:** Make sure to delete any script used for text replacement or automated changes before committing and completing pre-commit steps.
