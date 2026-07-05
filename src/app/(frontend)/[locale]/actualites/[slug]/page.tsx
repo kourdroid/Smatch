@@ -114,8 +114,8 @@ export default async function Actualite({ params: paramsPromise }: Args) {
 
 
   return (
-    <main className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
-      {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
+    <div className="bg-smatch-black min-h-screen text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black pb-32 pt-32">
+      {/* Page Layout Wrapper */}
       {/* Search Engine Optimization Structured Data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
@@ -156,6 +156,7 @@ export default async function Actualite({ params: paramsPromise }: Args) {
         </aside>
 
         {/* CENTER COLUMN: Main Article (Left aligned flow) */}
+        {/* SEO: Use semantic <main> tag to indicate the primary content of the document, improving crawlability and accessibility. */}
         <main className="col-span-1 lg:col-span-7">
           <article className="w-full">
             
@@ -294,7 +295,7 @@ export default async function Actualite({ params: paramsPromise }: Args) {
         </aside>
 
       </div>
-    </main>
+    </div>
   )
 }
 
