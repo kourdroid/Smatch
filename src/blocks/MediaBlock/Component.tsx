@@ -33,7 +33,8 @@ export const MediaBlock: React.FC<Props> = (props) => {
   if (media && typeof media === 'object') caption = media.caption
 
   return (
-    <div
+    /* SEO: Using <figure> and <figcaption> semantically associates the caption text with the media, providing better context for search engine image indexers. */
+    <figure
       className={cn(
         '',
         {
@@ -50,7 +51,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
         />
       )}
       {caption && (
-        <div
+        <figcaption
           className={cn(
             'mt-6',
             {
@@ -60,8 +61,8 @@ export const MediaBlock: React.FC<Props> = (props) => {
           )}
         >
           <RichText data={caption} enableGutter={false} />
-        </div>
+        </figcaption>
       )}
-    </div>
+    </figure>
   )
 }
