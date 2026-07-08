@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import type { Header as HeaderType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 
@@ -32,10 +33,11 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
           {/* Fallback Static Links if CMS is empty during dev */}
           {navItems.length === 0 && (
             <>
-              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">A PROPOS</a>
-              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">SOLUTIONS</a>
-              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">PROJECTS</a>
-              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">EXPERTISES</a>
+              {/* SEO: Using valid relative paths instead of href="#" prevents crawl errors and mixed SEO signals */}
+              <Link href="/" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">A PROPOS</Link>
+              <Link href="/solutions" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">SOLUTIONS</Link>
+              <Link href="/projects" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">PROJECTS</Link>
+              <Link href="/" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">EXPERTISES</Link>
             </>
           )}
         </div>
